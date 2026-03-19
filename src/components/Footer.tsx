@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ROUTES } from "@/lib/constants";
 import { C } from "@/lib/constants";
 
@@ -35,18 +36,19 @@ export function Footer() {
           }}
         >
           <div>
-            <div
-              style={{
-                fontFamily: "Instrument Serif, serif",
-                fontSize: 22,
-                letterSpacing: "0.15em",
-                textTransform: "uppercase",
-                color: "#fff",
-                marginBottom: 14,
-              }}
+            <Link
+              href="/"
+              style={{ display: "inline-block", marginBottom: 14 }}
+              aria-label="Opolis home"
             >
-              OPOLIS
-            </div>
+              <Image
+                src="/logo.png"
+                alt="Opolis"
+                width={140}
+                height={36}
+                style={{ objectFit: "contain", filter: "brightness(0) invert(1)" }}
+              />
+            </Link>
             <p
               style={{
                 color: "#444",

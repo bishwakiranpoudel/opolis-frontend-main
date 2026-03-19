@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { NAV_PAGES, ROUTES } from "@/lib/constants";
 
@@ -43,8 +44,15 @@ export function Nav() {
     <>
       <header className="nav" role="banner">
         <div className="nav-inner">
-          <Link href="/" className="nav-logo" onClick={closeMenu}>
-            OPOLIS
+          <Link href="/" className="nav-logo" onClick={closeMenu} aria-label="Opolis home">
+            <Image
+              src="/logo.png"
+              alt="Opolis"
+              width={120}
+              height={32}
+              style={{ objectFit: "contain", filter: "brightness(0) invert(1)" }}
+              priority
+            />
           </Link>
 
           {/* Desktop: links + actions */}
