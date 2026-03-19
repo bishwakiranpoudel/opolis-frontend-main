@@ -12,6 +12,9 @@ const routes = [
   "/about",
   "/ai-reference",
   "/contact",
+  "/bylaws",
+  "/coalition-member",
+  "/terms-of-service",
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

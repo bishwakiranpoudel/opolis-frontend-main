@@ -375,8 +375,8 @@ export default function HomePage() {
                 href={JOIN_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-red"
-                style={{ padding: "12px 26px", fontSize: 14 }}
+                className="btn btn-red btn-fit"
+                style={{ padding: "14px 28px", fontSize: 14 }}
               >
                 Join the Co-op →
               </a>

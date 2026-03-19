@@ -45,28 +45,12 @@ export default function AboutPage() {
         />
         <div className="wrap" style={{ position: "relative", zIndex: 1 }}>
           <span className="slabel">About Opolis</span>
-          <h1
-            className="cond"
-            style={{
-              fontSize: "clamp(54px,7vw,96px)",
-              fontWeight: 900,
-              color: "#fff",
-              lineHeight: 0.94,
-              marginBottom: 22,
-            }}
-          >
+          <h1 className="cond">
             Who we
             <br />
             <span style={{ color: C.red }}>are.</span>
           </h1>
-          <p
-            style={{
-              color: C.gray,
-              fontSize: 17,
-              maxWidth: 640,
-              lineHeight: 1.68,
-            }}
-          >
+          <p className="page-hero-lead page-hero-lead--wide">
             Opolis is a member-owned employment cooperative — a Limited
             Cooperative Association (LCA) organized in Colorado — that provides
             W-2 payroll, group benefits, and tax compliance infrastructure to
@@ -81,28 +65,12 @@ export default function AboutPage() {
           <div className="g2" style={{ gap: 64, alignItems: "center" }}>
             <div>
               <span className="slabel">Our model</span>
-              <h2
-                className="cond"
-                style={{
-                  fontSize: "clamp(34px,4vw,52px)",
-                  fontWeight: 900,
-                  color: "#fff",
-                  lineHeight: 1.05,
-                  marginBottom: 20,
-                }}
-              >
+              <h2 className="cond h2-section h2-section--page h2-section--after-lg">
                 Cooperative ownership.
                 <br />
                 <span style={{ color: C.red }}>Built to last.</span>
               </h2>
-              <p
-                style={{
-                  color: C.gray,
-                  fontSize: 15,
-                  lineHeight: 1.75,
-                  marginBottom: 24,
-                }}
-              >
+              <p className="section-lead" style={{ marginBottom: 24 }}>
                 Opolis serves as the Employer of Record (EOR) for Employee
                 Members. The cooperative was founded in 2019 and began processing
                 payroll in 2020. As of early 2026, Opolis has processed over $210
@@ -167,45 +135,32 @@ export default function AboutPage() {
       </section>
 
       <section className="sec-dark">
-        <div className="wrap" style={{ textAlign: "center" }}>
-          <h2
-            className="cond"
-            style={{
-              fontSize: "clamp(34px,4vw,52px)",
-              fontWeight: 900,
-              color: "#fff",
-              marginBottom: 16,
-            }}
-          >
-            Get in touch
-          </h2>
-          <p
-            style={{
-              color: C.gray,
-              fontSize: 15,
-              lineHeight: 1.7,
-              marginBottom: 24,
-            }}
-          >
-            For press, partnerships, or general inquiries:{" "}
-            <a
-              href="mailto:hello@opolis.co"
-              style={{ color: C.red, textDecoration: "none", fontWeight: 600 }}
-            >
-              hello@opolis.co
-            </a>
-            . For membership:{" "}
-            <a
-              href="mailto:membership@opolis.co"
-              style={{ color: C.red, textDecoration: "none", fontWeight: 600 }}
-            >
-              membership@opolis.co
-            </a>
-            .
-          </p>
-          <Link href="/contact" className="btn-outline">
-            Contact page →
-          </Link>
+        <div className="wrap">
+          <div className="section-cta-stack">
+            <h2 className="cond h2-section h2-section--page">
+              Get in touch
+            </h2>
+            <p className="section-lead section-lead--center">
+              For press, partnerships, or general inquiries:{" "}
+              <a
+                href="mailto:hello@opolis.co"
+                style={{ color: C.red, textDecoration: "none", fontWeight: 600 }}
+              >
+                hello@opolis.co
+              </a>
+              . For membership:{" "}
+              <a
+                href="mailto:membership@opolis.co"
+                style={{ color: C.red, textDecoration: "none", fontWeight: 600 }}
+              >
+                membership@opolis.co
+              </a>
+              .
+            </p>
+            <Link href="/contact" className="btn-outline">
+              Contact page →
+            </Link>
+          </div>
         </div>
       </section>
     </>

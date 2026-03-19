@@ -10,17 +10,21 @@
   --lh-body-loose: 1.72;
   --lh-caption: 1.4;
   /* Section vertical rhythm */
-  --space-section: 96px;
-  --space-section-sm: 56px;
+  --space-section: 100px;
+  --space-section-sm: 60px;
   --space-section-xs: 40px;
   --space-wrap: 48px;
   --space-wrap-sm: 22px;
   --space-wrap-xs: 16px;
   /* Heading/block spacing */
-  --space-heading-after: 16px;
+  --space-heading-after: 18px;
   --space-subheading-after: 12px;
-  --space-paragraph-after: 24px;
-  --space-block: 20px;
+  --space-paragraph-after: 28px;
+  --space-block: 24px;
+  --space-section-inner-bottom: 8px; /* extra air below last block in a section */
+  /* Hero grid — subtle lines in brand coral (#E8432D) */
+  --hero-grid-line: rgba(232, 67, 45, 0.09);
+  --hero-grid-size: 48px;
 }
 
 *, *::before, *::after {
@@ -88,9 +92,12 @@ button {
   max-width: 1180px;
   margin: 0 auto;
   padding: 0 48px;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  /* Optical vertical alignment: avoid inheriting body line-height (1.6) in the bar */
+  line-height: 1;
 }
 
 .nav a,
@@ -105,6 +112,16 @@ button {
   text-transform: uppercase;
   color: #fff;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Kill baseline gap under logo image (inline img sits on text baseline otherwise) */
+.nav-logo img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-height: 32px;
 }
 
 .nav-links {
@@ -289,11 +306,15 @@ button {
 }
 
 .nlink {
+  display: inline-flex;
+  align-items: center;
   font-size: 13px;
   font-weight: 500;
   color: #777;
   transition: color 0.18s;
-  padding: 4px 0;
+  line-height: 1;
+  padding: 8px 0;
+  white-space: nowrap;
 }
 
 .nlink:hover,
@@ -302,9 +323,17 @@ button {
 }
 
 .btn-ghost-nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-size: 13px;
+  font-weight: 500;
   color: #555;
   transition: color 0.18s;
+  line-height: 1;
+  /* Match .nav-join vertical padding (9px) so “Log in” lines up with the pill */
+  padding: 9px 8px;
+  white-space: nowrap;
 }
 
 .btn-ghost-nav:hover {
@@ -314,11 +343,20 @@ button {
 .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   font-weight: 600;
   border-radius: 100px;
   transition: all 0.18s;
   font-family: 'DM Sans', sans-serif;
+}
+
+/* Flex column cards often stretch children; keep pill CTAs content-sized + centered */
+.btn-fit {
+  align-self: flex-start;
+  width: fit-content;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .btn-red {
@@ -380,6 +418,30 @@ button {
   opacity: 0.7;
 }
 
+/* No underlines on button-styled links */
+a.btn,
+a.btn-outline,
+a.btn-red,
+a.btn-wht,
+a.btn-text,
+a.btn-ghost-nav,
+a.nav-join,
+.btn,
+.btn-outline,
+.btn-red,
+.btn-wht,
+.btn-text {
+  text-decoration: none !important;
+}
+a.btn:focus-visible,
+a.btn-outline:focus-visible,
+a.btn-red:focus-visible,
+a.btn-wht:focus-visible,
+a.btn-text:focus-visible {
+  outline: 2px solid rgba(232, 67, 45, 0.55);
+  outline-offset: 3px;
+}
+
 .slabel {
   display: block;
   font-size: 11px;
@@ -388,30 +450,195 @@ button {
   text-transform: uppercase;
   color: #E8432D;
   margin-bottom: var(--space-heading-after);
+  line-height: 1.35;
+}
+
+/* Inner sections on nav pages (not home .hero-section) */
+.kicker {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #E8432D;
+  margin-bottom: 10px;
+  line-height: 1.35;
+}
+.h2-section {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(30px, 3.8vw, 42px);
+  font-weight: 900;
+  color: #fff;
+  line-height: var(--lh-heading);
+  margin: 0 0 12px;
+  letter-spacing: -0.02em;
+}
+.h2-section--page {
+  font-size: clamp(34px, 4vw, 52px);
+  margin-bottom: 14px;
+}
+
+.h2-section--large {
+  font-size: clamp(34px, 4vw, 54px);
+}
+
+.h2-section--after-lg {
+  margin-bottom: 20px;
+}
+
+/* Co-op step cards (fixed display size) */
+.h2-section--static-42 {
+  font-size: 42px;
+  margin-bottom: 6px;
+  line-height: var(--lh-heading);
+}
+
+.h2-section--resources-tab {
+  font-size: 42px;
+  margin-bottom: 8px;
+  line-height: var(--lh-heading);
+}
+
+.h2-section--promo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: 900;
+  color: #fff;
+  line-height: var(--lh-heading);
+  max-width: 640px;
+  margin: 0 auto 14px;
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+.sec-light .h2-section,
+.sec-white .h2-section {
+  color: #0d0d0d;
+}
+
+.page-hero h1.cond {
+  font-size: clamp(54px, 7vw, 96px);
+  font-weight: 900;
+  color: #fff;
+  line-height: var(--lh-heading);
+  margin: 0 0 var(--space-heading-after);
+}
+
+.page-hero:has(.tabs) h1.cond {
+  margin-bottom: 28px;
+}
+
+.page-hero-lead {
+  color: #777;
+  font-size: 17px;
+  line-height: var(--lh-body-loose);
+  margin: 0;
+  max-width: 580px;
+}
+
+.page-hero-lead--wide {
+  max-width: 640px;
+}
+
+.page-hero-lead--contact {
+  font-size: 16px;
+  max-width: 520px;
+}
+
+.section-lead--center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Centered CTA bands: even gaps between title, lead, and action(s) */
+.section-cta-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-block);
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.section-cta-stack > :is(h1, h2, h3) {
+  margin: 0 !important;
+  max-width: 100%;
+  text-wrap: balance;
+}
+
+.section-cta-stack .section-lead {
+  margin: 0 !important;
+  max-width: min(640px, 100%);
+}
+
+/* Shorter measure so body copy breaks more evenly (e.g. Benefits CTA) */
+.section-cta-stack--measure-sm .section-lead {
+  max-width: min(500px, 100%);
+}
+
+.section-cta-stack .cta-buttons-row {
+  justify-content: center;
+}
+
+.u-mb-block {
+  margin-bottom: var(--space-block) !important;
+}
+.section-meta {
+  font-size: 13px;
+  font-weight: 700;
+  color: #e8432d;
+  margin-bottom: 14px;
+  line-height: 1.35;
+}
+.section-lead {
+  color: #777;
+  font-size: 15px;
+  line-height: var(--lh-body);
+  max-width: 640px;
+  margin: 0 0 var(--space-paragraph-after);
+}
+.section-lead--narrow {
+  max-width: 560px;
+  font-size: 14px;
+}
+
+.page-hero .wrap > p {
+  line-height: var(--lh-body-loose);
+}
+
+.sec-alt .wrap p,
+.sec-dark .wrap p {
+  line-height: var(--lh-body);
+}
+.dc p,
+.bcard p {
+  line-height: var(--lh-body);
 }
 
 .sec-dark {
   width: 100%;
   background: #0D0D0D;
-  padding: var(--space-section) 0;
+  padding: var(--space-section) 0 calc(var(--space-section) + var(--space-section-inner-bottom));
 }
 
 .sec-alt {
   width: 100%;
   background: #111111;
-  padding: var(--space-section) 0;
+  padding: var(--space-section) 0 calc(var(--space-section) + var(--space-section-inner-bottom));
 }
 
 .sec-light {
   width: 100%;
   background: #F4F3EF;
-  padding: var(--space-section) 0;
+  padding: var(--space-section) 0 calc(var(--space-section) + var(--space-section-inner-bottom));
 }
 
 .sec-white {
   width: 100%;
   background: #FFFFFF;
-  padding: var(--space-section) 0;
+  padding: var(--space-section) 0 calc(var(--space-section) + var(--space-section-inner-bottom));
 }
 
 main {
@@ -439,6 +666,69 @@ main {
 .blog-sidebar {
   position: sticky;
   top: 88px;
+}
+
+.blog-sidebar-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px 0;
+}
+
+.blog-sidebar-item {
+  margin-bottom: 6px;
+}
+
+.blog-sidebar-item:last-child {
+  margin-bottom: 0;
+}
+
+.blog-sidebar-item__link {
+  display: block;
+  padding: 10px 12px;
+  margin-left: -12px;
+  margin-right: -12px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease;
+}
+
+.blog-sidebar-item__title {
+  display: block;
+  font-size: 13px;
+  color: #c8c8c8;
+  line-height: 1.45;
+  font-weight: 500;
+  transition: color 0.18s ease;
+}
+
+.blog-sidebar-item__meta {
+  display: block;
+  font-size: 11px;
+  color: #777;
+  margin-top: 4px;
+  transition: color 0.18s ease;
+}
+
+.blog-sidebar-item__link:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.blog-sidebar-item__link:hover .blog-sidebar-item__title {
+  color: #fff;
+}
+
+.blog-sidebar-item__link:hover .blog-sidebar-item__meta {
+  color: #a3a3a3;
+}
+
+.blog-sidebar-item__link:focus-visible {
+  outline: 2px solid rgba(232, 67, 45, 0.55);
+  outline-offset: 2px;
 }
 
 /* Prose styling for WordPress post content */
@@ -704,6 +994,8 @@ main {
   border: 1px solid #252525;
   color: #666;
   transition: all 0.18s;
+  text-decoration: none;
+  font-family: 'DM Sans', sans-serif;
 }
 
 .tab:hover,
@@ -905,7 +1197,7 @@ main {
   font-size: 14px;
   color: #666;
   align-items: flex-start;
-  line-height: 1.6;
+  line-height: var(--lh-body);
 }
 
 .chkli .arr {
@@ -972,6 +1264,8 @@ main {
   align-items: center;
   justify-content: center;
   padding: 42px 0 50px;
+  position: relative;
+  isolation: isolate;
 }
 
 .page-hero {
@@ -981,6 +1275,29 @@ main {
   align-items: center;
   justify-content: center;
   padding: 80px 0 20px;
+  position: relative;
+  isolation: isolate;
+}
+
+/* Subtle theme-colored grid behind hero content (above section bg, below .o-pattern + .wrap) */
+.hero-section::before,
+.page-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(90deg, var(--hero-grid-line) 1px, transparent 1px),
+    linear-gradient(180deg, var(--hero-grid-line) 1px, transparent 1px);
+  background-size: var(--hero-grid-size) var(--hero-grid-size);
+  background-position: 0 0;
+}
+
+.hero-section > .wrap,
+.page-hero > .wrap {
+  position: relative;
+  z-index: 1;
 }
 
 /* Resources hero: same height + centered as other non-home pages */
@@ -994,11 +1311,6 @@ main {
 .page-hero + .sec-light,
 .page-hero + .sec-white {
   padding-top: 101px;
-}
-
-/* When second section had no top padding: use 5px */
-.sec-after-hero-minimal {
-  padding-top: 5px !important;
 }
 
 /* Benefits CTA bar (first section after hero with 20px padding): +5px top */
@@ -1120,7 +1432,7 @@ main {
   .sec-alt,
   .sec-light,
   .sec-white {
-    padding: var(--space-section) 0;
+    padding: var(--space-section) 0 calc(var(--space-section) + var(--space-section-inner-bottom));
   }
   .page-hero + .sec-alt,
   .page-hero + .sec-dark,
@@ -1245,6 +1557,8 @@ main {
     --space-section: 40px;
     --space-wrap: 20px;
     --space-heading-after: 12px;
+    --hero-grid-size: 40px;
+    --hero-grid-line: rgba(232, 67, 45, 0.075);
   }
   .nav {
     height: 56px;
@@ -1262,7 +1576,7 @@ main {
   .sec-alt,
   .sec-light,
   .sec-white {
-    padding: var(--space-section) 0;
+    padding: var(--space-section) 0 calc(var(--space-section) + var(--space-section-inner-bottom));
   }
   .page-hero + .sec-alt,
   .page-hero + .sec-dark,
@@ -1385,7 +1699,7 @@ main {
   .sec-alt,
   .sec-light,
   .sec-white {
-    padding: var(--space-section) 0;
+    padding: var(--space-section) 0 calc(var(--space-section) + var(--space-section-inner-bottom));
   }
   .page-hero + .sec-alt,
   .page-hero + .sec-dark,
@@ -1430,4 +1744,209 @@ main {
     max-width: none !important;
     text-align: left !important;
   }
+}
+
+/* ----- Mirrored legal docs (Thrive / WordPress HTML) ----- */
+.legal-page-section {
+  padding: 48px 0 96px;
+}
+.legal-html {
+  color: #c8c8c8;
+  font-size: 15px;
+  line-height: 1.7;
+  overflow-x: auto;
+}
+.legal-html a {
+  color: #e8432d;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.legal-html a:hover {
+  color: #ff6b52;
+}
+.legal-html h1,
+.legal-html h2,
+.legal-html h3,
+.legal-html h4 {
+  color: #fff;
+  margin-top: 1.25em;
+  margin-bottom: 0.5em;
+}
+.legal-html p {
+  margin: 0 0 1em;
+}
+.legal-html ul,
+.legal-html ol {
+  margin: 0 0 1em;
+  padding-left: 1.35em;
+}
+.legal-html table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+  font-size: 14px;
+}
+.legal-html th,
+.legal-html td {
+  border: 1px solid #333;
+  padding: 8px 10px;
+  text-align: left;
+}
+.legal-html th {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+/* Terms of Service (static document) */
+.legal-tos-header {
+  margin-bottom: 2rem;
+}
+.legal-tos-header h1 {
+  margin-top: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+}
+.legal-tos-entity {
+  margin: 0.35em 0 0;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.85rem;
+  color: #aaa;
+}
+.legal-tos-title-line {
+  margin: 0.5em 0 1em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 1.1rem;
+  color: #fff;
+}
+.legal-html.legal-tos h2 {
+  font-size: 1.15rem;
+  margin-top: 2rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid #333;
+}
+.legal-html.legal-tos h3 {
+  font-size: 1.02rem;
+  margin-top: 1.35rem;
+  color: #eaeaea;
+}
+.legal-html.legal-tos h4 {
+  font-size: 0.95rem;
+  margin-top: 1rem;
+  color: #d0d0d0;
+  font-weight: 600;
+}
+.legal-tos-divider {
+  border: none;
+  border-top: 1px solid #333;
+  margin: 3rem 0 2rem;
+}
+.legal-tos-source-note {
+  color: #888;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+/* Bylaws (static document) */
+.legal-bylaws-header {
+  margin-bottom: 2rem;
+}
+.legal-bylaws-title {
+  margin-top: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: clamp(1rem, 2.5vw, 1.35rem);
+  line-height: 1.35;
+}
+.legal-html.legal-bylaws h2 {
+  font-size: 1.12rem;
+  margin-top: 2.25rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid #333;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.legal-html.legal-bylaws h2 .legal-article-label {
+  display: inline-block;
+  letter-spacing: 0.06em;
+  font-size: 0.88em;
+  color: #e8432d;
+}
+.legal-html.legal-bylaws h3 {
+  font-size: 1.02rem;
+  margin-top: 1.35rem;
+  color: #eaeaea;
+}
+.legal-html.legal-bylaws h4 {
+  font-size: 0.98rem;
+  margin-top: 1.1rem;
+  color: #d8d8d8;
+  font-weight: 600;
+}
+.legal-html.legal-bylaws h5 {
+  font-size: 0.92rem;
+  margin-top: 0.85rem;
+  color: #c8c8c8;
+  font-weight: 600;
+}
+.legal-bylaws-asterisk {
+  text-align: center;
+  letter-spacing: 0.25em;
+  color: #666;
+  margin: 2.5rem 0;
+  font-size: 1.1rem;
+}
+.legal-bylaws-table-wrap {
+  overflow-x: auto;
+  margin: 1rem 0 1.5rem;
+}
+
+/* Coalition Member agreement */
+.legal-coalition-header {
+  margin-bottom: 2rem;
+}
+.legal-coalition-eyebrow {
+  margin: 0;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.85rem;
+  color: #aaa;
+}
+.legal-coalition-title-line {
+  margin: 0.35em 0 0;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 1.05rem;
+  color: #fff;
+}
+.legal-html.legal-coalition .legal-coalition-h1 {
+  margin: 0.4em 0 0;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #fff;
+}
+.legal-html.legal-coalition h2 {
+  font-size: 1.05rem;
+  margin-top: 2rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid #333;
+  letter-spacing: 0.02em;
+}
+.legal-coalition-ol,
+.legal-coalition-ol-nested {
+  margin: 0 0 1em;
+  padding-left: 1.35em;
+}
+.legal-coalition-ol li {
+  margin-bottom: 0.65em;
+}
+.legal-coalition-ol-nested {
+  margin-top: 0.5em;
 }

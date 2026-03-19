@@ -136,28 +136,12 @@ export default function BenefitsPage() {
         />
         <div className="wrap" style={{ position: "relative", zIndex: 1 }}>
           <span className="slabel">What the Cooperative Unlocks</span>
-          <h1
-            className="cond"
-            style={{
-              fontSize: "clamp(54px,7vw,96px)",
-              fontWeight: 900,
-              color: "#fff",
-              lineHeight: 0.94,
-              marginBottom: 22,
-            }}
-          >
+          <h1 className="cond">
             The full
             <br />
             <span style={{ color: C.red }}>benefits package.</span>
           </h1>
-          <p
-            style={{
-              color: C.gray,
-              fontSize: 17,
-              maxWidth: 640,
-              lineHeight: 1.68,
-            }}
-          >
+          <p className="page-hero-lead page-hero-lead--wide">
             Group benefits aren&apos;t a perk of the cooperative — they&apos;re
             the reason it exists. The rates, the access, the coverage options:
             none of it would be possible for a solo professional. All of it
@@ -286,38 +270,24 @@ export default function BenefitsPage() {
       </section>
 
       <section className="sec-dark" id="benefits-cta">
-        <div className="wrap" style={{ textAlign: "center" }}>
-          <h2
-            className="cond"
-            id="ready-for-full-stack"
-            style={{
-              fontSize: "clamp(34px,4vw,52px)",
-              fontWeight: 900,
-              color: "#fff",
-              marginBottom: 16,
-            }}
-          >
-            Ready for the full stack?
-          </h2>
-          <p
-            style={{
-              color: C.gray,
-              fontSize: 15,
-              lineHeight: 1.7,
-              marginBottom: 24,
-            }}
-          >
-            Join as a Community Member first, or apply for Employee Membership
-            if you have an S-Corp ready.
-          </p>
-          <a
-            href={JOIN_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-red lg"
-          >
-            Join the Co-op →
-          </a>
+        <div className="wrap">
+          <div className="section-cta-stack section-cta-stack--measure-sm">
+            <h2 className="cond h2-section h2-section--page" id="ready-for-full-stack">
+              Ready for the full stack?
+            </h2>
+            <p className="section-lead section-lead--center">
+              Join as a Community Member first, or apply for Employee Membership
+              if you already run an S-Corp.
+            </p>
+            <a
+              href={JOIN_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-red lg"
+            >
+              Join the Co-op →
+            </a>
+          </div>
         </div>
       </section>
     </>

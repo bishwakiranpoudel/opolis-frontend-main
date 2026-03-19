@@ -47,26 +47,8 @@ export default function ContactPage() {
         <div className="wrap" style={{ position: "relative", zIndex: 1 }}>
           <div style={{ maxWidth: 720 }}>
             <span className="slabel">Get in Touch</span>
-            <h1
-            className="cond"
-            style={{
-              fontSize: "clamp(54px,7vw,96px)",
-              fontWeight: 900,
-              color: "#fff",
-              lineHeight: 0.94,
-              marginBottom: 20,
-            }}
-          >
-            Contact.
-          </h1>
-          <p
-            style={{
-              color: C.gray,
-              fontSize: 16,
-              lineHeight: 1.72,
-              maxWidth: 520,
-            }}
-          >
+            <h1 className="cond">Contact.</h1>
+            <p className="page-hero-lead page-hero-lead--contact">
             We&apos;re a small, lean team. The right email gets you to the right
             person faster.
           </p>
@@ -74,7 +56,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="sec-alt sec-after-hero-minimal">
+      <section className="sec-alt">
         <div className="wrap" style={{ maxWidth: 720 }}>
           <div
             style={{

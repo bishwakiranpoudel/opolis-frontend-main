@@ -165,27 +165,20 @@ export default async function BlogPostPage({ params }: PageProps) {
               >
                 Recent posts
               </h3>
-              <ul style={{ listStyle: "none", padding: 0, margin: "0 0 32px 0" }}>
+              <ul className="blog-sidebar-list">
                 {recent.map((p) => (
-                  <li key={p.slug ?? p.url} style={{ marginBottom: 12 }}>
+                  <li key={p.slug ?? p.url} className="blog-sidebar-item">
                     <Link
                       href={p.slug ? `/blog/${p.slug}` : p.url}
+                      className="blog-sidebar-item__link"
                       {...(!p.slug && {
                         target: "_blank",
                         rel: "noopener noreferrer",
                       })}
-                      style={{
-                        fontSize: 13,
-                        color: C.lgray,
-                        textDecoration: "none",
-                        lineHeight: 1.4,
-                      }}
                     >
-                      {p.h}
+                      <span className="blog-sidebar-item__title">{p.h}</span>
+                      <span className="blog-sidebar-item__meta">{p.date}</span>
                     </Link>
-                    <div style={{ fontSize: 11, color: C.gray, marginTop: 2 }}>
-                      {p.date}
-                    </div>
                   </li>
                 ))}
               </ul>
@@ -204,23 +197,16 @@ export default async function BlogPostPage({ params }: PageProps) {
                   >
                     Related
                   </h3>
-                  <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                  <ul className="blog-sidebar-list" style={{ marginBottom: 0 }}>
                     {related.map((p) => (
-                      <li key={p.slug} style={{ marginBottom: 12 }}>
+                      <li key={p.slug} className="blog-sidebar-item">
                         <Link
                           href={`/blog/${p.slug}`}
-                          style={{
-                            fontSize: 13,
-                            color: C.lgray,
-                            textDecoration: "none",
-                            lineHeight: 1.4,
-                          }}
+                          className="blog-sidebar-item__link"
                         >
-                          {p.h}
+                          <span className="blog-sidebar-item__title">{p.h}</span>
+                          <span className="blog-sidebar-item__meta">{p.date}</span>
                         </Link>
-                        <div style={{ fontSize: 11, color: C.gray, marginTop: 2 }}>
-                          {p.date}
-                        </div>
                       </li>
                     ))}
                   </ul>

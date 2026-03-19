@@ -74,6 +74,10 @@ export const US_STATES = Object.keys(STATE_FLOORS).sort();
 
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://opolis.co";
 
+/** Official Privacy Policy PDF (linked from footer and mirrored legal pages). */
+export const LEGAL_PRIVACY_POLICY_PDF_URL =
+  "https://opolis.co/wp-content/uploads/2026/01/25.12.18_Opolis-Privacy-Policy.docx.pdf";
+
 /** Default OG image and logo URL for schema (absolute). */
 export const LOGO_URL =
   process.env.NEXT_PUBLIC_LOGO_URL ??

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ROUTES } from "@/lib/constants";
+import { LEGAL_PRIVACY_POLICY_PDF_URL, ROUTES } from "@/lib/constants";
 import { C } from "@/lib/constants";
 
 const PARTNERS_URL = "http://partner.opolis.co/";
@@ -18,9 +18,19 @@ const FOOTER_COLS = [
   },
   {
     h: "Legal",
-    ls: ["Privacy Policy", "Terms of Service", "Member Agreement", "Cookie Policy"],
+    ls: ["Privacy Policy", "Terms of Service", "Bylaws", "Member Agreement"],
   },
 ] as const;
+
+function legalLinkStyle() {
+  return {
+    color: "#555",
+    fontSize: 13,
+    fontFamily: "'DM Sans', sans-serif",
+    textDecoration: "none" as const,
+    transition: "color 0.18s",
+  };
+}
 
 export function Footer() {
   return (
@@ -90,29 +100,44 @@ export function Footer() {
                         href={PARTNERS_URL}
                         target="_blank"
                         rel="noreferrer"
-                        style={{
-                          color: "#555",
-                          fontSize: 13,
-                          fontFamily: "'DM Sans', sans-serif",
-                          textDecoration: "none",
-                          transition: "color 0.18s",
-                        }}
+                        style={legalLinkStyle()}
                       >
                         Partnerships
                       </a>
                     </li>
+                  ) : l === "Privacy Policy" ? (
+                    <li key={l}>
+                      <a
+                        href={LEGAL_PRIVACY_POLICY_PDF_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={legalLinkStyle()}
+                      >
+                        Privacy Policy
+                      </a>
+                    </li>
+                  ) : l === "Terms of Service" ? (
+                    <li key={l}>
+                      <Link href="/terms-of-service" style={legalLinkStyle()}>
+                        Terms of Service
+                      </Link>
+                    </li>
+                  ) : l === "Bylaws" ? (
+                    <li key={l}>
+                      <Link href="/bylaws" style={legalLinkStyle()}>
+                        Bylaws
+                      </Link>
+                    </li>
+                  ) : l === "Member Agreement" ? (
+                    <li key={l}>
+                      <Link href="/coalition-member" style={legalLinkStyle()}>
+                        Member Agreement
+                      </Link>
+                    </li>
                   ) : (
                     <li key={l}>
                       {ROUTES[l] !== undefined ? (
-                        <Link
-                          href={ROUTES[l]}
-                          style={{
-                            color: "#555",
-                            fontSize: 13,
-                            fontFamily: "'DM Sans', sans-serif",
-                            transition: "color 0.18s",
-                          }}
-                        >
+                        <Link href={ROUTES[l]} style={legalLinkStyle()}>
                           {l}
                         </Link>
                       ) : (

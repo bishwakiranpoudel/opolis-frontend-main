@@ -1,0 +1,1 @@
+export { CoalitionMemberContent } from "./CoalitionMemberContent";

@@ -30,28 +30,12 @@ export function TheCooperativeContent() {
         />
         <div className="wrap" style={{ position: "relative", zIndex: 1 }}>
           <span className="slabel">The Cooperative</span>
-          <h1
-            className="cond"
-            style={{
-              fontSize: "clamp(54px,7vw,96px)",
-              fontWeight: 900,
-              color: "#fff",
-              lineHeight: 0.94,
-              marginBottom: 22,
-            }}
-          >
+          <h1 className="cond">
             How It
             <br />
             <span style={{ color: C.red }}>Works.</span>
           </h1>
-          <p
-            style={{
-              color: C.gray,
-              fontSize: 17,
-              maxWidth: 580,
-              lineHeight: 1.68,
-            }}
-          >
+          <p className="page-hero-lead">
             Two membership tiers. One cooperative. Start in minutes — upgrade
             when you&apos;re ready for the full employment stack.
           </p>
@@ -81,46 +65,16 @@ export function TheCooperativeContent() {
                 }}
               >
                 <div>
-                  <div
-                    style={{
-                      fontSize: 11,
-                      fontWeight: 700,
-                      color: C.red,
-                      letterSpacing: "0.12em",
-                      textTransform: "uppercase",
-                      marginBottom: 10,
-                    }}
-                  >
-                    Step 1 — For Everyone
-                  </div>
-                  <h2
-                    className="cond"
-                    style={{
-                      fontSize: 42,
-                      fontWeight: 900,
-                      color: "#fff",
-                      marginBottom: 6,
-                    }}
-                  >
+                  <span className="kicker">Step 1 — For Everyone</span>
+                  <h2 className="cond h2-section h2-section--static-42">
                     Community Membership
                   </h2>
-                  <div
-                    style={{
-                      fontSize: 13,
-                      fontWeight: 700,
-                      color: C.red,
-                      marginBottom: 14,
-                    }}
-                  >
+                  <div className="section-meta">
                     $97 one-time · ~2 minutes
                   </div>
                   <p
-                    style={{
-                      color: C.gray,
-                      fontSize: 14,
-                      lineHeight: 1.68,
-                      marginBottom: 20,
-                    }}
+                    className="section-lead section-lead--narrow"
+                    style={{ marginBottom: 20 }}
                   >
                     Join immediately. No S-Corp required. Access the Member
                     community, educational resources, and partner discounts —
@@ -174,46 +128,16 @@ export function TheCooperativeContent() {
                 }}
               >
                 <div>
-                  <div
-                    style={{
-                      fontSize: 11,
-                      fontWeight: 700,
-                      color: C.red,
-                      letterSpacing: "0.12em",
-                      textTransform: "uppercase",
-                      marginBottom: 10,
-                    }}
-                  >
-                    Step 2 — Employee Members Only
-                  </div>
-                  <h2
-                    className="cond"
-                    style={{
-                      fontSize: 42,
-                      fontWeight: 900,
-                      color: "#fff",
-                      marginBottom: 6,
-                    }}
-                  >
+                  <span className="kicker">Step 2 — Employee Members Only</span>
+                  <h2 className="cond h2-section h2-section--static-42">
                     Employee Membership
                   </h2>
-                  <div
-                    style={{
-                      fontSize: 13,
-                      fontWeight: 700,
-                      color: C.red,
-                      marginBottom: 14,
-                    }}
-                  >
+                  <div className="section-meta">
                     Requires active S-Corp or C-Corp · 30–60 min onboarding
                   </div>
                   <p
-                    style={{
-                      color: C.gray,
-                      fontSize: 14,
-                      lineHeight: 1.68,
-                      marginBottom: 20,
-                    }}
+                    className="section-lead section-lead--narrow"
+                    style={{ marginBottom: 20 }}
                   >
                     The full employment stack. Opolis becomes your
                     employer-of-record for payroll purposes only — your clients,
@@ -251,28 +175,15 @@ export function TheCooperativeContent() {
         </div>
       </section>
 
-      <section style={{ background: C.black, padding: "96px 0" }}>
+      <section className="sec-dark">
         <div className="wrap">
           <span className="slabel">Monthly Workflow</span>
-          <h2
-            className="cond"
-            style={{
-              fontSize: "clamp(34px,4vw,52px)",
-              fontWeight: 900,
-              color: "#fff",
-              marginBottom: 12,
-            }}
-          >
+          <h2 className="cond h2-section h2-section--page">
             A month as an Employee Member.
           </h2>
           <p
-            style={{
-              color: C.gray,
-              fontSize: 14,
-              lineHeight: 1.7,
-              marginBottom: 32,
-              maxWidth: 560,
-            }}
+            className="section-lead section-lead--narrow"
+            style={{ marginBottom: 32 }}
           >
             Your salary is divided across 24 semi-monthly cycles. Each invoice
             covers Gross Wages, Employer Taxes, Benefit Premiums, and the 1%
@@ -368,31 +279,15 @@ export function TheCooperativeContent() {
       <section className="sec-alt">
         <div className="wrap">
           <span className="slabel">Inside the Portal</span>
-          <h2
-            className="cond"
-            style={{
-              fontSize: "clamp(34px,4vw,52px)",
-              fontWeight: 900,
-              color: "#fff",
-              marginBottom: 12,
-            }}
-          >
+          <h2 className="cond h2-section h2-section--page">
             Your Member dashboard.
           </h2>
-          <p
-            style={{
-              color: C.gray,
-              fontSize: 14,
-              lineHeight: 1.7,
-              marginBottom: 28,
-              maxWidth: 560,
-            }}
-          >
+          <p className="section-lead section-lead--narrow">
             Every Member gets access to the platform on day one. Employee
             Members unlock the full employment stack on top.
           </p>
 
-          <div style={{ display: "flex", gap: 6, marginBottom: 28 }}>
+          <div className="u-mb-block" style={{ display: "flex", gap: 6 }}>
             {(["Community Member", "Employee Member"] as const).map((t) => (
               <button
                 key={t}

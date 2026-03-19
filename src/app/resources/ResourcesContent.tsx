@@ -69,18 +69,7 @@ export function ResourcesContent({
         />
         <div className="wrap" style={{ position: "relative", zIndex: 1 }}>
           <span className="slabel">Resources</span>
-          <h1
-            className="cond"
-            style={{
-              fontSize: "clamp(54px,7vw,96px)",
-              fontWeight: 900,
-              color: "#fff",
-              lineHeight: 0.94,
-              marginBottom: 40,
-            }}
-          >
-            Resources.
-          </h1>
+          <h1 className="cond">Resources.</h1>
           <div className="tabs">
             {(
               [
@@ -104,31 +93,17 @@ export function ResourcesContent({
         </div>
       </section>
 
-      <section className="sec-alt sec-after-hero-minimal">
+      <section className="sec-alt">
         <div className="wrap">
           {/* PRICING */}
           {tab === "pricing" && (
             <>
-              <h2
-                id="pricing"
-                className="cond"
-                style={{
-                  fontSize: 42,
-                  fontWeight: 900,
-                  color: "#fff",
-                  marginBottom: 8,
-                }}
-              >
+              <h2 id="pricing" className="cond h2-section h2-section--resources-tab">
                 Simple, transparent pricing.
               </h2>
               <p
-                style={{
-                  color: C.gray,
-                  marginBottom: 44,
-                  fontSize: 15,
-                  maxWidth: 560,
-                  lineHeight: 1.7,
-                }}
+                className="section-lead section-lead--narrow"
+                style={{ marginBottom: 44 }}
               >
                 Two tiers. Start with the community, upgrade when you&apos;re
                 ready for the full employment product.
@@ -391,26 +366,10 @@ export function ResourcesContent({
           {/* GUIDES */}
           {tab === "guides" && (
             <div style={{ maxWidth: 820 }}>
-              <h2
-                id="guides"
-                className="cond"
-                style={{
-                  fontSize: 42,
-                  fontWeight: 900,
-                  color: "#fff",
-                  marginBottom: 8,
-                }}
-              >
+              <h2 id="guides" className="cond h2-section h2-section--resources-tab">
                 Guides
               </h2>
-              <p
-                style={{
-                  color: C.gray,
-                  marginBottom: 44,
-                  fontSize: 15,
-                  lineHeight: 1.7,
-                }}
-              >
+              <p className="section-lead" style={{ marginBottom: 44 }}>
                 Resources to help you understand independent employment — from
                 entity setup to benefits selection.
               </p>
@@ -520,26 +479,10 @@ export function ResourcesContent({
           {/* FAQ */}
           {tab === "faq" && (
             <div style={{ maxWidth: 900 }}>
-              <h2
-                id="faq"
-                className="cond"
-                style={{
-                  fontSize: 42,
-                  fontWeight: 900,
-                  color: "#fff",
-                  marginBottom: 8,
-                }}
-              >
+              <h2 id="faq" className="cond h2-section h2-section--resources-tab">
                 FAQ
               </h2>
-              <p
-                style={{
-                  color: C.gray,
-                  marginBottom: 40,
-                  fontSize: 15,
-                  lineHeight: 1.7,
-                }}
-              >
+              <p className="section-lead" style={{ marginBottom: 40 }}>
                 Common questions about Opolis, membership, payroll, benefits,
                 and the cooperative model.
               </p>
@@ -672,13 +615,8 @@ export function ResourcesContent({
               <div style={{ marginBottom: 32 }}>
                 <h2
                   id="blog"
-                  className="cond"
-                  style={{
-                    fontSize: 42,
-                    fontWeight: 900,
-                    color: "#fff",
-                    marginBottom: 6,
-                  }}
+                  className="cond h2-section h2-section--resources-tab"
+                  style={{ marginBottom: 6 }}
                 >
                   Blog
                 </h2>
@@ -901,17 +839,7 @@ export function ResourcesContent({
           }}
         />
         <div className="wrap" style={{ position: "relative", zIndex: 1 }}>
-          <h2
-            className="cond"
-            style={{
-              fontSize: "clamp(32px,4vw,56px)",
-              fontWeight: 900,
-              color: "#fff",
-              marginBottom: 14,
-              maxWidth: 640,
-              margin: "0 auto 14px",
-            }}
-          >
+          <h2 className="cond h2-section h2-section--promo">
             Now you know. Ready to join?
           </h2>
           <p
@@ -920,7 +848,7 @@ export function ResourcesContent({
               fontSize: 16,
               maxWidth: 480,
               margin: "28px auto 0",
-              lineHeight: 1.68,
+              lineHeight: "var(--lh-body-loose)",
             }}
           >
             Everything you need to make a confident decision is here. The Co-op

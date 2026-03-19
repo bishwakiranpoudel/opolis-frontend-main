@@ -44,28 +44,12 @@ export function EligibilityContent() {
         />
         <div className="wrap" style={{ position: "relative", zIndex: 1 }}>
           <span className="slabel">Eligibility</span>
-          <h1
-            className="cond"
-            style={{
-              fontSize: "clamp(54px,7vw,96px)",
-              fontWeight: 900,
-              color: "#fff",
-              lineHeight: 0.94,
-              marginBottom: 22,
-            }}
-          >
+          <h1 className="cond">
             Is Opolis
             <br />
             <span style={{ color: C.red }}>right for you?</span>
           </h1>
-          <p
-            style={{
-              color: C.gray,
-              fontSize: 17,
-              maxWidth: 580,
-              lineHeight: 1.68,
-            }}
-          >
+          <p className="page-hero-lead">
             The cooperative works best for a specific kind of professional.
             Being honest about fit is part of how we keep it working for
             everyone.
@@ -74,11 +58,8 @@ export function EligibilityContent() {
       </section>
 
       <section
-        style={{
-          background: C.dark,
-          padding: "72px 0",
-          borderBottom: `1px solid ${C.border}`,
-        }}
+        className="sec-alt"
+        style={{ borderBottom: `1px solid ${C.border}` }}
       >
         <div className="wrap">
           <div
@@ -91,39 +72,17 @@ export function EligibilityContent() {
             }}
           >
             <div>
-              <div
-                style={{
-                  fontSize: 11,
-                  fontWeight: 700,
-                  color: C.red,
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  marginBottom: 12,
-                }}
-              >
+              <span className="kicker" style={{ marginBottom: 12 }}>
                 Community Membership
-              </div>
-              <h2
-                className="cond"
-                style={{
-                  fontSize: "clamp(34px,4vw,54px)",
-                  fontWeight: 900,
-                  color: "#fff",
-                  lineHeight: 1.05,
-                  marginBottom: 14,
-                }}
-              >
+              </span>
+              <h2 className="cond h2-section h2-section--large">
                 Open to everyone.
                 <br />
                 <span style={{ color: C.red }}>$97, one time.</span>
               </h2>
               <p
-                style={{
-                  color: C.gray,
-                  fontSize: 14,
-                  lineHeight: 1.72,
-                  marginBottom: 22,
-                }}
+                className="section-lead section-lead--narrow"
+                style={{ marginBottom: 22 }}
               >
                 No S-Corp required. Join the cooperative, access the community,
                 and start the path to Employee Membership when you&apos;re
@@ -196,37 +155,13 @@ export function EligibilityContent() {
       <section className="sec-alt">
         <div className="wrap">
           <div style={{ marginBottom: 32 }}>
-            <div
-              style={{
-                fontSize: 11,
-                fontWeight: 700,
-                color: C.red,
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                marginBottom: 12,
-              }}
-            >
+            <span className="kicker" style={{ marginBottom: 12 }}>
               Employee Membership
-            </div>
-            <h2
-              className="cond"
-              style={{
-                fontSize: "clamp(34px,4vw,54px)",
-                fontWeight: 900,
-                color: "#fff",
-                marginBottom: 12,
-              }}
-            >
+            </span>
+            <h2 className="cond h2-section h2-section--large">
               Who qualifies.
             </h2>
-            <p
-              style={{
-                color: C.gray,
-                fontSize: 14,
-                lineHeight: 1.72,
-                maxWidth: 640,
-              }}
-            >
+            <p className="section-lead">
               Employee Membership is the full employment stack — payroll,
               benefits, compliance, W-2. It requires an active S-Corp or C-Corp
               and a salary that meets your state&apos;s exempt minimum.
@@ -608,35 +543,22 @@ export function EligibilityContent() {
       </section>
 
       <section className="sec-dark">
-        <div className="wrap" style={{ textAlign: "center" }}>
-          <h2
-            className="cond"
-            style={{
-              fontSize: "clamp(34px,4vw,52px)",
-              fontWeight: 900,
-              color: "#fff",
-              marginBottom: 16,
-            }}
-          >
-            Ready to join?
-          </h2>
-          <p
-            style={{
-              color: C.gray,
-              fontSize: 15,
-              lineHeight: 1.7,
-              marginBottom: 24,
-              maxWidth: 520,
-              margin: "0 auto 24px",
-            }}
-          >
-            Start with Community Membership for $97, or go straight to
-            Employee Membership if you have an S-Corp ready.
-          </p>
-          <div
-            className="cta-buttons-row"
-            style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}
-          >
+        <div className="wrap">
+          <div className="section-cta-stack section-cta-stack--measure-sm">
+            <h2 className="cond h2-section h2-section--page">
+              Ready to join?
+            </h2>
+            <p
+              className="section-lead section-lead--center"
+              style={{ maxWidth: 520 }}
+            >
+              Start with Community Membership for $97, or go straight to
+              Employee Membership if you already run an S-Corp.
+            </p>
+            <div
+              className="cta-buttons-row"
+              style={{ display: "flex", gap: 14, flexWrap: "wrap" }}
+            >
             <a
               href={JOIN_URL}
               target="_blank"
@@ -648,6 +570,7 @@ export function EligibilityContent() {
             <Link href="/resources" className="btn-outline">
               FAQs & Resources
             </Link>
+            </div>
           </div>
         </div>
       </section>

@@ -70,26 +70,8 @@ export function JoinContent() {
         />
         <div className="wrap" style={{ position: "relative", zIndex: 1 }}>
           <span className="slabel">Get Started</span>
-          <h1
-            className="cond"
-            style={{
-              fontSize: "clamp(54px,7vw,96px)",
-              fontWeight: 900,
-              color: "#fff",
-              lineHeight: 0.94,
-              marginBottom: 22,
-            }}
-          >
-            Join Opolis.
-          </h1>
-          <p
-            style={{
-              color: C.gray,
-              fontSize: 17,
-              maxWidth: 640,
-              lineHeight: 1.68,
-            }}
-          >
+          <h1 className="cond">Join Opolis.</h1>
+          <p className="page-hero-lead page-hero-lead--wide">
             The application takes minutes. New Members activate on the 1st of
             each month.
           </p>
