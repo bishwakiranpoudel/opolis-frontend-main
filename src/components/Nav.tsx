@@ -12,10 +12,28 @@ const JOIN_URL = "https://commons.opolis.co/coalition/webinarspecial";
 export function Nav() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     setMobileOpen(false);
   }, [pathname]);
+
+  useEffect(() => {
+    const updateProgress = () => {
+      const el = document.documentElement;
+      const scrollTop = el.scrollTop || document.body.scrollTop;
+      const height = el.scrollHeight - el.clientHeight;
+      const ratio = height > 0 ? (scrollTop / height) * 100 : 0;
+      setScrollProgress(Math.min(100, Math.max(0, ratio)));
+    };
+    updateProgress();
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("resize", updateProgress, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", updateProgress);
+      window.removeEventListener("resize", updateProgress);
+    };
+  }, []);
 
   useEffect(() => {
     if (mobileOpen) {
@@ -42,8 +60,22 @@ export function Nav() {
 
   return (
     <>
-      <header className="nav" role="banner">
-        <div className="nav-inner">
+      <header className="nav-shell" role="banner">
+        <div
+          className="nav-progress-track"
+          role="progressbar"
+          aria-valuenow={Math.round(scrollProgress)}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-label="Reading progress"
+        >
+          <div
+            className="nav-progress-fill"
+            style={{ width: `${scrollProgress}%` }}
+          />
+        </div>
+        <div className="nav">
+          <div className="nav-inner">
           <Link href="/" className="nav-logo" onClick={closeMenu} aria-label="Opolis home">
             <Image
               src="/logo.png"
@@ -99,6 +131,7 @@ export function Nav() {
             <span className="nav-burger-bar" aria-hidden />
             <span className="nav-burger-bar" aria-hidden />
           </button>
+          </div>
         </div>
       </header>
 

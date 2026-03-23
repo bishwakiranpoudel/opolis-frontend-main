@@ -25,6 +25,8 @@
   /* Hero grid — subtle lines in brand coral (#E8432D) */
   --hero-grid-line: rgba(232, 67, 45, 0.09);
   --hero-grid-size: 48px;
+  /* Sticky header (progress bar + nav row) — used by sidebar offset */
+  --nav-sticky-height: 72px;
 }
 
 *, *::before, *::after {
@@ -73,18 +75,51 @@ button {
   font-family: 'Instrument Serif', serif;
 }
 
-.nav {
+/* Sticky shell: progress strip + nav row */
+.nav-shell {
   position: sticky;
   top: 0;
   z-index: 300;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 64px;
-  padding: 0;
+  flex-direction: column;
   background: rgba(13, 13, 13, 0.96);
   backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid #1c1c1c;
+}
+
+.nav-progress-track {
+  width: 100%;
+  height: 3px;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+.nav-progress-fill {
+  height: 100%;
+  width: 0%;
+  min-width: 0;
+  background: linear-gradient(90deg, #c93220, #e8432d);
+  box-shadow: 0 0 12px rgba(232, 67, 45, 0.35);
+  transition: width 0.06s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-progress-fill {
+    transition: none;
+  }
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 12px 0 14px;
+  margin: 0;
+  background: transparent;
+  border: none;
 }
 
 .nav-inner {
@@ -92,7 +127,7 @@ button {
   max-width: 1180px;
   margin: 0 auto;
   padding: 0 48px;
-  height: 100%;
+  min-height: 44px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -665,7 +700,12 @@ main {
 }
 .blog-sidebar {
   position: sticky;
-  top: 88px;
+  top: calc(var(--nav-sticky-height) + 12px);
+}
+
+.faq-sidebar {
+  position: sticky;
+  top: calc(var(--nav-sticky-height) + 16px);
 }
 
 .blog-sidebar-list {
@@ -1559,12 +1599,14 @@ main {
     --space-heading-after: 12px;
     --hero-grid-size: 40px;
     --hero-grid-line: rgba(232, 67, 45, 0.075);
+    --nav-sticky-height: 66px;
   }
   .nav {
-    height: 56px;
+    padding: 10px 0 12px;
   }
   .nav-inner {
     padding: 0 20px;
+    min-height: 40px;
   }
   .nav-logo {
     font-size: 20px;

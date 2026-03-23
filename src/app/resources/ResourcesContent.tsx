@@ -495,7 +495,7 @@ export function ResourcesContent({
                   alignItems: "start",
                 }}
               >
-                <div className="faq-sidebar" style={{ position: "sticky", top: 96 }}>
+                <div className="faq-sidebar">
                   {faqSections.map((s) => (
                     <button
                       key={s.id}

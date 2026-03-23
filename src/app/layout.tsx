@@ -12,7 +12,16 @@ const defaultSeo = {
   path: "/",
 };
 
-export const metadata: Metadata = buildMetadata(defaultSeo);
+const baseMetadata = buildMetadata(defaultSeo);
+
+export const metadata: Metadata = {
+  ...baseMetadata,
+  icons: {
+    icon: [{ url: "/logo.png", type: "image/png", sizes: "any" }],
+    shortcut: "/logo.png",
+    apple: [{ url: "/logo.png", type: "image/png" }],
+  },
+};
 
 export default function RootLayout({
   children,
@@ -26,7 +35,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.ico" />
         <link
           rel="sitemap"
           type="application/xml"
