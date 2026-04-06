@@ -850,7 +850,7 @@ export function ResourcesContent({
           style={{
             position: "absolute",
             inset: 0,
-            opacity: 0.08,
+            opacity: 0.04,
             pointerEvents: "none",
           }}
         />

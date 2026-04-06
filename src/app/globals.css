@@ -24,11 +24,13 @@
   --space-section-inner-bottom: 8px; /* extra air below last block in a section */
   /* Hero photo (public/background.png) — scrim matches C.black #0D0D0D */
   --hero-photo: url("/background.png");
+  --hero-photo-blur: 2px;
+  --hero-photo-scale: 1.01;
   --hero-photo-scrim: linear-gradient(
     180deg,
-    rgba(13, 13, 13, 0.45) 0%,
-    rgba(13, 13, 13, 0.62) 42%,
-    rgba(13, 13, 13, 0.78) 100%
+    rgba(13, 13, 13, 0.55) 0%,
+    rgba(13, 13, 13, 0.72) 42%,
+    rgba(13, 13, 13, 0.86) 100%
   );
   /* Sticky header (progress bar + nav row) — used by sidebar offset */
   --nav-sticky-height: 72px;
@@ -1276,7 +1278,7 @@ main {
 }
 
 .o-pattern {
-  background-image: url("data:image/svg+xml,%3Csvg width='120' height='150' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h120v150H0z' fill='%23fff' fill-opacity='.02'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg width='120' height='150' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h120v150H0z' fill='%23fff' fill-opacity='.01'/%3E%3C/svg%3E");
   background-size: 120px 150px;
   background-repeat: repeat;
 }
@@ -1324,7 +1326,7 @@ main {
   isolation: isolate;
 }
 
-/* Hero: photo (subtle via scrim); .wrap above (z-index) */
+/* Hero: blurred photo + dark scrim; .wrap above (z-index) */
 .hero-section::before,
 .page-hero::before {
   content: "";
@@ -1332,16 +1334,36 @@ main {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background-image: var(--hero-photo-scrim), var(--hero-photo);
-  background-size: auto, cover;
-  background-position: 0 0, center;
-  background-repeat: no-repeat, no-repeat;
+  background-image: var(--hero-photo);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(var(--hero-photo-blur));
+  transform: scale(var(--hero-photo-scale));
+}
+
+.hero-section::after,
+.page-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: var(--hero-photo-scrim);
 }
 
 .hero-section > .wrap,
 .page-hero > .wrap {
   position: relative;
   z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-section::before,
+  .page-hero::before {
+    filter: none;
+    transform: none;
+  }
 }
 
 /* Resources hero: same height + centered as other non-home pages */
