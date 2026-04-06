@@ -230,3 +230,31 @@ export const BLOG_CAT_COLORS: Record<string, string> = {
   "Payroll": "#E8432D",
   "Rewards": "#38bdf8",
 };
+
+export function isGuidesSection(x: unknown): x is GuidesSection {
+  if (!x || typeof x !== "object") return false;
+  const o = x as Record<string, unknown>;
+  if (typeof o.cat !== "string" || typeof o.cc !== "string") return false;
+  if (!Array.isArray(o.items)) return false;
+  return o.items.every((item: unknown) => {
+    if (!item || typeof item !== "object") return false;
+    const i = item as Record<string, unknown>;
+    return (
+      typeof i.type === "string" &&
+      typeof i.label === "string" &&
+      typeof i.url === "string"
+    );
+  });
+}
+
+export function isFaqSection(x: unknown): x is FaqSection {
+  if (!x || typeof x !== "object") return false;
+  const o = x as Record<string, unknown>;
+  if (typeof o.id !== "string" || typeof o.label !== "string") return false;
+  if (!Array.isArray(o.items)) return false;
+  return o.items.every((item: unknown) => {
+    if (!item || typeof item !== "object") return false;
+    const i = item as Record<string, unknown>;
+    return typeof i.q === "string" && typeof i.a === "string";
+  });
+}

@@ -1,21 +1,25 @@
 import type { Metadata } from "next";
-import { buildMetadata, breadcrumbJsonLd, faqJsonLd, webPageJsonLd } from "@/lib/seo";
+import {
+  buildMetadata,
+  breadcrumbJsonLd,
+  faqJsonLd,
+  webPageJsonLd,
+} from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 import { getBlogPosts } from "@/lib/wordpress";
 import { getGuides, getFaq } from "@/lib/wordpressResources";
-import { ResourcesContent } from "./ResourcesContent";
+import { ResourcesContent } from "../ResourcesContent";
 
-/** Always read guides/FAQ from Firestore at request time (avoid caching static GUIDES_DATA fallback). */
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Resources — FAQs, Pricing & Getting Started | Opolis",
+  title: "Blog — Articles & updates | Opolis Resources",
   description:
-    "FAQs on Opolis membership, payroll, benefits, eligibility, and pricing. Get started with Community ($97) or Employee Membership. Entity setup support available.",
-  path: "/resources",
+    "Articles on employment infrastructure, payroll, benefits, taxes, and independent work from Opolis.",
+  path: "/resources/blog",
 });
 
-export default async function ResourcesPage() {
+export default async function ResourcesBlogPage() {
   const [blogPosts, guides, faqSections] = await Promise.all([
     getBlogPosts(),
     getGuides(),
@@ -30,12 +34,13 @@ export default async function ResourcesPage() {
   const breadcrumbLd = breadcrumbJsonLd([
     { name: "Home", path: "/" },
     { name: "Resources", path: "/resources" },
+    { name: "Blog", path: "/resources/blog" },
   ]);
   const webPageLd = webPageJsonLd({
-    name: "Resources — FAQs, Pricing & Getting Started | Opolis",
+    name: "Blog — Articles & updates | Opolis Resources",
     description:
-      "FAQs on Opolis membership, payroll, benefits, eligibility, and pricing. Get started with Community ($97) or Employee Membership. Entity setup support available.",
-    url: `${SITE_URL}/resources`,
+      "Articles on employment infrastructure, payroll, benefits, taxes, and independent work from Opolis.",
+    url: `${SITE_URL}/resources/blog`,
   });
 
   return (
@@ -56,6 +61,7 @@ export default async function ResourcesPage() {
         initialPosts={blogPosts}
         initialGuides={guides}
         initialFaq={faqSections}
+        initialTab="blog"
       />
     </>
   );

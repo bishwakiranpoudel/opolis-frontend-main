@@ -1,27 +1,19 @@
 /**
- * WordPress REST API client for blog posts.
- * Set WORDPRESS_URL in .env (e.g. https://opolis.co) to fetch posts dynamically.
- * Uses _fields to keep responses small (under 2MB) so Next.js can cache them.
+ * Blog posts: Firestore (default) or WordPress REST when CONTENT_SOURCE=wordpress.
+ * Set WORDPRESS_URL for legacy WordPress mode.
  */
 
 import type { BlogPost, FullBlogPost } from "@/lib/blogPosts";
+import { getContentSource } from "@/lib/content-source";
+import {
+  DEFAULT_CATEGORY,
+  getCategoryFromId,
+} from "@/lib/wpCategoryMap";
 
 const WORDPRESS_URL = process.env.WORDPRESS_URL || "";
 const REVALIDATE_SECONDS = 60; // ISR: revalidate at most every 60 seconds
 
 const FIELDS = "id,title,link,date,categories,slug";
-
-/** Map WordPress category slug to display name and hex color (matches BLOG_CAT_COLORS) */
-const CATEGORY_MAP: Record<string, { name: string; color: string }> = {
-  "entity-creation": { name: "Entity Creation", color: "#a78bfa" },
-  "entity": { name: "Entity Creation", color: "#a78bfa" },
-  "benefits": { name: "Benefits", color: "#4ade80" },
-  "taxes": { name: "Taxes", color: "#f5c842" },
-  "payroll": { name: "Payroll", color: "#E8432D" },
-  "rewards": { name: "Rewards", color: "#38bdf8" },
-};
-
-const DEFAULT_CATEGORY = { name: "Blog", color: "#777" };
 
 /** WordPress REST API post shape (only fields we request) */
 interface WPPost {
@@ -77,21 +69,6 @@ function formatDate(isoDate: string): string {
   }
 }
 
-function getCategoryFromId(
-  categoryId: number,
-  categoriesMap: Map<number, { name: string; slug: string }>
-): { name: string; color: string } {
-  const cat = categoriesMap.get(categoryId);
-  if (!cat) return DEFAULT_CATEGORY;
-  const bySlug = cat.slug && CATEGORY_MAP[cat.slug.toLowerCase()];
-  if (bySlug) return bySlug;
-  const byName = Object.values(CATEGORY_MAP).find(
-    (v) => v.name.toLowerCase() === cat.name?.toLowerCase()
-  );
-  if (byName) return byName;
-  return { name: cat.name || "Blog", color: DEFAULT_CATEGORY.color };
-}
-
 function mapWpPostToBlogPost(
   post: WPPost,
   categoriesMap: Map<number, { name: string; slug: string }>
@@ -142,6 +119,16 @@ async function fetchCategories(
  * Returns empty array if WORDPRESS_URL is not set or request fails.
  */
 export async function getBlogPosts(): Promise<BlogPost[]> {
+  if (getContentSource() === "firestore") {
+    try {
+      const { getBlogPostsFromFirestore } = await import("@/lib/firestore-content");
+      return await getBlogPostsFromFirestore();
+    } catch (err) {
+      console.error("[Firestore] getBlogPosts:", err);
+      return [];
+    }
+  }
+
   if (!WORDPRESS_URL) return [];
 
   const baseUrl = WORDPRESS_URL.replace(/\/$/, "");
@@ -208,7 +195,19 @@ const FULL_POST_FIELDS =
 export async function getBlogPostBySlug(
   slug: string
 ): Promise<FullBlogPost | null> {
-  if (!WORDPRESS_URL || !slug) return null;
+  if (!slug) return null;
+
+  if (getContentSource() === "firestore") {
+    try {
+      const { getBlogPostBySlugFromFirestore } = await import("@/lib/firestore-content");
+      return await getBlogPostBySlugFromFirestore(slug);
+    } catch (err) {
+      console.error("[Firestore] getBlogPostBySlug:", err);
+      return null;
+    }
+  }
+
+  if (!WORDPRESS_URL) return null;
 
   const baseUrl = WORDPRESS_URL.replace(/\/$/, "");
 

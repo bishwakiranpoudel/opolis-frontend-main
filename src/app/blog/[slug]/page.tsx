@@ -76,7 +76,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   const breadcrumbLd = breadcrumbJsonLd([
     { name: "Home", path: "/" },
-    { name: "Blog", path: "/resources" },
+    { name: "Blog", path: "/resources/blog" },
     { name: post.h, path: `/blog/${slug}` },
   ]);
 
@@ -140,7 +140,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             </article>
             <aside className="blog-sidebar">
               <Link
-                href="/resources"
+                href="/resources/blog"
                 style={{
                   display: "inline-block",
                   marginBottom: 28,

@@ -6,20 +6,37 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "wp:preflight": "tsx scripts/wp-import/preflight-firestore.ts",
+    "wp:ensure-firestore": "tsx scripts/wp-import/ensure-firestore.ts",
+    "wp:discover": "tsx scripts/wp-import/discover.ts",
+    "wp:import-posts": "tsx scripts/wp-import/import-posts.ts",
+    "wp:import-resources": "tsx scripts/wp-import/import-resources.ts",
+    "wp:import-media": "tsx scripts/wp-import/import-media.ts",
+    "wp:verify": "tsx scripts/wp-import/verify.ts",
+    "wp:inspect-resources": "tsx scripts/wp-import/inspect-resources-firestore.ts",
+    "wp:extract-links": "tsx scripts/wp-import/extract-links.ts",
+    "wp:fill-url-map": "tsx scripts/wp-import/fill-url-map-pending.ts"
   },
   "dependencies": {
+    "cheerio": "^1.2.0",
+    "dotenv": "^17.3.1",
+    "firebase": "^12.11.0",
+    "firebase-admin": "^13.7.0",
     "lucide-react": "^0.577.0",
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },
   "devDependencies": {
+    "@types/cheerio": "^0.22.35",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
+    "google-auth-library": "^10.6.2",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }

@@ -22,9 +22,14 @@
   --space-paragraph-after: 28px;
   --space-block: 24px;
   --space-section-inner-bottom: 8px; /* extra air below last block in a section */
-  /* Hero grid — subtle lines in brand coral (#E8432D) */
-  --hero-grid-line: rgba(232, 67, 45, 0.09);
-  --hero-grid-size: 48px;
+  /* Hero photo (public/background.png) — scrim matches C.black #0D0D0D */
+  --hero-photo: url("/background.png");
+  --hero-photo-scrim: linear-gradient(
+    180deg,
+    rgba(13, 13, 13, 0.45) 0%,
+    rgba(13, 13, 13, 0.62) 42%,
+    rgba(13, 13, 13, 0.78) 100%
+  );
   /* Sticky header (progress bar + nav row) — used by sidebar offset */
   --nav-sticky-height: 72px;
 }
@@ -1319,7 +1324,7 @@ main {
   isolation: isolate;
 }
 
-/* Subtle theme-colored grid behind hero content (above section bg, below .o-pattern + .wrap) */
+/* Hero: photo (subtle via scrim); .wrap above (z-index) */
 .hero-section::before,
 .page-hero::before {
   content: "";
@@ -1327,11 +1332,10 @@ main {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background-image:
-    linear-gradient(90deg, var(--hero-grid-line) 1px, transparent 1px),
-    linear-gradient(180deg, var(--hero-grid-line) 1px, transparent 1px);
-  background-size: var(--hero-grid-size) var(--hero-grid-size);
-  background-position: 0 0;
+  background-image: var(--hero-photo-scrim), var(--hero-photo);
+  background-size: auto, cover;
+  background-position: 0 0, center;
+  background-repeat: no-repeat, no-repeat;
 }
 
 .hero-section > .wrap,
@@ -1424,6 +1428,47 @@ main {
 }
 
 /* Eligibility, Join, FAQ, Cooperative use grid/layout classes; overrides in media queries below */
+
+/* Member dashboard mockups (The Cooperative — parity with opollis_vibe) */
+.member-dash-grid {
+  display: grid;
+  gap: 14px;
+  align-items: stretch;
+}
+.member-dash-grid--community {
+  grid-template-columns: 1fr 1.4fr 1fr;
+}
+.member-dash-grid--employee {
+  grid-template-columns: 1fr 1.5fr 1fr;
+}
+.member-dash-panel {
+  background: #141414;
+  border: 1px solid #252525;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.member-dash-panel-head {
+  background: #0f0f0f;
+  border-bottom: 1px solid #252525;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.member-dash-panel-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #c8c8c8;
+}
+.member-dash-panel-body {
+  padding: 12px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 
 .cta-buttons-row {
   flex-wrap: wrap;
@@ -1570,6 +1615,10 @@ main {
   .workflow-grid {
     grid-template-columns: 1fr !important;
   }
+  .member-dash-grid--community,
+  .member-dash-grid--employee {
+    grid-template-columns: 1fr !important;
+  }
   .blog-post-layout {
     grid-template-columns: 1fr;
     gap: 40px;
@@ -1597,8 +1646,6 @@ main {
     --space-section: 40px;
     --space-wrap: 20px;
     --space-heading-after: 12px;
-    --hero-grid-size: 40px;
-    --hero-grid-line: rgba(232, 67, 45, 0.075);
     --nav-sticky-height: 66px;
   }
   .nav {

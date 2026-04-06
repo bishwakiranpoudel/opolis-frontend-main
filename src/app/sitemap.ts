@@ -1,24 +1,10 @@
 import { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/constants";
+import { STATIC_SITEMAP_PATHS } from "@/lib/site-paths";
 import { getBlogPosts } from "@/lib/wordpress";
 
-const routes = [
-  "",
-  "/the-cooperative",
-  "/eligibility",
-  "/benefits",
-  "/resources",
-  "/join",
-  "/about",
-  "/ai-reference",
-  "/contact",
-  "/bylaws",
-  "/coalition-member",
-  "/terms-of-service",
-];
-
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const staticEntries: MetadataRoute.Sitemap = routes.map((path) => ({
+  const staticEntries: MetadataRoute.Sitemap = STATIC_SITEMAP_PATHS.map((path) => ({
     url: `${SITE_URL}${path}`,
     lastModified: new Date(),
     changeFrequency: path === "" ? "weekly" : ("monthly" as const),

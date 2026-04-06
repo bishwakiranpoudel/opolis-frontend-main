@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { Check, X, Minus } from "lucide-react";
 import { C } from "@/lib/constants";
 import type { FaqSection, GuidesSection } from "@/lib/resourcesData";
@@ -18,23 +19,30 @@ import { ALL_POSTS, type BlogPost } from "@/lib/blogPosts";
 
 const JOIN_URL = "https://commons.opolis.co/coalition/webinarspecial";
 
+/** Blog listing tab URL (legacy `/blog` can redirect here). */
+export const RESOURCES_BLOG_PATH = "/resources/blog";
+
 type ResourcesTab = "pricing" | "compare" | "guides" | "faq" | "blog";
 
 type ResourcesContentProps = {
   initialPosts?: BlogPost[];
   initialGuides?: GuidesSection[];
   initialFaq?: FaqSection[];
+  initialTab?: ResourcesTab;
 };
 
 export function ResourcesContent({
   initialPosts,
   initialGuides,
   initialFaq,
+  initialTab = "pricing",
 }: ResourcesContentProps) {
+  const pathname = usePathname();
+  const router = useRouter();
   const guides = initialGuides ?? GUIDES_DATA;
   const faqSections = initialFaq ?? FAQ_SECTIONS;
 
-  const [tab, setTab] = useState<ResourcesTab>("pricing");
+  const [tab, setTab] = useState<ResourcesTab>(initialTab);
   const [openSection, setOpenSection] = useState(faqSections[0]?.id ?? "overview");
   const [openItem, setOpenItem] = useState<number | null>(null);
   const [blogCat, setBlogCat] = useState("All");
@@ -48,6 +56,23 @@ export function ResourcesContent({
       (blogSearch === "" || p.h.toLowerCase().includes(blogSearch.toLowerCase()))
   );
 
+  useEffect(() => {
+    if (pathname === RESOURCES_BLOG_PATH) setTab("blog");
+    else if (pathname === "/resources") {
+      setTab((t) => (t === "blog" ? "pricing" : t));
+    }
+  }, [pathname]);
+
+  function selectTab(id: ResourcesTab) {
+    if (id === "blog") {
+      router.push(RESOURCES_BLOG_PATH);
+      setTab("blog");
+    } else {
+      if (pathname === RESOURCES_BLOG_PATH) router.push("/resources");
+      setTab(id);
+    }
+  }
+
   return (
     <>
       <section
@@ -58,15 +83,6 @@ export function ResourcesContent({
           overflow: "hidden",
         }}
       >
-        <div
-          className="o-pattern"
-          style={{
-            position: "absolute",
-            inset: 0,
-            opacity: 0.04,
-            pointerEvents: "none",
-          }}
-        />
         <div className="wrap" style={{ position: "relative", zIndex: 1 }}>
           <span className="slabel">Resources</span>
           <h1 className="cond">Resources.</h1>
@@ -84,7 +100,7 @@ export function ResourcesContent({
                 key={t.id}
                 type="button"
                 className={`tab${tab === t.id ? " on" : ""}`}
-                onClick={() => setTab(t.id)}
+                onClick={() => selectTab(t.id)}
               >
                 {t.l}
               </button>

@@ -49,7 +49,7 @@ export async function GET() {
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Opolis Blog</title>
-    <link>${escapeXml(baseUrl)}/resources</link>
+    <link>${escapeXml(baseUrl)}/resources/blog</link>
     <description>Opolis Blog — Articles and updates from the Resources section. Employment infrastructure for independent professionals. Member-owned cooperative: W-2 payroll, benefits, and compliance.</description>
     <language>en-us</language>
     <lastBuildDate>${lastBuild}</lastBuildDate>

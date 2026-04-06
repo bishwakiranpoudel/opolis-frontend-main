@@ -125,15 +125,6 @@ export default function BenefitsPage() {
           overflow: "hidden",
         }}
       >
-        <div
-          className="o-pattern"
-          style={{
-            position: "absolute",
-            inset: 0,
-            opacity: 0.04,
-            pointerEvents: "none",
-          }}
-        />
         <div className="wrap" style={{ position: "relative", zIndex: 1 }}>
           <span className="slabel">What the Cooperative Unlocks</span>
           <h1 className="cond">

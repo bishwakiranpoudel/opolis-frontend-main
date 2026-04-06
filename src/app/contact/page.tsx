@@ -35,15 +35,6 @@ export default function ContactPage() {
           overflow: "hidden",
         }}
       >
-        <div
-          className="o-pattern"
-          style={{
-            position: "absolute",
-            inset: 0,
-            opacity: 0.04,
-            pointerEvents: "none",
-          }}
-        />
         <div className="wrap" style={{ position: "relative", zIndex: 1 }}>
           <div style={{ maxWidth: 720 }}>
             <span className="slabel">Get in Touch</span>

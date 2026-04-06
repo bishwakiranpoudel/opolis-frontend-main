@@ -1,0 +1,138 @@
+{
+  "generatedAt": "2026-03-31T18:49:53.061Z",
+  "description": "Opolis URLs whose path is not on the current sitemap; fill newPath for redirects / sheet import.",
+  "mappings": [
+    {
+      "oldPath": "/become-a-member",
+      "newPath": ""
+    },
+    {
+      "oldPath": "/bench",
+      "newPath": ""
+    },
+    {
+      "oldPath": "/blog",
+      "newPath": ""
+    },
+    {
+      "oldPath": "/business-setup/unlocking-business-structures",
+      "newPath": ""
+    },
+    {
+      "oldPath": "/cooperative-model-work-token-revolution",
+      "newPath": ""
+    },
+    {
+      "oldPath": "/create-your-llc",
+      "newPath": ""
+    },
+    {
+      "oldPath": "/crypto-taxes",
+      "newPath": ""
+    },
+    {
+      "oldPath": "/episode-6-self-employed-401k-and-retirement-strategies-for-freelancers-and-indie-workers",
+      "newPath": ""
+    },
+    {
+      "oldPath": "/explore",
+      "newPath": ""
+    },
+    {
+      "oldPath": "/explore-benefits",
+      "newPath": ""
+    },
+    {
+      "oldPath": "/explore-opolis/benefits",
+      "newPath": ""
+    },
+    {
+      "oldPath": "/explore-opolis/entity",
+      "newPath": ""
+    },
+    {
+      "oldPath": "/explore-opolis/optimize-your-taxes",
+      "newPath": ""
+    },
+    {
+      "oldPath": "/explore-opolis/payroll",
+      "newPath": ""
+    },
+    {
+      "oldPath": "/explore-opolis/rewards",
+      "newPath": ""
+    },
+    {
+      "oldPath": "/explore/benefits",
+      "newPath": ""
+    },
+    {
+      "oldPath": "/explore/entity",
+      "newPath": ""
+    },
+    {
+      "oldPath": "/explore/optimize-your-taxes",
+      "newPath": ""
+    },
+    {
+      "oldPath": "/explore/payroll",
+      "newPath": ""
+    },
+    {
+      "oldPath": "/featured/maximizing-tax-efficiency",
+      "newPath": ""
+    },
+    {
+      "oldPath": "/hdhp-vs-copay",
+      "newPath": ""
+    },
+    {
+      "oldPath": "/how-to-calculate-and-make-estimated-tax-payments",
+      "newPath": ""
+    },
+    {
+      "oldPath": "/insurance/bonds",
+      "newPath": ""
+    },
+    {
+      "oldPath": "/maximizing-tax-efficiency",
+      "newPath": ""
+    },
+    {
+      "oldPath": "/podcast",
+      "newPath": ""
+    },
+    {
+      "oldPath": "/resources/podcast",
+      "newPath": ""
+    },
+    {
+      "oldPath": "/schedule-tax-schedule-c-schedule-se-and-form-1040",
+      "newPath": ""
+    },
+    {
+      "oldPath": "/self-employed-dilemma/freelancers-union",
+      "newPath": ""
+    },
+    {
+      "oldPath": "/self-employed-health-insurance-deductions-a-comprehensive-guide",
+      "newPath": ""
+    },
+    {
+      "oldPath": "/self-employed-health-insurance-is-beneficial",
+      "newPath": ""
+    },
+    {
+      "oldPath": "/strategies-for-self-employed-individuals-to-minimize-tax-liability-and-maximize-deductions",
+      "newPath": ""
+    },
+    {
+      "oldPath": "/top-way-to-use-ai-as-a-self-employed-worker",
+      "newPath": ""
+    },
+    {
+      "oldPath": "/unlocking-business-structures",
+      "newPath": ""
+    }
+  ]
+}

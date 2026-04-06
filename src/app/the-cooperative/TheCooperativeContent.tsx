@@ -1,14 +1,12 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { C } from "@/lib/constants";
+import { MemberDashboardMockups } from "./MemberDashboardMockups";
 
 const JOIN_URL = "https://commons.opolis.co/coalition/webinarspecial";
 
 export function TheCooperativeContent() {
-  const [dashTab, setDashTab] = useState<"Community Member" | "Employee Member">("Community Member");
-
   return (
     <>
       <section
@@ -19,15 +17,6 @@ export function TheCooperativeContent() {
           overflow: "hidden",
         }}
       >
-        <div
-          className="o-pattern"
-          style={{
-            position: "absolute",
-            inset: 0,
-            opacity: 0.04,
-            pointerEvents: "none",
-          }}
-        />
         <div className="wrap" style={{ position: "relative", zIndex: 1 }}>
           <span className="slabel">The Cooperative</span>
           <h1 className="cond">
@@ -276,47 +265,7 @@ export function TheCooperativeContent() {
         </div>
       </section>
 
-      <section className="sec-alt">
-        <div className="wrap">
-          <span className="slabel">Inside the Portal</span>
-          <h2 className="cond h2-section h2-section--page">
-            Your Member dashboard.
-          </h2>
-          <p className="section-lead section-lead--narrow">
-            Every Member gets access to the platform on day one. Employee
-            Members unlock the full employment stack on top.
-          </p>
-
-          <div className="u-mb-block" style={{ display: "flex", gap: 6 }}>
-            {(["Community Member", "Employee Member"] as const).map((t) => (
-              <button
-                key={t}
-                type="button"
-                className={`tab${dashTab === t ? " on" : ""}`}
-                onClick={() => setDashTab(t)}
-              >
-                {t}
-              </button>
-            ))}
-          </div>
-
-          <div
-            style={{
-              background: C.card,
-              border: `1px solid ${C.border}`,
-              borderRadius: 12,
-              padding: 32,
-              minHeight: 280,
-            }}
-          >
-            <p style={{ color: C.lgray, fontSize: 14, lineHeight: 1.7 }}>
-              {dashTab === "Community Member"
-                ? "Community Members see the Social Hub, Marketplace, Perks & Rewards, and governance tools. Employee Members additionally see Payroll, Benefits, and Tax documents."
-                : "Employee Members see everything in Community plus: semi-monthly paystubs, benefits enrollment, W-2 and tax documents, and payroll history."}
-            </p>
-          </div>
-        </div>
-      </section>
+      <MemberDashboardMockups />
     </>
   );
 }

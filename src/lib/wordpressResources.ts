@@ -1,19 +1,20 @@
 /**
- * WordPress-backed Resources data: Guides and FAQ.
- * Fetches from optional REST endpoints so content can be managed in WordPress.
- * Falls back to static data from resourcesData when endpoints are not set or fail.
+ * Resources: Guides and FAQ from Firestore (default) or WordPress REST when
+ * CONTENT_SOURCE=wordpress. Falls back to static GUIDES_DATA / FAQ_SECTIONS.
  *
- * Optional endpoints (same base as WORDPRESS_URL):
+ * WordPress optional endpoints (same base as WORDPRESS_URL):
  *   GET /wp-json/opolis/v1/guides  → { guides: GuidesSection[] }
  *   GET /wp-json/opolis/v1/faq     → { faq: FaqSection[] }
- *
- * If you add a small WordPress plugin or theme code to register these routes
- * and return the same JSON shape, the Resources page will use WP content
- * and redirect links from there instead of static lists.
  */
 
 import type { FaqSection, GuidesSection } from "@/lib/resourcesData";
-import { FAQ_SECTIONS, GUIDES_DATA } from "@/lib/resourcesData";
+import { getContentSource } from "@/lib/content-source";
+import {
+  FAQ_SECTIONS,
+  GUIDES_DATA,
+  isFaqSection,
+  isGuidesSection,
+} from "@/lib/resourcesData";
 
 const WORDPRESS_URL = process.env.WORDPRESS_URL || "";
 const REVALIDATE_SECONDS = 60;
@@ -22,36 +23,26 @@ function getBaseUrl(): string {
   return WORDPRESS_URL.replace(/\/$/, "");
 }
 
-function isGuidesSection(x: unknown): x is GuidesSection {
-  if (!x || typeof x !== "object") return false;
-  const o = x as Record<string, unknown>;
-  if (typeof o.cat !== "string" || typeof o.cc !== "string") return false;
-  if (!Array.isArray(o.items)) return false;
-  return o.items.every((item: unknown) => {
-    if (!item || typeof item !== "object") return false;
-    const i = item as Record<string, unknown>;
-    return typeof i.type === "string" && typeof i.label === "string" && typeof i.url === "string";
-  });
-}
-
-function isFaqSection(x: unknown): x is FaqSection {
-  if (!x || typeof x !== "object") return false;
-  const o = x as Record<string, unknown>;
-  if (typeof o.id !== "string" || typeof o.label !== "string") return false;
-  if (!Array.isArray(o.items)) return false;
-  return o.items.every((item: unknown) => {
-    if (!item || typeof item !== "object") return false;
-    const i = item as Record<string, unknown>;
-    return typeof i.q === "string" && typeof i.a === "string";
-  });
-}
-
 /**
  * Fetches Guides from WordPress if the optional endpoint exists.
  * Returns the same shape as GUIDES_DATA: categories with items (type, label, url).
  * Links in items can be external (PDFs, learn.opolis.co, etc.) or internal (/blog/slug).
  */
 export async function getGuides(): Promise<GuidesSection[]> {
+  if (getContentSource() === "firestore") {
+    try {
+      const { getGuidesFromFirestore } = await import("@/lib/firestore-content");
+      return await getGuidesFromFirestore();
+    } catch (err) {
+      console.error(
+        "[Firestore] getGuides failed; using static GUIDES_DATA (WordPress URLs).",
+        err,
+        "Set FIREBASE_SERVICE_ACCOUNT_JSON or GOOGLE_APPLICATION_CREDENTIALS on the server."
+      );
+      return GUIDES_DATA;
+    }
+  }
+
   if (!WORDPRESS_URL) return GUIDES_DATA;
 
   const baseUrl = getBaseUrl();
@@ -88,6 +79,20 @@ export async function getGuides(): Promise<GuidesSection[]> {
  * Returns the same shape as FAQ_SECTIONS: sections with id, label, items (q, a).
  */
 export async function getFaq(): Promise<FaqSection[]> {
+  if (getContentSource() === "firestore") {
+    try {
+      const { getFaqFromFirestore } = await import("@/lib/firestore-content");
+      return await getFaqFromFirestore();
+    } catch (err) {
+      console.error(
+        "[Firestore] getFaq failed; using static FAQ_SECTIONS.",
+        err,
+        "Set FIREBASE_SERVICE_ACCOUNT_JSON or GOOGLE_APPLICATION_CREDENTIALS on the server."
+      );
+      return FAQ_SECTIONS;
+    }
+  }
+
   if (!WORDPRESS_URL) return FAQ_SECTIONS;
 
   const baseUrl = getBaseUrl();

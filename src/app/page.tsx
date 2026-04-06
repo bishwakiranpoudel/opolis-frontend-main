@@ -31,15 +31,6 @@ export default function HomePage() {
         }}
       >
         <div
-          className="o-pattern"
-          style={{
-            position: "absolute",
-            inset: 0,
-            opacity: 0.045,
-            pointerEvents: "none",
-          }}
-        />
-        <div
           className="wrap"
           style={{ position: "relative", zIndex: 1, textAlign: "center" }}
         >

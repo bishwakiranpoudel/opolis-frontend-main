@@ -34,15 +34,6 @@ export default function AboutPage() {
           overflow: "hidden",
         }}
       >
-        <div
-          className="o-pattern"
-          style={{
-            position: "absolute",
-            inset: 0,
-            opacity: 0.04,
-            pointerEvents: "none",
-          }}
-        />
         <div className="wrap" style={{ position: "relative", zIndex: 1 }}>
           <span className="slabel">About Opolis</span>
           <h1 className="cond">
