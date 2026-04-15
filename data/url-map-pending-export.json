@@ -1,0 +1,1754 @@
+{
+  "generatedAt": "2026-04-15T10:03:14.142Z",
+  "collection": "url_map_pending",
+  "totalDocuments": 392,
+  "documentsWithoutOldUrl": 0,
+  "uniqueOldUrls": 120,
+  "duplicateOldUrlDocuments": 272,
+  "mappings": [
+    {
+      "oldUrl": "http://commons.opolis.co/",
+      "newPath": "/",
+      "firestoreDocIds": [
+        "e8136d77a2c4ec2d345430efeab49727fff12d4e4f62f0dbb2215a761105f1c4"
+      ],
+      "foundInSlugs": [
+        "opolis-member-benefits-explained-how-to-access-them"
+      ]
+    },
+    {
+      "oldUrl": "http://opolis.co/explore",
+      "newPath": null,
+      "firestoreDocIds": [
+        "8ea7a3753d3f1b368225b3f2aaf733a247e1de0e5d12252da5b6e1753e139a09"
+      ],
+      "foundInSlugs": [
+        "opolis-member-benefits-explained-how-to-access-them"
+      ]
+    },
+    {
+      "oldUrl": "http://opolis.co/insurance/bonds",
+      "newPath": null,
+      "firestoreDocIds": [
+        "bd8e05a28397b8eb2b1bd92c5c27a716b19ae8fd798529ab22f72e898257d43f"
+      ],
+      "foundInSlugs": [
+        "opolis-brings-healthcare-insurance-onchain-with-renzo-eigencloud"
+      ]
+    },
+    {
+      "oldUrl": "http://opolis.co/podcast",
+      "newPath": null,
+      "firestoreDocIds": [
+        "60edfd3892887295e1719a398a8422345683c298786237aed45d2879d114cd76"
+      ],
+      "foundInSlugs": [
+        "unemployable-podcast-trailer-control-your-work-freedom"
+      ]
+    },
+    {
+      "oldUrl": "https://commons.opolis.co/",
+      "newPath": "/",
+      "firestoreDocIds": [
+        "d04723f5c16d6d7e5dce5894764e0e350bc4dca8442a4295cdef8f3a4bc309d4"
+      ],
+      "foundInSlugs": [
+        "2025-opolis-insurance-updates-whats-new-and-improved-for-members"
+      ]
+    },
+    {
+      "oldUrl": "https://learn.opolis.co/how-to-calculate-and-make-estimated-tax-payments/",
+      "newPath": null,
+      "firestoreDocIds": [
+        "e1985ccce82dd9e5279761746ab22e69a19ca61150e9c60d08550380749771fc"
+      ],
+      "foundInSlugs": [
+        "strategies-to-minimize-tax-liability-for-self-employed-individuals"
+      ]
+    },
+    {
+      "oldUrl": "https://learn.opolis.co/schedule-tax-schedule-c-schedule-se-and-form-1040/",
+      "newPath": null,
+      "firestoreDocIds": [
+        "cba2eb46ede60b37ff731124bec41d6323f27ab853d86acfcd57ee44adeac536"
+      ],
+      "foundInSlugs": [
+        "self-employed-health-insurance-deductions"
+      ]
+    },
+    {
+      "oldUrl": "https://learn.opolis.co/self-employed-health-insurance-deductions-a-comprehensive-guide/",
+      "newPath": null,
+      "firestoreDocIds": [
+        "07bed4f63bdbf024b7722c36d2b8e2cd1f80342d3101d6d8625126a43f3b8dc2",
+        "a5c6cd4bc674fc5ee6663ccf1642ad581527a3393f5a5c48c5be9657fe6f180e",
+        "aa5322f155fc1d4517f246df39880775e2237c5720f2d51ea6f940bb060a8d85",
+        "c081dd4626e6cbeb8cfa7a62f9bbeb328f0ef6d7e47ec6bffd1093db57a7ef57"
+      ],
+      "foundInSlugs": [
+        "can-health-insurance-help-you-save-on-taxes",
+        "common-deductible-expenses-for-self-employed-individuals",
+        "how-to-calculate-and-make-quarterly-self-employment-tax-payments",
+        "self-employed-health-insurance-deductions"
+      ]
+    },
+    {
+      "oldUrl": "https://learn.opolis.co/strategies-for-self-employed-individuals-to-minimize-tax-liability-and-maximize-deductions/",
+      "newPath": null,
+      "firestoreDocIds": [
+        "5965fdb3923065b0c8e6928585d515b8f3cc989b665796011ade13d844e4432e"
+      ],
+      "foundInSlugs": [
+        "how-to-calculate-and-make-quarterly-self-employment-tax-payments"
+      ]
+    },
+    {
+      "oldUrl": "https://learn.opolis.co/understanding-self-employment-taxes-a-comprehensive-guide/",
+      "newPath": "/blog/understanding-self-employment-taxes-a-comprehensive-guide",
+      "firestoreDocIds": [
+        "42ce6d14a01f63c57d96796c044d5fd90da0758a0d37a53ae5577f85fa813c57",
+        "dcc63d51e85f78a3934b20edff17f02e4f72aa3ca44f292523a81dc0eae639cd"
+      ],
+      "foundInSlugs": [
+        "schedule-tax-what-are-schedule-c-schedule-se-and-form-1040",
+        "strategies-to-minimize-tax-liability-for-self-employed-individuals"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/",
+      "newPath": "/",
+      "firestoreDocIds": [
+        "06f9e90054b9c95b2d6ac48a862f7407a55f9709248b5cff293bc1d6667dc6d0",
+        "06fdd7e8adaf26eb1491ff45f1c7f7c489f3317bf7d16ffa160b56647ff8a5fc",
+        "0a99b23fc9b546cc9d4477cdc393ade5624d65df005b99d36d398d2744c3f835",
+        "19bbc3c8c8aa93402e3cbe9ade98f3a042122b3cd90adf9ac4a5cbf78404a8f2",
+        "1a0f9707fd175bc0fb70c19fd2691d129cf1348d30f953a7aca03cf2e6febe88",
+        "2e0b5750b818d7b9aefd5d7c8fdc6ab92cc04ba69b7c65968f8319aba7f214dc",
+        "30ef5d1a919f1f58ab1e39eb0a040c14fea9862cb62761fe35fd8960cd1afef3",
+        "36c37c4c7fe8bcd235006c1f3c8b889437e200a263f9ddf31720c5096ddd6b23",
+        "493a1c373e1998c5d1607dc898c5f69e135617f9d0dae57c2c002cc05235e446",
+        "86d7d54a0960a7dab07e726e3447e7605f72d9afd8ccb51649bf997c3a510546",
+        "8f5d1c4a38a3b61df3518a7df0d97efebcafa229ef4f61f779d9868290f3c0a7",
+        "9254b9a9bf88ebb0c308403e9e73f2e81759199d162d020769af52979b4fd1d3",
+        "991ad9b64efd4efdee8473c6b6a3e897c0e34fbb7903dfd544ca0a973ff1a2b2",
+        "a306f057cee7f10ab6f9a7233f01748a118d0431ffe49e1123d98d85c24c99e7",
+        "a794292e0c69ed4e91e4df8d54f9671cae8ea46bcefee908e2ec36c54836f438",
+        "abaa38d48b1ff6cb07790e950e5c15cdefac9aef12bb084cef38f16ddf2210e4",
+        "aca38dfe31c4f035ef8486864f451af557780b4c08b3b35cf7f423315d97ad8c",
+        "b82c66e4c60760d165d81630f9baa3ba4a36ca5e3bb112ac8d74451987fb3edb",
+        "c4906f65d3e718fe3e05cba404335379484e43e4cb382a09bcadf06319d1f453",
+        "cad874f48a2f69e4523ffba4bbab9f140454c58d33c21930a571b861ce3732e6",
+        "cea2a44f4471dea1abe718b648037afe14a59a2a621b994ea8a11edcc7d190bb",
+        "fa0400db13ca2ca22bd25070ed29fc0f89434904147e4035aa6d9dd4e09e5ab0"
+      ],
+      "foundInSlugs": [
+        "5-time-saving-payroll-tips-for-solopreneurs",
+        "comparing-the-best-health-insurance-plans-for-freelancers",
+        "delegate-payroll-focus-on-freelancing-and-what-matters-most",
+        "episode-1-dana-mahina-the-myth-of-work-life-balance",
+        "episode-1-spencer-graham-working-at-a-dao-web3-solopreneur",
+        "episode-10-bill-warren-on-opolis-commons-daos",
+        "episode-11-opolis-rewards-token-launch-with-eric-arsenault",
+        "episode-11-platforms-empowering-independent-workers-in-2024",
+        "episode-12-cooperativism-governance-with-auryn-macmillan",
+        "episode-13-opolis-governance-open-enrollment-with-barry-goers",
+        "episode-14-crypto-invoicing-tips-with-david-gold",
+        "episode-15-gitcoin-opolis-benefits-for-freelance-developers",
+        "episode-8-vignesh-sundaresan-on-defi-changing-crypto-payments",
+        "episode-9-russell-castagnaro-on-colorados-digital-innovation",
+        "getting-started-with-opolis-tips-for-a-smooth-onboarding",
+        "how-opolis-simplified-freelancing-for-a-crypto-paid-software-developer",
+        "how-opolis-transformed-teds-freelance-benefits-journey",
+        "how-to-protect-your-family-and-be-an-entrepreneur",
+        "legal-considerations-for-independent-workers-what-to-know",
+        "tax-write-offs-every-freelancer-should-know-about",
+        "the-future-of-payroll-trends-every-freelancer-should-know",
+        "what-should-i-expect-if-i-become-an-opolis-member"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/?p=14472",
+      "newPath": "/",
+      "firestoreDocIds": [
+        "702a8a969272abca1d50cd2cd9cd138ebfce2a8b2375e7ff58cf807f31a8ccf1"
+      ],
+      "foundInSlugs": [
+        "episode-15-gitcoin-opolis-benefits-for-freelance-developers"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/?p=16531",
+      "newPath": "/",
+      "firestoreDocIds": [
+        "c11cae8f5deb2d8201e0d95952434a4a3b2add96f3f527ab7d2edb5bf00a6467"
+      ],
+      "foundInSlugs": [
+        "episode-12-how-freelancers-can-earn-more-by-working-less"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/become-a-member/",
+      "newPath": null,
+      "firestoreDocIds": [
+        "05b5f58e428defa79253fc45ee6819d387e43aa641ab105505239d6654668ca7",
+        "122d11b964db1587680962b533756c8408a0d113e9d4adbf80edcc97c0cf73d9",
+        "2564945e3e3508db2a408c8f39aa8ad3b84c31f21a5ea52136a5a1847cb4c1ff",
+        "4ee6781664fd6baf83445b4501d57ebef3a2c511c7fc86160f5a43c853c8666e",
+        "7205dcbf245f86c625c6c02d5a9a081d26eb7d32fa6edafa9d34fea85db7602e",
+        "8face1b4f8dac70c6102c359de8575cc6c2a5dad1d6a9f74da6f3e745c16bb40",
+        "966ae60ff89c64de79c578f10fcb3cf2e1ad4734b4aca556becb301b562360c8",
+        "9ffe045c52c39cc343abea4dcf068c737ab36dfc064c4c920b88c882cfab2748",
+        "a0087c1b862f39fe9e3c3a24f6b691b412a4b86d48f7d5e1a59c39f7a33d6cab",
+        "b6c4883e523c228fb0eec5191021f79e5b6e5f55fafde3937293db1afc2ff486",
+        "bc129d0273410ccaa8b0f10f9d35298978d4cdf8bc6a3d1bb84e240ddadc01f2",
+        "c7d9765f5c534cf5d20d03ff4b490ad738bde86645c7a5df76b209ed3e17b262",
+        "d43260e6ee89177c2a56ab5d58469fdb347c016481cd399faa535b354cdc2274",
+        "d59cb1170d267a31031b9c001f6e8cfc7be9df7ddc8742d3d943c8121164074a",
+        "dac74b5d6a7afef34155183f888adbaff4157a66e0b94531f1ba297bd3e9df4b",
+        "e61982568b1667445c1590a3ce65aab9e71c4655b2e2567e93047cc4abb941b6",
+        "eada19397745f4a2f6b35cd6af64bbbc9e2397ba6d379772accb4710b928bd8d"
+      ],
+      "foundInSlugs": [
+        "5-time-saving-payroll-tips-for-solopreneurs",
+        "choosing-the-best-health-insurance-for-freelancers",
+        "ditch-hourly-billing-earn-more-by-working-less",
+        "high-deductible-health-plans-vs-copay-plans",
+        "how-opolis-and-forusalls-401k-benefits-you",
+        "how-opolis-simplified-freelancing-for-a-crypto-paid-software-developer",
+        "how-opolis-transformed-teds-freelance-benefits-journey",
+        "how-to-protect-your-family-and-be-an-entrepreneur",
+        "master-your-money-financial-goals-income-tax-documents",
+        "maximize-savings-how-opolis-bench-optimize-your-finances",
+        "opolis-solo-401k-maximize-your-retirement-savings-today",
+        "quality-health-coverage-benefits-for-the-self-employed",
+        "the-best-insurance-for-freelancers",
+        "the-freelancers-guide-to-flawless-payroll-records",
+        "the-future-of-payroll-trends-every-freelancer-should-know",
+        "top-payroll-mistakes-freelancers-make-how-to-avoid-them",
+        "what-should-i-expect-if-i-become-an-opolis-member"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/benefits/opolis-member-benefits-explained-how-to-access-them/",
+      "newPath": "/blog/opolis-member-benefits-explained-how-to-access-them",
+      "firestoreDocIds": [
+        "584e01092d080ef5cbd6236e39c1e6a7267e66189efb34bc1c45672f043b5a41"
+      ],
+      "foundInSlugs": [
+        "how-opolis-transformed-teds-freelance-benefits-journey"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/blog/",
+      "newPath": null,
+      "firestoreDocIds": [
+        "85788bdf3234e668f1c34fec0948b59745f1f75bb279fbc8d4813d0b0d50fbfb"
+      ],
+      "foundInSlugs": [
+        "getting-started-with-opolis-tips-for-a-smooth-onboarding"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/business-setup/freelancer-toolkit-essential-tools-from-opolis-partners/",
+      "newPath": "/blog/freelancer-toolkit-essential-tools-from-opolis-partners",
+      "firestoreDocIds": [
+        "5ea0b67524f86852e0a1ef93455fe2c34d936ff7a7acb6f7332ec274184590a8"
+      ],
+      "foundInSlugs": [
+        "how-freelancers-band-together-for-premium-perks-with-opolis"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/business-setup/how-freelancers-band-together-for-premium-perks-with-opolis/",
+      "newPath": "/blog/how-freelancers-band-together-for-premium-perks-with-opolis",
+      "firestoreDocIds": [
+        "41c34c72985fc25c1c2f8d8b7957bca594ce969214a7581cc777a6479a5153b9",
+        "43ba240765098b649c9849b78b2a194185522baff473159e1036dcc2c9bb0e41",
+        "7fd1583669118740332bfd369e5cd38520238255c2f932928c4c4ceb45fce869"
+      ],
+      "foundInSlugs": [
+        "affordable-cigna-healthcare-options-for-freelancers",
+        "how-opolis-transformed-teds-freelance-benefits-journey",
+        "last-call-for-open-enrollment-get-health-insurance-now"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/business-setup/master-your-money-financial-goals-income-tax-documents/",
+      "newPath": "/blog/master-your-money-financial-goals-income-tax-documents",
+      "firestoreDocIds": [
+        "822c1d0021fa4fb00cfc609f5af61d2437d9cf98da269e51d66e7d410ce9d149"
+      ],
+      "foundInSlugs": [
+        "how-freelancers-band-together-for-premium-perks-with-opolis"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/business-setup/opolis-s-corp-benefits-secret-sauce-to-a-cushy-retirement/",
+      "newPath": "/blog/opolis-s-corp-benefits-secret-sauce-to-a-cushy-retirement",
+      "firestoreDocIds": [
+        "5895a2a6d0171bcbe3b7102ebe6c1a54f017df4b20ba8e20adb96e78d44607c9"
+      ],
+      "foundInSlugs": [
+        "how-freelancers-band-together-for-premium-perks-with-opolis"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/business-setup/s-corp-tax-benefits-payroll-savings-business-structure/",
+      "newPath": "/blog/s-corp-tax-benefits-payroll-savings-business-structure",
+      "firestoreDocIds": [
+        "48c0f46ae19e04f503f8b36d3ac921eac3686611c04ec13c30f41884b98f0dec"
+      ],
+      "foundInSlugs": [
+        "legal-considerations-for-independent-workers-what-to-know"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/business-setup/unlocking-business-structures/",
+      "newPath": null,
+      "firestoreDocIds": [
+        "06c00e4122cb8bd28846c1b1d02d250faa5999fd4a92fb2b0518722e1bb4e83e",
+        "078f2cc59a522848beeb716c95d6471b6abbf7774910e0204803a81b869d1b3c",
+        "2c40cc2db79827a33ae4eefa395a35663194e37d965579aa2b5c4f775e436aa2",
+        "399f5756f042b981452114d5b01feb692b401bda7a2bc4876ce9199a2c3eeafc",
+        "3d7043a44b9597fef143c80e97fa746ebbe441d6f78d38b9d2e058745a94020d",
+        "6a0ed6bbba3164c4275d6f19565aa2bcc3cf0765de5f94c1eecb3ad0eeae843c",
+        "d0731b7171ebdc78bb87fa8b903652bf57100183e2fa9a8a23cb503b9d824d90"
+      ],
+      "foundInSlugs": [
+        "delegate-payroll-focus-on-freelancing-and-what-matters-most",
+        "getting-started-with-opolis-tips-for-a-smooth-onboarding",
+        "how-payroll-services-simplify-tax-filing-for-freelancers",
+        "how-regular-payroll-sets-you-up-for-financial-success",
+        "how-s-corp-and-payroll-work-making-life-easier-for-freelancers",
+        "k-1-vs-bonus-vs-regular-payroll-understanding-the-tax-differences",
+        "navigating-payroll-challenges-a-guide-for-new-freelancers"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/business-setup/what-should-i-expect-if-i-become-an-opolis-member/",
+      "newPath": "/blog/what-should-i-expect-if-i-become-an-opolis-member",
+      "firestoreDocIds": [
+        "98d07720920f1cc26e64a7349fedabad4529aa2df3dea37c46a6647a049ccf02"
+      ],
+      "foundInSlugs": [
+        "how-freelancers-band-together-for-premium-perks-with-opolis"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/can-health-insurance-help-you-save-on-taxes/",
+      "newPath": "/blog/can-health-insurance-help-you-save-on-taxes",
+      "firestoreDocIds": [
+        "3e3675eec634863a7394b3f62bfef4e4fa8e0cc90e18f4a8aeb4ee47b816cd07"
+      ],
+      "foundInSlugs": [
+        "maximize-self-employed-benefits-with-opolis"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/choosing-payroll-software-for-your-small-business/",
+      "newPath": "/blog/choosing-payroll-software-for-your-small-business",
+      "firestoreDocIds": [
+        "cf8e03aea88732d9a16570bd0db40fc14e85c3a705b5b88e892c665fb50266ca"
+      ],
+      "foundInSlugs": [
+        "navigating-payroll-challenges-a-guide-for-new-freelancers"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/cooperative-model-work-token-revolution/",
+      "newPath": null,
+      "firestoreDocIds": [
+        "588a90301908124210e89356c20aabeb0c7c4d404d953ce6788497d5c6abfdba",
+        "d624304daa366ab6097701221811ace724017ea450918b59090f1506cef3e32b"
+      ],
+      "foundInSlugs": [
+        "quality-health-coverage-benefits-for-the-self-employed",
+        "self-employed-taxes-opolis-vs-going-solo"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/cooperative/how-opolis-and-forusalls-401k-benefits-you/",
+      "newPath": "/blog/how-opolis-and-forusalls-401k-benefits-you",
+      "firestoreDocIds": [
+        "ba855ea82661b57fc85c90437cf0d96d530f276ba31252932dca0101e2e5d4b0"
+      ],
+      "foundInSlugs": [
+        "legal-considerations-for-independent-workers-what-to-know"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/create-your-llc/",
+      "newPath": null,
+      "firestoreDocIds": [
+        "0490d16e6c84a494b17622c302cf5306ef174f230a0c60e53e010e0bb140aba3",
+        "2792b897ce42ebc22e517560a6ccde72557e20efa3c28f54ec2c6870b2ee220f",
+        "9136537d6b8e19b2ec8dcf4a18625a02fdb43ba6452814d2050ee6bc175179e0",
+        "d0488046d52471bc1a5d3f17c7a8da94358fc6c6df9713ebb037dd3af6ef9dd7"
+      ],
+      "foundInSlugs": [
+        "how-we-assist-in-setting-up-your-llc-the-opolis-advantage",
+        "understanding-the-differences-sole-proprietor-vs-llc",
+        "unlocking-business-structures-llc-vs-s-corp-vs-c-corp",
+        "unlocking-opolis-benefits-beyond-payroll-and-health-insurance"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/create-your-llc/#tve-jump-1887dbfc0cc",
+      "newPath": null,
+      "firestoreDocIds": [
+        "5a7b381e8e8efb6cbaaa3e444e36cf1cbc722f98d24dd10243d45c7d212087bc",
+        "ff385715da45727964c8ffcd39dc3d7574ad592807daaf6e717a0810f1994fbb"
+      ],
+      "foundInSlugs": [
+        "how-we-assist-in-setting-up-your-llc-the-opolis-advantage",
+        "the-best-states-for-llc-formation-where-to-plant-your-roots"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/crypto-taxes/",
+      "newPath": null,
+      "firestoreDocIds": [
+        "73f429edcf4a827b9cc150cb250b354efc063f5ac7acdee5b5db5af25f872b06"
+      ],
+      "foundInSlugs": [
+        "why-opolis-is-a-game-changer-for-solopreneurs-averys-story"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/ditch-hourly-billing-earn-more-by-working-less/",
+      "newPath": "/blog/ditch-hourly-billing-earn-more-by-working-less",
+      "firestoreDocIds": [
+        "0a32a0438d45475228c602f6846013ac0fd38f4462e407c91ffb82ec577e5981"
+      ],
+      "foundInSlugs": [
+        "the-future-of-payroll-trends-every-freelancer-should-know"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/episode-6-self-employed-401k-and-retirement-strategies-for-freelancers-and-indie-workers/",
+      "newPath": null,
+      "firestoreDocIds": [
+        "b5ff8126e32b1377774c554179b079adf3b6efe87e91e293f203e33f8e7a13e2"
+      ],
+      "foundInSlugs": [
+        "how-opolis-and-forusalls-401k-benefits-you"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/explore",
+      "newPath": null,
+      "firestoreDocIds": [
+        "feb19177eeb1726d136f5df902c747963fdd8ecc44a7752b27a15708496da88a"
+      ],
+      "foundInSlugs": [
+        "opolis-member-benefits-explained-how-to-access-them"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/explore-benefits",
+      "newPath": null,
+      "firestoreDocIds": [
+        "4cbe65b50b477587704e9b72a094e0b0edec9d58b32b370aa6d99acb393388ef",
+        "4d495266190c138ea764ac7cfa6c70daf90da9f707f7f3c33fa06f8ac8e1a583",
+        "767489ffa74f81491a62ccc8d0ee4b668fc5220b2a22d24493ff75ca24f3d84a",
+        "d79fddf3b1c74874ef0af49ef8626363bab8be936d524beb29ef58a462e480f3",
+        "fa5bf84857ae5d127fe4c4b2d95f988e98bd1bf0d300e80685a2e5bb5da50971"
+      ],
+      "foundInSlugs": [
+        "aca-marketplace-and-the-self-employed",
+        "employer-based-health-insurance-in-the-u-s",
+        "exploring-startup-or-small-business-health-insurance",
+        "strategies-to-minimize-tax-liability-for-self-employed-individuals",
+        "why-self-employed-health-insurance-is-beneficial"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/explore-opolis/benefits/",
+      "newPath": null,
+      "firestoreDocIds": [
+        "036ecba904719c8c8035e895002a1f4bf12fdccf980c738b3b2640d76a38578b",
+        "092912bd254dbe8eb4b3b17f95b0df0f94ab63e2396f81ee88f3d072129823db",
+        "165f888e5924081c729d309609b4986941fca45eae17099b15fa824371b392b1",
+        "1d7074e6c5e0a318399fc207f4649382bfba316aad3dd2e0adc3d20537d69beb",
+        "24e78dfa3564732b2f46af973276aa2344c21f2025a0369ebfea4f1dfea3e5a0",
+        "281361cc0e72f7e095021670524c5f8513e06c1e27a3ac7977832e21feadda02",
+        "2e09ef916980f8d37eff065c52921cb35901abced728b4fe1ae9e6a3bc3cf34b",
+        "3a1818ebc4153b611f2320b054192478f550c9c4edc31df1da7229d88480c0fd",
+        "419ff98c1981486415b9d8a0cbcc6f5e8250fec0bd5d2bc00f072317f7ceebc6",
+        "4c6760ff38b280cd31c1a79c98e3b2a76773718197a88254f292e9bbcd9368fc",
+        "5549ee72cb4a687a5efe03ce45b1f337130f73bb839274edbde5338a6b38abaf",
+        "5b0e97621d4f8c42148e8d3ae935ef5810ec2640855be4bb4a5c9bd4954a9b1b",
+        "5c0b54fe7bcf0f60dbc5c4f804e25ec2faa3b9af8ae2ccd183a75d8857833ae1",
+        "61035a7a94a181e86add8f1e7a412f40ba2893730303a6956dd716fedb8e3349",
+        "642c3b5c28af0ec1d52a48fbff0138d95ea95bfbea5471339bb05939b8e86731",
+        "6949354e915ce2d0d5729b6356bd781179851d320378d5ca2118edeed34207a2",
+        "7153b803363b2e015598842d0d960b5113225f47f6c0136ee9f78cff3222517b",
+        "7e2ac7eaf1efbdf6ae0d76a29432b58fd38376931cb37fb907b31a83f618c719",
+        "86932c00d98535b00f6c8d71786f5b1e1e1ad4bcd22fc3ca69e9e4d7f9df67ea",
+        "8719d55e6e4ac0399e5ce0692ef1e1957c1e6a546c764d77c4cec509fe196ede",
+        "90910a1210e2436cc12655e4cd40409793e6c0bc986249cabbffb1d2e3b857f7",
+        "952b8a01a3cb3d8b98f270b25f08807e4bb869bad42748c14f13b4c6a9f0d086",
+        "95801d17a98f24d041e52face68919e8203a8bb3d0078f911219b11fd65184e4",
+        "a6894fd175b8dc81aca0ea395f82a4179b6fbf2a3a81c743059448628387f11d",
+        "a75618c3dee180fce80d571b5fd2a912fb696f987c306161683050c1b43a484a",
+        "a8474247a64b8049b9da8e744d4cac789b705e57897b37b691d4754dd4d52f18",
+        "aa5281e602e5a810160577dfc22ac663f1dc9ee5b993057ce749965744eb7de7",
+        "b1bed2a0133d995040dd161f6af1f5c9903f297344e04c760b4f1b152ed51bfc",
+        "b6061f0fb3d14151c99cfbe3da4ab501679dde6d8694b94a118a864cdfea7fc1",
+        "bd878287d750dfae4241f5f55aa99b1e283e5ceeebeff3a7e034071555efc54e",
+        "bd90454485157479b68805e023a99ba31e5fb97f13fc9378d39b0c5f32ab1c97",
+        "c90a17e7d24dbd604efc48c38b26d2652e367c2df9de01d55d83e9e6993104c6",
+        "ca170037d305906ae12953cc1e80ddff83fb2631b873edfec6940086d8fe4f34",
+        "cdec727303579335bd7d60e6e60bd5872b128281592eb3d9958377797f67fb69",
+        "d2dee2e59338b83a05adda94a48095bd6ed130ed29d5dfdd0a308bc52e64ca5f",
+        "da8ce11b6474cf27394924d2b3f7b0488c7b5b4e9f65d45d3880700e09f2daf8",
+        "dd36c19620f34ca67df1014f8447b857715cdc8284821547b748341cd8f8a746",
+        "e2fc903c8fdfd1d4677687ce7fcd6f51d139676a4b4b2864dbbe06108407fe0f",
+        "e5b66064bb5c2738a57b877a5be7744726d422b1bc741a8d1bbd90e32b632625",
+        "e6aa717c920d937d46fc41918b8582a435385f9b1f9afe5ec5f6f4a6b66ee271",
+        "eb4a2faf8410facd7d11f020c8317cbc974ac459d204d5f586cb773e1ac67e89",
+        "f41f4e475a7c6df0e47e4508e8d3024b9946f2d5849f8667d7a576074ee0c1ea"
+      ],
+      "foundInSlugs": [
+        "2025-tax-guide-how-opolis-simplifies-freelance-filing",
+        "5-health-insurance-options-for-the-self-employed",
+        "5-ways-to-avoid-paying-taxes-legally-of-course",
+        "a-guide-to-the-best-insurance-plans-for-independent-workers",
+        "affordable-cigna-healthcare-options-for-freelancers",
+        "can-health-insurance-help-you-save-on-taxes",
+        "delegate-payroll-focus-on-freelancing-and-what-matters-most",
+        "ditch-hourly-billing-earn-more-by-working-less",
+        "episode-3-how-to-find-work-in-web3-daos",
+        "episode-4-hsas-fsas-essentials-for-freelancers",
+        "freelancer-toolkit-essential-tools-from-opolis-partners",
+        "getting-started-with-opolis-tips-for-a-smooth-onboarding",
+        "how-freelancers-band-together-for-premium-perks-with-opolis",
+        "how-freelancers-union-opolis-help-your-business-thrive",
+        "how-opolis-and-bench-fuel-small-business-growth-and-success",
+        "how-opolis-and-bench-simplify-business-taxes-and-tax-filing",
+        "how-opolis-simplified-freelancing-for-a-crypto-paid-software-developer",
+        "how-opolis-transformed-teds-freelance-benefits-journey",
+        "how-to-protect-your-family-and-be-an-entrepreneur",
+        "how-we-assist-in-setting-up-your-llc-the-opolis-advantage",
+        "k-1-vs-bonus-vs-regular-payroll-understanding-the-tax-differences",
+        "last-call-for-open-enrollment-get-health-insurance-now",
+        "legal-considerations-for-freelancers-how-opolis-can-help",
+        "legal-considerations-for-independent-workers-what-to-know",
+        "master-your-money-financial-goals-income-tax-documents",
+        "maximize-savings-how-opolis-bench-optimize-your-finances",
+        "navigating-payroll-challenges-a-guide-for-new-freelancers",
+        "opolis-bench-the-ultimate-freelance-financial-duo",
+        "opolis-s-corp-benefits-secret-sauce-to-a-cushy-retirement",
+        "opolis-tax-compliance-from-withholding-to-cpa-collaboration",
+        "s-corp-tax-benefits-payroll-savings-business-structure",
+        "staying-tax-compliant-as-a-freelancer-opolis-makes-it-easy",
+        "tax-write-offs-every-freelancer-should-know-about",
+        "the-best-states-for-llc-formation-where-to-plant-your-roots",
+        "the-freelancers-guide-to-flawless-payroll-records",
+        "the-future-of-payroll-trends-every-freelancer-should-know",
+        "top-payroll-mistakes-freelancers-make-how-to-avoid-them",
+        "unlocking-opolis-benefits-beyond-payroll-and-health-insurance",
+        "what-should-i-expect-if-i-become-an-opolis-member",
+        "why-freelancers-need-liability-insurance-protect-your-biz",
+        "why-opolis-is-a-game-changer-for-solopreneurs-averys-story",
+        "your-cpa-and-opolis-a-dynamic-duo-for-tax-optimization"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/explore-opolis/entity/",
+      "newPath": null,
+      "firestoreDocIds": [
+        "3e6fc10b59909c2d44c6b1f07f84215642d3821c4ffe6d61bd75791cd2eb37b3",
+        "44f0e1b47c437005b5d0cf5dd74248786ae63da6c1cf577b02d5db781498a21d",
+        "5a991066b34acd4d8a148400a817d570276573753ee5fe75b249a11490065df2",
+        "7451680e72e6110c4409053c62bc2cd449665ae855751199315af9704bff4683",
+        "8dfc3ea8750e548cb55089a9ba53ab602f4369d410fefedf4ad3b491f51b6af4",
+        "94aace509db633b2a95f4c2271bc6012c205223a49f4baa600f050ddf669dced",
+        "991959b646e26f46cb159e982dfc17601d0e154b1858a20c9dd2a2c6885cdb3b",
+        "f63ed755c1cc2c289b36cbd3861871f0f0bec87e666b605b732517262cf2f740"
+      ],
+      "foundInSlugs": [
+        "5-time-saving-payroll-tips-for-solopreneurs",
+        "getting-started-with-opolis-tips-for-a-smooth-onboarding",
+        "how-regular-payroll-sets-you-up-for-financial-success",
+        "legal-considerations-for-freelancers-how-opolis-can-help",
+        "navigating-payroll-challenges-a-guide-for-new-freelancers",
+        "opolis-bench-the-ultimate-freelance-financial-duo",
+        "tax-write-offs-every-freelancer-should-know-about",
+        "top-payroll-mistakes-freelancers-make-how-to-avoid-them"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/explore-opolis/optimize-your-taxes/",
+      "newPath": null,
+      "firestoreDocIds": [
+        "5dfaf1cd6098b54f2db4845593209a781634db68995eeded7873ebf5a7eaf1fa",
+        "7b9baa844448ec821efe871c2e5dceaf14faa8ba8868a4210c27cc2f84aed41a",
+        "7edb44cc7c0c71c87aa29821da12c1140a2c0388f272d59008e98d0dfbc5e26c",
+        "8936b29210e0e8a2ceb2150c1e60842e55eae08530bc8f9ff7d177bd6ea36ba1",
+        "dc42db35e43413e2eb325f965d591b87ab3f1a58282652393be33a2fc61f5438",
+        "efcc0552d97b18fd6f52aa815ad925bcfa86d58c17408944c34e566588e08231",
+        "f89766e3d8e487e25f3ed0a04f3595c432f809ef53747c6cfa67efb3a5b555ec",
+        "fd5d97205188b345ab94043a9604d42542be238096697e2ecdff8dddea1458f1"
+      ],
+      "foundInSlugs": [
+        "2025-tax-guide-how-opolis-simplifies-freelance-filing",
+        "5-ways-to-avoid-paying-taxes-legally-of-course",
+        "how-opolis-transformed-teds-freelance-benefits-journey",
+        "k-1-vs-bonus-vs-regular-payroll-understanding-the-tax-differences",
+        "opolis-bench-the-ultimate-freelance-financial-duo",
+        "opolis-tax-compliance-from-withholding-to-cpa-collaboration",
+        "staying-tax-compliant-as-a-freelancer-opolis-makes-it-easy",
+        "what-should-i-expect-if-i-become-an-opolis-member"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/explore-opolis/payroll/",
+      "newPath": null,
+      "firestoreDocIds": [
+        "00f25435b11235b358868cef2bb9aa378d1226489135640de73d0c9b8f292f13",
+        "0ad491d8eb020247ca167f833f5397428815980296ca3dfddf5915516fa6eda7",
+        "14c9cf225fc171f433de1a671da8e855d3ae9d4eeaa1a9079bbe385e527a6dca",
+        "1c1897e9e74e3c261a8916863849e602bbce7fd237c06b0f9c18514bea7fa0d8",
+        "27ff03878491ebde1ce5c03d79e146610791fc5978541890237a5fdc185a99f5",
+        "301d5f4e9026d305189504a3ba7de57b0492cbdcc32d9e3c8af909b227fa6523",
+        "3a7671e47acb58b01509be9b2cc729c7dc880dd724e1a46aaf60db49e38b4b2f",
+        "3ec1ae5592e426404c4cf00d6c6977fd460851fb21cd35843991c591616efac0",
+        "4605bd6819e051e5b78e8ffa9cd600213da28741d25a775fda46c13b24a805c4",
+        "4ac35d90ff6998f097d5ff32a323be19a2af7611d15744da24648704a67ffb97",
+        "4cb489c9d72fe92b5adbf2827e844d206154c04531b1cde3cf59233ac1990d08",
+        "6b7c839d471f565b4b0816f4f7c31b71ef909e2b7b1622e720fe504c8c962a20",
+        "6c3677df00b33d31d1d08e2557d51527b5564a3ca609ab82336d926b282fe3a3",
+        "79a2692f5801d7baf6e6bbcf341633adb8ac8497b7e1666bae48fb44df3b865a",
+        "7cead2917d59ba3204ea227934795494a8dd1286a4462aa2cc75a75d8da18ed0",
+        "83063415c28c5b9abb40ef3e00aac3514ce7a114f537d628a4fc781f5b09a2ea",
+        "90929d1d0a6c181654662fcd29ea9d2351fa721fd350f7b02c9155334cf51e5c",
+        "912458826d9e8e729a1d04b739524e6a1e092edfef11b4b18130acd2d0f4cbea",
+        "922319b91081a9dd0a7836d5f20aa8c37271be6790df4410a27d1ed5f79e5261",
+        "93c51cac9c4eba1013787951f35d06b7a8f8ab5c203080145fda403b2e390a6c",
+        "9829dbe8c824af39601a13ae2da0eca663e00b193ef14857761a3fea81327c88",
+        "bc4138872657f2516ee1dcc809db6bdc20c4ced7e41780853f5aca7e61b26376",
+        "c6caf3acd60e477507121812d929f1d2c0a76c65059212027d7f72d8bfb068a6",
+        "c76b10d6bebfb39ced5ad63f9c6d6053027b0ec659288c22ad4b81e822e64c16",
+        "c91d12fd0f9988f4c9f457980c0056febba1dde2a0af15a7fb5eacdd06311da8",
+        "c977b6e2e71bf3a2d31bfd55fa897ea755a90bbd2add9daee3ba97183a13d27d",
+        "cac939bff99c767532102edddd97e9d2c69201de5a0d28e21989033833de0b1b",
+        "da632b1074f138b19c824930803866b1bcdf1f1382dc8b4dae008720da9a0ec2",
+        "dc9f2c642cce40397fd3e31067bbf33f9a3269dca40eea00abe8062814fb64c5",
+        "e144b45ac088a02ef80038d8695547ad2a97a988b70a6fab308552deb4968021",
+        "e58ec44a12e35e3378f950b69c2e5c0282a0a08fcc31e36d56a90b8d1891b8ee",
+        "e6970362bc3d5553772022c83a138e52c1781068b89f5aacb8a7047d49475974",
+        "e8f4b476d6cf2e26d404ace02797b7c08f2dcb475d28340821fe2248e6057083",
+        "edc4e0c4d9b8f912cf6591626a3781bee58728c92c2e0a2ee689813d1d1be692",
+        "efa43b1289b975f9f559c7fc07d32d6bc549b3c98bfa8e25d404ce3cdff1881e",
+        "fb8c9a22625222e950ad378d69861aeb344168f454ba6cca501f9d1c9640473e"
+      ],
+      "foundInSlugs": [
+        "2025-tax-guide-how-opolis-simplifies-freelance-filing",
+        "5-time-saving-payroll-tips-for-solopreneurs",
+        "5-ways-to-avoid-paying-taxes-legally-of-course",
+        "a-guide-to-the-best-insurance-plans-for-independent-workers",
+        "affordable-cigna-healthcare-options-for-freelancers",
+        "delegate-payroll-focus-on-freelancing-and-what-matters-most",
+        "ditch-hourly-billing-earn-more-by-working-less",
+        "freelancer-toolkit-essential-tools-from-opolis-partners",
+        "getting-started-with-opolis-tips-for-a-smooth-onboarding",
+        "how-freelancers-union-opolis-help-your-business-thrive",
+        "how-opolis-and-bench-fuel-small-business-growth-and-success",
+        "how-opolis-and-bench-simplify-business-taxes-and-tax-filing",
+        "how-opolis-transformed-teds-freelance-benefits-journey",
+        "how-payroll-services-simplify-tax-filing-for-freelancers",
+        "how-regular-payroll-sets-you-up-for-financial-success",
+        "how-s-corp-and-payroll-work-making-life-easier-for-freelancers",
+        "how-to-protect-your-family-and-be-an-entrepreneur",
+        "k-1-vs-bonus-vs-regular-payroll-understanding-the-tax-differences",
+        "legal-considerations-for-freelancers-how-opolis-can-help",
+        "legal-considerations-for-independent-workers-what-to-know",
+        "master-your-money-financial-goals-income-tax-documents",
+        "maximize-savings-how-opolis-bench-optimize-your-finances",
+        "navigating-payroll-challenges-a-guide-for-new-freelancers",
+        "opolis-bench-the-ultimate-freelance-financial-duo",
+        "opolis-tax-compliance-from-withholding-to-cpa-collaboration",
+        "s-corp-tax-benefits-payroll-savings-business-structure",
+        "self-employed-taxes-opolis-vs-going-solo",
+        "simplify-your-taxes-tips-and-tools-from-opolis",
+        "staying-tax-compliant-as-a-freelancer-opolis-makes-it-easy",
+        "tax-write-offs-every-freelancer-should-know-about",
+        "the-future-of-payroll-trends-every-freelancer-should-know",
+        "top-payroll-mistakes-freelancers-make-how-to-avoid-them",
+        "what-should-i-expect-if-i-become-an-opolis-member",
+        "why-freelancers-need-liability-insurance-protect-your-biz",
+        "why-opolis-is-a-game-changer-for-solopreneurs-averys-story",
+        "your-cpa-and-opolis-a-dynamic-duo-for-tax-optimization"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/explore-opolis/rewards/",
+      "newPath": null,
+      "firestoreDocIds": [
+        "201f4b0d99c5e55beda2df8cf0160afa973f20d84768c9213daf7b7323f387de"
+      ],
+      "foundInSlugs": [
+        "what-should-i-expect-if-i-become-an-opolis-member"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/explore/benefits/",
+      "newPath": null,
+      "firestoreDocIds": [
+        "054c94f4302139dca6d258ff3d5f1c5a6084338dd669280f5f14686bef17e808",
+        "214be1063d1d3fe94cca001cef991f794ef2634e75e808162c3300f7f44e52bd",
+        "27c4699af15eba3fcfe5ea4e107bf860be85dfedd630b5a06f9ee87369b0440c",
+        "84dbea42917b46c3056968d70d37110c4b37fc13ad8c666c3d167fe589391496",
+        "965811d149bc85da801a7f38e47de6be39c85068202162f921703393170f5aae",
+        "9e79f5fb946eada13f3145a6de4f94799f117be25a4fe5b880a89adea32ee10a",
+        "b6d4da5b202f5ae0d0f658a9b8a9996d8b200308f464362ce173b9cb95bc3d79",
+        "b963c2305bdd3cbf8722cd9017089e86e34b37ab6b8b9f20fca56fedf3cf3696",
+        "c8357ea56b9f69d4ed96b8d5f83df9f298326e8f5d30e153cd2c764e764b5e17",
+        "ca2420d9f0d15dc7007d182e7b3b4bb37ea237f564826bf7375597f612c29207",
+        "ceddd1156fc290732cfe4dd5e598ffe7e9982bdeee27505ffb0aa2cb7ca2df6c",
+        "ec7772a453a2387baee2eac57c981b446f240f23f6c2bb775de33604f27f1ea2",
+        "fc527b516ff10d71122c1bc365016afe1edc758e489a377b1da90f76b902e0bb"
+      ],
+      "foundInSlugs": [
+        "2025-opolis-insurance-updates-whats-new-and-improved-for-members",
+        "affordable-cigna-healthcare-options-for-freelancers",
+        "building-a-successful-business-5-tips-to-protect-your-family",
+        "choosing-the-best-health-insurance-for-freelancers",
+        "comparing-the-best-health-insurance-plans-for-freelancers",
+        "group-health-insurance-for-freelancers-how-it-works",
+        "high-deductible-health-plans-vs-copay-plans",
+        "last-call-for-open-enrollment-get-health-insurance-now",
+        "news-opolis-announces-new-partnership-with-freelancers-union-offering-payroll-and-benefits-to-their-500k-members",
+        "news-opolis-integrates-with-aurora-blockchain-for-crypto-payments",
+        "news-opolis-raises-6-6m-in-bridge-round",
+        "opolis-member-benefits-explained-how-to-access-them",
+        "the-best-insurance-for-freelancers"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/explore/entity/",
+      "newPath": null,
+      "firestoreDocIds": [
+        "130e5b8cb9940aaba4afa1ab032b65d7fff6f6f97567190219e3a50b608e4554",
+        "497c026e91b12fcd35d011c1072a48d7f5635ebf6cbb342aff96c56cb79dd3d8",
+        "5cd033f39edf538745fc59819ba31ec5f07e06da99ce1ce9d8da164b46cbb427",
+        "8ba88599f57e71da7c40fa652ec2311af1d6882250195002bba45ff9271d2020",
+        "c6848773ecdd31658fb344c6f5db26f2a230a85d5da9acb224c47356dfc53a5a",
+        "e180d7d1b4b724c7b0165e3136d00669dfd51672612e0c7c61ba35746b3d58a5"
+      ],
+      "foundInSlugs": [
+        "building-a-successful-business-5-tips-to-protect-your-family",
+        "news-opolis-announces-new-partnership-with-freelancers-union-offering-payroll-and-benefits-to-their-500k-members",
+        "news-opolis-integrates-with-aurora-blockchain-for-crypto-payments",
+        "news-opolis-raises-6-6m-in-bridge-round",
+        "strategies-to-minimize-tax-liability-for-self-employed-individuals",
+        "why-self-employed-health-insurance-is-beneficial"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/explore/optimize-your-taxes/",
+      "newPath": null,
+      "firestoreDocIds": [
+        "a7559f2bdd8f1c355187d50273bae24f01d6cbd6a263fa5850ec254d16c5b876",
+        "cef8c2dc4b14980b710022256a823a9142b9443b56b1319e4e49a08bf28b4987"
+      ],
+      "foundInSlugs": [
+        "understanding-self-employment-taxes-a-comprehensive-guide",
+        "why-proof-of-income-is-difficult-for-independent-workers"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/explore/payroll",
+      "newPath": null,
+      "firestoreDocIds": [
+        "9498eb36202d45283910d7d3fef610a0988a64e02188f9cc8cc062fe1e8bf017"
+      ],
+      "foundInSlugs": [
+        "why-proof-of-income-is-difficult-for-independent-workers"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/explore/payroll/",
+      "newPath": null,
+      "firestoreDocIds": [
+        "6755dcef4586c2aebb79426950375ec7d2a8344e864b6323524f0a18882dcd96",
+        "d0714a98017c7578c10cf73da2ce16cb415702c9d46ec7d2e8cda43d4ece2d4f"
+      ],
+      "foundInSlugs": [
+        "comparing-the-best-health-insurance-plans-for-freelancers",
+        "why-freelancers-should-consider-using-payroll-services"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/featured/choosing-payroll-software-for-your-small-business/",
+      "newPath": "/blog/choosing-payroll-software-for-your-small-business",
+      "firestoreDocIds": [
+        "278a7e19f9190ae3f271b7d742f49e107548f192f5163c03d08c924d8bb5d6ab"
+      ],
+      "foundInSlugs": [
+        "how-regular-payroll-sets-you-up-for-financial-success"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/featured/maximizing-tax-efficiency/",
+      "newPath": null,
+      "firestoreDocIds": [
+        "23f726e444ba349a01dc37dcc61dca7402b408ac6d7c906fb8800a87f1ebfd7f",
+        "3a7389e0342a7742d6cb582cf7db60d53fcb2f215637bc118efe10d07fe4af0f",
+        "73ea77aa449f2007cf6dbfa25e0ac4edaabd1995b9b3cb575ba4aac27737f06f"
+      ],
+      "foundInSlugs": [
+        "2025-tax-guide-how-opolis-simplifies-freelance-filing",
+        "k-1-vs-bonus-vs-regular-payroll-understanding-the-tax-differences",
+        "opolis-tax-compliance-from-withholding-to-cpa-collaboration"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/featured/why-freelancers-need-liability-insurance-protect-your-biz/",
+      "newPath": "/blog/why-freelancers-need-liability-insurance-protect-your-biz",
+      "firestoreDocIds": [
+        "e8f5ad3da40b36abe42fdbeff818bc2af9ecb41cab3f738987dddfe135bfd6f6"
+      ],
+      "foundInSlugs": [
+        "staying-tax-compliant-as-a-freelancer-opolis-makes-it-easy"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/freelancers-start-harnessing-the-power-of-ai/",
+      "newPath": "/blog/freelancers-start-harnessing-the-power-of-ai",
+      "firestoreDocIds": [
+        "5620674b2b83ac7ed4b061c9bfdfb66d55dca8946232b5b7232a385560cf1045"
+      ],
+      "foundInSlugs": [
+        "top-ways-to-use-ai-as-a-self-employed-worker"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/get-a-free-registered-agent-why-every-llc-needs-one/",
+      "newPath": "/blog/get-a-free-registered-agent-why-every-llc-needs-one",
+      "firestoreDocIds": [
+        "19dddf57745b2625e394e4013e765c52db3c7a1e49c5e37444f9795c1f404d42"
+      ],
+      "foundInSlugs": [
+        "the-best-states-for-llc-formation-where-to-plant-your-roots"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/hdhp-vs-copay/",
+      "newPath": null,
+      "firestoreDocIds": [
+        "2f9077851276b276fced8984a81d5c94e87cc09ddc483b14032d7382bb7a6e81"
+      ],
+      "foundInSlugs": [
+        "maximize-self-employed-benefits-with-opolis"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/health-insurance/5-health-insurance-options-for-the-self-employed/",
+      "newPath": "/blog/5-health-insurance-options-for-the-self-employed",
+      "firestoreDocIds": [
+        "c51ba958454843eb8358807672e279bfb5ee0c5ce35dcff7b6caae3765d3e114"
+      ],
+      "foundInSlugs": [
+        "how-freelancers-band-together-for-premium-perks-with-opolis"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/health-insurance/a-guide-to-the-best-insurance-plans-for-independent-workers/",
+      "newPath": "/blog/a-guide-to-the-best-insurance-plans-for-independent-workers",
+      "firestoreDocIds": [
+        "5422ffc15eaf631b2299983c813659cbb0251277c154b28acc2ead42c3a5ac9f"
+      ],
+      "foundInSlugs": [
+        "group-health-insurance-for-freelancers-how-it-works"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/how-switching-to-an-s-corp-could-save-you-5k-or-more/",
+      "newPath": "/blog/how-switching-to-an-s-corp-could-save-you-5k-or-more",
+      "firestoreDocIds": [
+        "0611bef8f9c546fc6cdec2b50be1140fe8591d4511ee34468c206ffc428cc811",
+        "1df12fd76fa09f4772c84cb0da6dce02575c7f84ee82ebec63d97eefee5c0b3a",
+        "4d1e730f1ad280b7b8b95134fcfc99a646781b736d9caa506bf9b63d1d33373e",
+        "8cf7e399ce47d1f7cbf720e9bfdeb73747ab0013a0481d68cbbadced23a07b6c",
+        "9a00b1de62d5514a4fdda9c7cb656f605c28916d291060a30587d6d5528d8fd5",
+        "b1156148779315c6db63d728a4b7ed46218ee05083cf65e2c601ce53e57febb2",
+        "d402fb2d0bc84ed390172055c876780595fccf6f9939401786ca30dfed4e26be",
+        "ed8d9873373017062374f19b7228bb45701c0f91d276701696d5dd91ca4aab85",
+        "ee7ea61a18a8d042c171c6f2bfb2986a9185d4c0e4bb19fdaee847eeb1c7a576",
+        "ef8148dd969db1ebc6092dc2c06f6927a8e7c27b7c34141179940d672f1676f8",
+        "f50a7662047cf327a103b65f701ca4742e44cb91480e38e9ffd50b1f54bc10d6"
+      ],
+      "foundInSlugs": [
+        "how-freelancers-union-opolis-help-your-business-thrive",
+        "how-to-protect-your-family-and-be-an-entrepreneur",
+        "how-we-assist-in-setting-up-your-llc-the-opolis-advantage",
+        "legal-considerations-for-independent-workers-what-to-know",
+        "opolis-s-corp-benefits-secret-sauce-to-a-cushy-retirement",
+        "s-corp-tax-benefits-payroll-savings-business-structure",
+        "self-employed-taxes-opolis-vs-going-solo",
+        "the-best-states-for-llc-formation-where-to-plant-your-roots",
+        "top-payroll-mistakes-freelancers-make-how-to-avoid-them",
+        "unlocking-business-structures-llc-vs-s-corp-vs-c-corp",
+        "why-opolis-is-a-game-changer-for-solopreneurs-averys-story"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/how-we-assist-in-setting-up-your-llc-the-opolis-advantage/",
+      "newPath": "/blog/how-we-assist-in-setting-up-your-llc-the-opolis-advantage",
+      "firestoreDocIds": [
+        "133d16f90677ca715d56c519bd0001579a42f6fc05e25ad5a90f779e52cab41e",
+        "48137abb02fe8dd70b5ad037ee16f5fb685131fce44834a5122223ed90a42cc6",
+        "5554e79a2bf912553a713722ff9079c3f65ce172a5de34250a711091ba85f9e0"
+      ],
+      "foundInSlugs": [
+        "opolis-s-corp-benefits-secret-sauce-to-a-cushy-retirement",
+        "the-best-states-for-llc-formation-where-to-plant-your-roots",
+        "unlocking-opolis-benefits-beyond-payroll-and-health-insurance"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/hsa-vs-fsa-whats-the-real-difference/",
+      "newPath": "/blog/hsa-vs-fsa-whats-the-real-difference",
+      "firestoreDocIds": [
+        "0182390dd7893ea8e5c4ce6a09b8f8658b4b7732714819a033206135fbf6683c",
+        "4e35d282aae4f7ac422c6992057f934fb977734ad1c68f2c2780f7f382803467",
+        "5bb0a3bc3e7375beb5c8fd78fd52c44326de99c63db0e32fdda9ab2ee3a8cb81"
+      ],
+      "foundInSlugs": [
+        "opolis-member-benefits-explained-how-to-access-them",
+        "quality-health-coverage-benefits-for-the-self-employed",
+        "your-cpa-and-opolis-a-dynamic-duo-for-tax-optimization"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/invoices-vs-receipts-what-small-businesses-need-to-know/",
+      "newPath": "/blog/invoices-vs-receipts-what-small-businesses-need-to-know",
+      "firestoreDocIds": [
+        "168ed0bcb2749672b0a3c53d8ba499ce8ce92e8a91e1cc4122ba63caaad11294",
+        "2abb32c6fc5180f06af320d175ab7ab59bd8f5c5ab64e62bcc2b910213829e0b",
+        "e9921e4b1c4d978538fb60b9a8d27b14a71a1b02ebb35f89935285c2ad5404bd"
+      ],
+      "foundInSlugs": [
+        "how-opolis-and-bench-fuel-small-business-growth-and-success",
+        "self-employed-taxes-opolis-vs-going-solo",
+        "the-freelancers-guide-to-flawless-payroll-records"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/making-the-switch-how-to-seamlessly-transition-to-opolis/",
+      "newPath": "/blog/making-the-switch-how-to-seamlessly-transition-to-opolis",
+      "firestoreDocIds": [
+        "5b39a19d8c4fb431ccb2bbc8cf1a3f2e69d9f8d2a749f7d39812c4a6ad7d9e55"
+      ],
+      "foundInSlugs": [
+        "s-corp-tax-benefits-payroll-savings-business-structure"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/maximizing-solo-401k-benefits-with-opolis-forusall/",
+      "newPath": "/blog/maximizing-solo-401k-benefits-with-opolis-forusall",
+      "firestoreDocIds": [
+        "81c157fe55c18415ef3ed82daffa80365740fa8662cfd0cf7b976962dfb1bbb3"
+      ],
+      "foundInSlugs": [
+        "opolis-solo-401k-maximize-your-retirement-savings-today"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/maximizing-tax-efficiency/",
+      "newPath": null,
+      "firestoreDocIds": [
+        "4c24b7f9ae73eee2eba5785ad55ca24f46446b188a375d7d2f9810d384d8947f",
+        "677f337fb01200d58f027bb5c32814e6fcf78bc8dd05a6484b2bcd6ad85d7d93",
+        "72a19eef33a6c99a7799c3898e23daddc8bc0888183518d6b7321aa4cb76e9b6",
+        "8f4afbfeffe6a8ee611450426bba7b7c150d151f95794331c628d9aef5495e3c",
+        "a1bc7927712c6303836149c79d07e6a77f4c2c57a1f1865f13ae3802abc1e700"
+      ],
+      "foundInSlugs": [
+        "how-we-assist-in-setting-up-your-llc-the-opolis-advantage",
+        "k-1-vs-bonus-vs-regular-payroll-understanding-the-tax-differences",
+        "legal-considerations-for-independent-workers-what-to-know",
+        "s-corp-tax-benefits-payroll-savings-business-structure",
+        "the-best-states-for-llc-formation-where-to-plant-your-roots"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/opolis-bench-the-ultimate-freelance-financial-duo/",
+      "newPath": "/blog/opolis-bench-the-ultimate-freelance-financial-duo",
+      "firestoreDocIds": [
+        "e487d21161fab23083300f6a3fe0bd95a095e92f5aa68cb643da2f268d46a012"
+      ],
+      "foundInSlugs": [
+        "how-regular-payroll-sets-you-up-for-financial-success"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/opolis-blog/how-switching-to-an-s-corp-could-save-you-5k-or-more/",
+      "newPath": "/blog/how-switching-to-an-s-corp-could-save-you-5k-or-more",
+      "firestoreDocIds": [
+        "05df459d97fc5eac15d5757be286c6fce738f14ef02935a3f10aaebefd917ea0",
+        "283a0344110ab876937d52929431e6f509fc9cee80a6410ce79e537d62887d66",
+        "6c46cdf9c97cb027fce3736d37fc2b860c860186863b2ef322b7ddea1f58a1a7",
+        "6f5859eb4abe0491417b517817fcf796e52b3442980e47f053d5fa5e62a373e2",
+        "786c19f131582ceed5adad96c56df03fbdb3d94b845711aee37c421c2cb3137e",
+        "977469c7d72a1bbcf669cae9f956987c322b5a4a9f90f1514dd00b8a9ee311d1",
+        "ac5e5621123352acb92aeb77313b8921cbff2f67cdd89aa5620ad5bbf2797dfe",
+        "aeed39704cc5a7e960dda60bf677e3a638cf1e294a3c69c8145dd2c31863998d",
+        "b46c2a1d3fcb1bca6003d21ba7a15d93e7134c10415cffda2b77af39a2233365",
+        "c5e4ea89cef4c0079e79e6d9757de723a814fa8c171f7423870864ea75810324",
+        "e89ae5682d38ee0909ca270e5d98de67ac7322f5f4d560a96f5130a5a459498c",
+        "edaa275b873107b316b2c62d6cfcf08983c727f0369a2cb98b0b6fac94f5ccc2",
+        "f8e206952dc056e0b25ccfbe077e5b5074de8754e8e0e379e15336e335dee914"
+      ],
+      "foundInSlugs": [
+        "2025-tax-guide-how-opolis-simplifies-freelance-filing",
+        "5-ways-to-avoid-paying-taxes-legally-of-course",
+        "delegate-payroll-focus-on-freelancing-and-what-matters-most",
+        "how-freelancers-band-together-for-premium-perks-with-opolis",
+        "how-opolis-transformed-teds-freelance-benefits-journey",
+        "how-payroll-services-simplify-tax-filing-for-freelancers",
+        "how-regular-payroll-sets-you-up-for-financial-success",
+        "how-s-corp-and-payroll-work-making-life-easier-for-freelancers",
+        "k-1-vs-bonus-vs-regular-payroll-understanding-the-tax-differences",
+        "legal-considerations-for-freelancers-how-opolis-can-help",
+        "navigating-payroll-challenges-a-guide-for-new-freelancers",
+        "opolis-tax-compliance-from-withholding-to-cpa-collaboration",
+        "your-cpa-and-opolis-a-dynamic-duo-for-tax-optimization"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/opolis-blog/the-best-insurance-for-freelancers/",
+      "newPath": "/blog/the-best-insurance-for-freelancers",
+      "firestoreDocIds": [
+        "bbf49600dd4a3a0da1bbe1b2d53fe11a1a07d9da008ff4b71c2a56e7fafa98d2"
+      ],
+      "foundInSlugs": [
+        "how-freelancers-band-together-for-premium-perks-with-opolis"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/opolis-public-radio/episode-10-bill-warren-on-opolis-commons-daos/",
+      "newPath": "/blog/episode-10-bill-warren-on-opolis-commons-daos",
+      "firestoreDocIds": [
+        "5df4f51401c2b77a83e883955d3232ad65c2798c1f5c3310af84f15d93e84f8a"
+      ],
+      "foundInSlugs": [
+        "episode-9-russell-castagnaro-on-colorados-digital-innovation"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/opolis-public-radio/episode-11-opolis-rewards-token-launch-with-eric-arsenault/",
+      "newPath": "/blog/episode-11-opolis-rewards-token-launch-with-eric-arsenault",
+      "firestoreDocIds": [
+        "5206a710355bdd6f7feb756eb7be81372f7d7042eff496a363953c9ac28d63da"
+      ],
+      "foundInSlugs": [
+        "episode-10-bill-warren-on-opolis-commons-daos"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/opolis-public-radio/episode-12-cooperativism-governance-with-auryn-macmillan/",
+      "newPath": "/blog/episode-12-cooperativism-governance-with-auryn-macmillan",
+      "firestoreDocIds": [
+        "51a122841550369b8db3c1d4021e775985b83a367b6c5659368496b3f1758bc6"
+      ],
+      "foundInSlugs": [
+        "episode-11-opolis-rewards-token-launch-with-eric-arsenault"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/opolis-public-radio/episode-13-opolis-governance-open-enrollment-with-barry-goers/",
+      "newPath": "/blog/episode-13-opolis-governance-open-enrollment-with-barry-goers",
+      "firestoreDocIds": [
+        "7b9f56546248a88ea1692d4b92c876e80b55eae1388b0893dc5bf8e119b8aa61"
+      ],
+      "foundInSlugs": [
+        "episode-12-cooperativism-governance-with-auryn-macmillan"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/opolis-public-radio/episode-14-crypto-invoicing-tips-with-david-gold/",
+      "newPath": "/blog/episode-14-crypto-invoicing-tips-with-david-gold",
+      "firestoreDocIds": [
+        "1a6d44621e11261eed14c33cbaed490bdc4fb427c67d676a3a0409ef7cd64d44"
+      ],
+      "foundInSlugs": [
+        "episode-13-opolis-governance-open-enrollment-with-barry-goers"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/opolis-public-radio/episode-15-gitcoin-opolis-benefits-for-freelance-developers/",
+      "newPath": "/blog/episode-15-gitcoin-opolis-benefits-for-freelance-developers",
+      "firestoreDocIds": [
+        "2148b52bdd5ef05a0f57a4c1e419abed4024db987a06aa674ebdec2ad4398295"
+      ],
+      "foundInSlugs": [
+        "episode-14-crypto-invoicing-tips-with-david-gold"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/opolis-public-radio/episode-3-eddie-pastore-on-launching-the-employment-commons/",
+      "newPath": "/blog/episode-3-eddie-pastore-on-launching-the-employment-commons",
+      "firestoreDocIds": [
+        "4c4f877069e0768fa55948b7695c7ff04cbafc4242c855192c63120ffdd80093",
+        "a35b19fe3fbaf7ec80ce2296b295599722f077e3dcc94fe17dd27fb07332fe2b"
+      ],
+      "foundInSlugs": [
+        "episode-1-dana-mahina-the-myth-of-work-life-balance",
+        "episode-2-ethdenver-team-devcon-2019-highlights-takeaways"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/opolis-public-radio/episode-4-legalizing-the-commons-with-jason-wiener-yev-muchnik/",
+      "newPath": "/blog/episode-4-legalizing-the-commons-with-jason-wiener-yev-muchnik",
+      "firestoreDocIds": [
+        "cc617ee0a5748e62b0168c5c883439e9dee78572d671bf9613746638b453731e"
+      ],
+      "foundInSlugs": [
+        "episode-3-eddie-pastore-on-launching-the-employment-commons"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/opolis-public-radio/episode-5-sean-li-on-digital-identity-web3-mass-adoption/",
+      "newPath": "/blog/episode-5-sean-li-on-digital-identity-web3-mass-adoption",
+      "firestoreDocIds": [
+        "3f42e6483473effc33abe3ee4e9ec28574d8100671b62b948d66cbf27a6bf883"
+      ],
+      "foundInSlugs": [
+        "episode-4-legalizing-the-commons-with-jason-wiener-yev-muchnik"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/opolis-public-radio/episode-6-kevin-owocki-on-employment-quadratic-funding/",
+      "newPath": "/blog/episode-6-kevin-owocki-on-employment-quadratic-funding",
+      "firestoreDocIds": [
+        "217fe212b17658baf192caea81f90c97428e097ec4e916519706d1bc0f1436a8"
+      ],
+      "foundInSlugs": [
+        "episode-5-sean-li-on-digital-identity-web3-mass-adoption"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/opolis-public-radio/episode-7-nathan-schneider-on-governance-the-next-economy/",
+      "newPath": "/blog/episode-7-nathan-schneider-on-governance-the-next-economy",
+      "firestoreDocIds": [
+        "3b9326f1ad4812071163b0fcea3a7763860b9e013d62b85a0ec426e2624349c8"
+      ],
+      "foundInSlugs": [
+        "episode-6-kevin-owocki-on-employment-quadratic-funding"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/opolis-public-radio/episode-8-vignesh-sundaresan-on-defi-changing-crypto-payments/",
+      "newPath": "/blog/episode-8-vignesh-sundaresan-on-defi-changing-crypto-payments",
+      "firestoreDocIds": [
+        "de13c75fba3cc4944bee65709c824dfc0f6555466f947b63aa96027270f16818"
+      ],
+      "foundInSlugs": [
+        "episode-7-nathan-schneider-on-governance-the-next-economy"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/opolis-public-radio/episode-9-russell-castagnaro-on-colorados-digital-innovation/",
+      "newPath": "/blog/episode-9-russell-castagnaro-on-colorados-digital-innovation",
+      "firestoreDocIds": [
+        "71e95dd3051ba2d304c90788db201053ea5711b97f850dac6fee40a4b25febe5"
+      ],
+      "foundInSlugs": [
+        "episode-8-vignesh-sundaresan-on-defi-changing-crypto-payments"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/opolis-s-corp-benefits-secret-sauce-to-a-cushy-retirement/",
+      "newPath": "/blog/opolis-s-corp-benefits-secret-sauce-to-a-cushy-retirement",
+      "firestoreDocIds": [
+        "356b51c6e9e153171ee703f002afb0d9c8c9bd1621bfed0d10b52f37368ea676"
+      ],
+      "foundInSlugs": [
+        "opolis-solo-401k-maximize-your-retirement-savings-today"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/payroll/how-payroll-services-simplify-tax-filing-for-freelancers/",
+      "newPath": "/blog/how-payroll-services-simplify-tax-filing-for-freelancers",
+      "firestoreDocIds": [
+        "3610d4bf4c0e50e867048a0b31e61aa65e23362981576ca6d0e6cc66456a94d3"
+      ],
+      "foundInSlugs": [
+        "staying-tax-compliant-as-a-freelancer-opolis-makes-it-easy"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/payroll/why-proof-of-income-is-difficult-for-independent-workers/",
+      "newPath": "/blog/why-proof-of-income-is-difficult-for-independent-workers",
+      "firestoreDocIds": [
+        "311157c954b47d4ad8373454dd5641b464aca13a0a2e904b7fb5a71fb3ee520b",
+        "e73bce9028603610b0751eb24e5815c78da8bba6c9440a83f7f9b1b771b7e2bd"
+      ],
+      "foundInSlugs": [
+        "how-regular-payroll-sets-you-up-for-financial-success",
+        "navigating-payroll-challenges-a-guide-for-new-freelancers"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/podcast",
+      "newPath": null,
+      "firestoreDocIds": [
+        "0684343a74b8b13f04a5c19fec053477e1716f52ec7ea5df446c861372347b12",
+        "430efd21ff75bcc959c4d0390c37a8a41d78e21d5f51beb3851f5b39504758d3",
+        "4d5450f5c2f425779522220edf0faef3dd57fef8c38e180562f9f8604c3405da",
+        "575dc59aefb3b18c2b419d133c1cd4d023927c84993dc116745f7a25ef43f86e",
+        "ce0b04bd2bd739c32470c839dd7785b0d1775ba701633224c870e4307a2ed885"
+      ],
+      "foundInSlugs": [
+        "crypto-taxesyes-they-do-go-together",
+        "episode-2-how-to-get-affordable-freelancer-health-insurance",
+        "episode-6-self-employed-401k-retirement-strategies",
+        "top-5-legal-considerations-as-a-freelancer",
+        "youre-a-business-owner-now-what"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/podcast/",
+      "newPath": null,
+      "firestoreDocIds": [
+        "0f515327ea7ea7f319f73309283b257da05b26ef9ec37de38f09ba848c60c57c",
+        "22549f98baddff633db7876eb0e4f257967f7b5ba70d2de959353168c8f187e8"
+      ],
+      "foundInSlugs": [
+        "episode-1-spencer-graham-working-at-a-dao-web3-solopreneur",
+        "episode-9-a-freelancers-guide-to-the-2023-tax-season"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/professionalize-your-self-employed-practice-with-opolis/",
+      "newPath": "/blog/professionalize-your-self-employed-practice-with-opolis",
+      "firestoreDocIds": [
+        "0865de02686e8a7e8409ad9ca186c56633677cf82269fc31c20cc5a2e764277c",
+        "28cfa9594e2c07c13b53c8acb969569eddd1cc9cdfeb3175aa8e8077889235e5",
+        "42887b5b36a39d78175dc3e783850e9027adb2510d7e4fa0431ae7127a32f020",
+        "8d1536ba1dee016288934a5490d5fd4cd26fb79ff82734b9225181d6bc26f66f",
+        "a17824cf1d53d637f589accddcbe03d3d33d665010ce5c1e3bfacfcb31d3983b"
+      ],
+      "foundInSlugs": [
+        "invoices-vs-receipts-what-small-businesses-need-to-know",
+        "quality-health-coverage-benefits-for-the-self-employed",
+        "s-corp-tax-benefits-payroll-savings-business-structure",
+        "why-freelancers-need-liability-insurance-protect-your-biz",
+        "why-opolis-is-a-game-changer-for-solopreneurs-averys-story"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/resources/",
+      "newPath": "/resources",
+      "firestoreDocIds": [
+        "390989102effe05b58f622b6b5787bf96a0e0a17c6bb41d152be05ab928d182c",
+        "fe9b485929780f5b0944416902c7ac7680425c98f2f5aa5bfdd99595e68f60f1"
+      ],
+      "foundInSlugs": [
+        "the-future-of-payroll-trends-every-freelancer-should-know",
+        "what-should-i-expect-if-i-become-an-opolis-member"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/resources/podcast/",
+      "newPath": null,
+      "firestoreDocIds": [
+        "849547edb01be8466891271e6152caacbdb79323629e73ce7dd930dbdd108036",
+        "ac80c2eebf9971d3923e7cae2cee78f7f074d6c2ceb298aa4bff0534bd8d1de4"
+      ],
+      "foundInSlugs": [
+        "episode-5-how-to-find-work-as-freelance-web-developer-in-web3",
+        "episode-8-democratized-employment-for-the-decentralized-future"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/retirement-plans-for-self-employed-401k-ira-options/",
+      "newPath": "/blog/retirement-plans-for-self-employed-401k-ira-options",
+      "firestoreDocIds": [
+        "193b1ad8ed7d619997eadbb192a692467a52c4e0a36f844abbad99cc1177a25b",
+        "47b46b68181c17bc4961178c9111f1f6ab4f4726db6d480b46fd8b5654f6fa9b",
+        "6aa1fada714151845c1b7ff55ca8ef1a82fc45120b82eff0d671f468487cb48a",
+        "b06830bcd26d200a2505cf563282d88d4679dcc0cf709e039567fae42efcb962",
+        "b9919bb2f608315c0e85184aa1fe4f646d615a42841a7bd396456b59134e14a3",
+        "f6d6a1e5bea2f63fe041740b5d3502dd66932c5acca776a9b64e9d1579b56315"
+      ],
+      "foundInSlugs": [
+        "opolis-s-corp-benefits-secret-sauce-to-a-cushy-retirement",
+        "opolis-solo-401k-maximize-your-retirement-savings-today",
+        "tax-write-offs-every-freelancer-should-know-about",
+        "the-best-states-for-llc-formation-where-to-plant-your-roots",
+        "unlocking-opolis-benefits-beyond-payroll-and-health-insurance",
+        "why-freelancers-need-liability-insurance-protect-your-biz"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/retirement/opolis-solo-401k-maximize-your-retirement-savings-today/",
+      "newPath": "/blog/opolis-solo-401k-maximize-your-retirement-savings-today",
+      "firestoreDocIds": [
+        "dc5b400acf6b10d45c517ef82089313af6732e0000f80713fd0c83da5f43c306"
+      ],
+      "foundInSlugs": [
+        "opolis-s-corp-benefits-secret-sauce-to-a-cushy-retirement"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/rewards/how-opolis-transformed-teds-freelance-benefits-journey/",
+      "newPath": "/blog/how-opolis-transformed-teds-freelance-benefits-journey",
+      "firestoreDocIds": [
+        "5febce9412833abcecdf7dfbcff8aff6b1a91ace931b0d8f8fcd335bacf4e5d0"
+      ],
+      "foundInSlugs": [
+        "opolis-member-benefits-explained-how-to-access-them"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/rewards/unlocking-opolis-benefits-beyond-payroll-and-health-insurance/",
+      "newPath": "/blog/unlocking-opolis-benefits-beyond-payroll-and-health-insurance",
+      "firestoreDocIds": [
+        "716f921e7e3cb0a5c95260262a6758b7df76e7d4948f9802da195751630d158b"
+      ],
+      "foundInSlugs": [
+        "group-health-insurance-for-freelancers-how-it-works"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/self-employed-dilemma/freelancers-union/",
+      "newPath": null,
+      "firestoreDocIds": [
+        "6c7bc8ac2661584c2f185461526eb756fbd9ded0938c7fcc8a0f8e8f3be3a180"
+      ],
+      "foundInSlugs": [
+        "how-freelancers-union-opolis-help-your-business-thrive"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/self-employed-health-insurance-deductions-a-comprehensive-guide/",
+      "newPath": null,
+      "firestoreDocIds": [
+        "944cd01b1685bca047c490527331a74a461572d619257db6deaa3ca5f07c1ab5"
+      ],
+      "foundInSlugs": [
+        "maximize-self-employed-benefits-with-opolis"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/self-employed-health-insurance-is-beneficial/",
+      "newPath": null,
+      "firestoreDocIds": [
+        "e44d36b836139000cd02f6012143cda2230fdc55f411094f694300755cf58825"
+      ],
+      "foundInSlugs": [
+        "maximize-self-employed-benefits-with-opolis"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/simplify-loan-lease-applications-with-opolis/",
+      "newPath": "/blog/simplify-loan-lease-applications-with-opolis",
+      "firestoreDocIds": [
+        "13f606b1bcdff4ea4122fbc53c2e9a5c92cb04f474d1685dd5a8268f354f20f8",
+        "15d865c6f9e84bbebe9df1cfd796c0a8836b4dcf49cdd873ed3820602b3c49f1",
+        "258f9849e0eb458cfeef32d434ed90ce43f74f6bd358f26771525ef5ec7add2b",
+        "4ba74c2db4f522fca7024685ddc7b3c8c33ef6a6628fa8b08753668a3343b426",
+        "540f5b3bc7857a4f964961bfb4cb7b2dc9811c1561c5897a1c0e447f8ae2f3f8",
+        "5f1081e934b3ec67df9cf480d82340af0c7fa8ea9e301d4cb9bcc607bcf0f4f9",
+        "63ba0b6369a6d41753baed533040f347d39644bf600f055adf158afb988758cb",
+        "85da3bb8b0031159bda06bb3402ae648baf1426a219531009a568683cdb0a9cd",
+        "9eb9425c8ae2a68b3cf9040b71115d16a44c4c6063ec9007397f1252fd3c0470",
+        "af8c33ce31b81a30dd344d302880a0a9c627b6e9eced0b309e2eb207e7135e79",
+        "cd065dcabab8dae77e97b39f22575ae50949c8d8cdf27ec4787e83ea3e8f860a",
+        "dcb7bc19cdf0eafdb4561cc6640698100ff46e3e40af9f44da1b5dba5ef36a5c",
+        "e0dc275d23537df1aada59e9d556a63e225c91b378fd4c0d858873582e3bd91b"
+      ],
+      "foundInSlugs": [
+        "2025-tax-guide-how-opolis-simplifies-freelance-filing",
+        "delegate-payroll-focus-on-freelancing-and-what-matters-most",
+        "freelancer-toolkit-essential-tools-from-opolis-partners",
+        "how-freelancers-union-opolis-help-your-business-thrive",
+        "how-opolis-and-bench-simplify-business-taxes-and-tax-filing",
+        "how-payroll-services-simplify-tax-filing-for-freelancers",
+        "how-regular-payroll-sets-you-up-for-financial-success",
+        "how-s-corp-and-payroll-work-making-life-easier-for-freelancers",
+        "legal-considerations-for-freelancers-how-opolis-can-help",
+        "master-your-money-financial-goals-income-tax-documents",
+        "navigating-payroll-challenges-a-guide-for-new-freelancers",
+        "the-future-of-payroll-trends-every-freelancer-should-know",
+        "why-opolis-is-a-game-changer-for-solopreneurs-averys-story"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/taxes-for-self-employed-start-right-with-opolis/",
+      "newPath": "/blog/taxes-for-self-employed-start-right-with-opolis",
+      "firestoreDocIds": [
+        "55e5f1668738ca4248463d8ae37947e028349ce4d5d5c59ea99783f2856cc68f"
+      ],
+      "foundInSlugs": [
+        "how-we-assist-in-setting-up-your-llc-the-opolis-advantage"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/taxes/2025-tax-guide-how-opolis-simplifies-freelance-filing/",
+      "newPath": "/blog/2025-tax-guide-how-opolis-simplifies-freelance-filing",
+      "firestoreDocIds": [
+        "a3bcede6b8a7a088eafd829c8f5063cc8d6b395b71d99069455a337ff9037c11"
+      ],
+      "foundInSlugs": [
+        "staying-tax-compliant-as-a-freelancer-opolis-makes-it-easy"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/taxes/simplify-your-taxes-tips-and-tools-from-opolis/",
+      "newPath": "/blog/simplify-your-taxes-tips-and-tools-from-opolis",
+      "firestoreDocIds": [
+        "3948fc1bf75f2e3a7788d8accd00b6971575e15ded821888ce17168424d60ab6"
+      ],
+      "foundInSlugs": [
+        "staying-tax-compliant-as-a-freelancer-opolis-makes-it-easy"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/taxes/strategies-to-minimize-tax-liability-for-self-employed-individuals/",
+      "newPath": "/blog/strategies-to-minimize-tax-liability-for-self-employed-individuals",
+      "firestoreDocIds": [
+        "b0fd92aed7356411428d2fdce340ca3d9e0fd2545c0b4dd866e529462dc7ffaf"
+      ],
+      "foundInSlugs": [
+        "opolis-tax-compliance-from-withholding-to-cpa-collaboration"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/taxes/tax-write-offs-every-freelancer-should-know-about/",
+      "newPath": "/blog/tax-write-offs-every-freelancer-should-know-about",
+      "firestoreDocIds": [
+        "1b87d60bad862691f3f0ac82777fb3066fdd0b043e365c9a8ed7cf7d09f28c0d",
+        "4841a1952416cb43eaab9f1c2dc7a9f67e0e047feb7531b56017e96200857236",
+        "7708e7fb99fedfc260cec524ebd0051429b250d64205616f225d55800367e676",
+        "d7beb2e55c3ac8384bd672aa8f1ccb91a7ed2ccb365104e2e7e02b0b96502ed8",
+        "e54fe77519de5ca4aaed6c2c07386f2b07eb703c89d25772222bfb4f11cb79b5",
+        "f84ea6afdafda1a3482d4c1aa54a55cda8491acd0d590982ca7b34a49ba4e33b"
+      ],
+      "foundInSlugs": [
+        "2025-tax-guide-how-opolis-simplifies-freelance-filing",
+        "5-ways-to-avoid-paying-taxes-legally-of-course",
+        "k-1-vs-bonus-vs-regular-payroll-understanding-the-tax-differences",
+        "legal-considerations-for-freelancers-how-opolis-can-help",
+        "opolis-tax-compliance-from-withholding-to-cpa-collaboration",
+        "staying-tax-compliant-as-a-freelancer-opolis-makes-it-easy"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/taxes/taxes-for-self-employed-start-right-with-opolis/",
+      "newPath": "/blog/taxes-for-self-employed-start-right-with-opolis",
+      "firestoreDocIds": [
+        "00a61046b16c2598e482fe0d556284932c24e25ee26f3596721f6dae4cc75483",
+        "d1d5de91b5dc357605d1bbb7d4c11ef1902358510cf8a7d0c43d9fa14a6d8a61"
+      ],
+      "foundInSlugs": [
+        "opolis-tax-compliance-from-withholding-to-cpa-collaboration",
+        "simplify-your-taxes-tips-and-tools-from-opolis"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/the-benefits-of-an-s-corp-why-you-should-have-one/",
+      "newPath": "/blog/the-benefits-of-an-s-corp-why-you-should-have-one",
+      "firestoreDocIds": [
+        "0040f84d5b11eb286d31b8df8dc5d2f6234446cfef302c9a40df2dc050fa4a08",
+        "006c9590d5c82a3a3dd1112e45aa2294746089397978283bcbce96eaa0da2cb7",
+        "03849fbf60395e0ac043af861a3ddf4c29f1fc4f423f81a74274e4ffc5fe9f67",
+        "14c0eeef06572ac0b58a3bd2cde29d2444ca0b38e7c0e4ad1482dd4b895d2ff0",
+        "30d1c476ee94ae8086111c3c417943d7282f920836d431c130774333461a7281",
+        "3ecda92a7cdbd760f2044a6adac6115b3696c2af3a0c2c1ad5ba8e12a4d738c0",
+        "5c66a821417745ccebe22d209b0c6dd6d7d6021f341cc1bf8bec52baf1384a0c",
+        "68c2eb1a217eb538d67d2eed913e97d7f188258e5f4ade2b8b8a3ac897f20add",
+        "69421b3067bfab09e354456b737f352eef7e434e895b54b7d9adc00e4ed8a6d9",
+        "70fe66197aa704b067f18b33d60618f339edb1f85f3f22527894f8f9034b7257",
+        "85f453f50bb09f00bf1029caf40df1e942fd10e896c1d66d4cd678b50b63e755",
+        "9c6376c4a492b54563ae9d1ad7c21fe7fd3388fd5eb1080d3b640079209de527",
+        "a34647be54f7a07269771b5c07f1c3caf3454cb1634c4683de14cb80264c1b8c",
+        "b386948b52d49a5211f5fb41293a644972d330803d16cb09b361982dc6d4c267",
+        "e49e286bb7fadc73fe88f28973d1483c04d7f23b2be31f1d4477a1f36b699a13",
+        "fd9a8b2fbc74510dafd29f0bd71ab2abca1548c456ca772cd822056cd11335f2"
+      ],
+      "foundInSlugs": [
+        "2025-tax-guide-how-opolis-simplifies-freelance-filing",
+        "5-ways-to-avoid-paying-taxes-legally-of-course",
+        "delegate-payroll-focus-on-freelancing-and-what-matters-most",
+        "getting-started-with-opolis-tips-for-a-smooth-onboarding",
+        "how-freelancers-band-together-for-premium-perks-with-opolis",
+        "how-regular-payroll-sets-you-up-for-financial-success",
+        "how-s-corp-and-payroll-work-making-life-easier-for-freelancers",
+        "k-1-vs-bonus-vs-regular-payroll-understanding-the-tax-differences",
+        "navigating-payroll-challenges-a-guide-for-new-freelancers",
+        "opolis-s-corp-benefits-secret-sauce-to-a-cushy-retirement",
+        "s-corp-tax-benefits-payroll-savings-business-structure",
+        "simplify-your-taxes-tips-and-tools-from-opolis",
+        "staying-tax-compliant-as-a-freelancer-opolis-makes-it-easy",
+        "the-best-states-for-llc-formation-where-to-plant-your-roots",
+        "top-payroll-mistakes-freelancers-make-how-to-avoid-them",
+        "your-cpa-and-opolis-a-dynamic-duo-for-tax-optimization"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/the-top-5-benefits-of-automated-payroll-for-independent-workers/",
+      "newPath": "/blog/the-top-5-benefits-of-automated-payroll-for-independent-workers",
+      "firestoreDocIds": [
+        "1a9b60a0480944ddbce6ab304fb17774a072d4eedb03d33b7cd198a4bdfba3cd",
+        "42893db471294a05d31fb8442a36324ef256fa0ed1d876bbb3cd9288419354be",
+        "70bbc2c4bd6edb88e7cbc1dd74bea1a7f3f8dbb8bfce311d2088ab1500e6d733",
+        "c5407627af600f29a7cede37a98e2e4ebeeb12a2be900c816c8420634cd1d2ac"
+      ],
+      "foundInSlugs": [
+        "5-time-saving-payroll-tips-for-solopreneurs",
+        "getting-started-with-opolis-tips-for-a-smooth-onboarding",
+        "how-payroll-services-simplify-tax-filing-for-freelancers",
+        "unlocking-opolis-benefits-beyond-payroll-and-health-insurance"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/top-way-to-use-ai-as-a-self-employed-worker/",
+      "newPath": null,
+      "firestoreDocIds": [
+        "361897254c36a1e59810004089a4b3e86cd41ad806a30913fbf12995c82a8b8c"
+      ],
+      "foundInSlugs": [
+        "ditch-hourly-billing-earn-more-by-working-less"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/understanding-the-differences-sole-proprietor-vs-llc/",
+      "newPath": "/blog/understanding-the-differences-sole-proprietor-vs-llc",
+      "firestoreDocIds": [
+        "4a0f1d7106c3618d84a04b5dec32fb299955b3b6c45f677ea641064ea3b8e745"
+      ],
+      "foundInSlugs": [
+        "the-best-states-for-llc-formation-where-to-plant-your-roots"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/unemployable/episode-1-spencer-graham-working-at-a-dao-web3-solopreneur/",
+      "newPath": "/blog/episode-1-spencer-graham-working-at-a-dao-web3-solopreneur",
+      "firestoreDocIds": [
+        "fe3ccdb0fbb97aa42a2f1238a600e2bfed8866ad7d5253695a2011f67ecb7f8f"
+      ],
+      "foundInSlugs": [
+        "unemployable-podcast-trailer-control-your-work-freedom"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/unemployable/episode-10-crypto-tax-strategies-from-a-crypto-cpa/",
+      "newPath": "/blog/episode-10-crypto-tax-strategies-from-a-crypto-cpa",
+      "firestoreDocIds": [
+        "de96932da7f92b159156c9092c423b7a52dbfb599f6c87ea7eec0a29026abb41"
+      ],
+      "foundInSlugs": [
+        "episode-9-a-freelancers-guide-to-the-2023-tax-season"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/unemployable/episode-11-platforms-empowering-independent-workers-in-2024/",
+      "newPath": "/blog/episode-11-platforms-empowering-independent-workers-in-2024",
+      "firestoreDocIds": [
+        "7de2b60575198ea75b4d50e953b32354e953e4acb65201b89c5f48d20dccce48"
+      ],
+      "foundInSlugs": [
+        "episode-10-crypto-tax-strategies-from-a-crypto-cpa"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/unemployable/episode-12-how-freelancers-can-earn-more-by-working-less/",
+      "newPath": "/blog/episode-12-how-freelancers-can-earn-more-by-working-less",
+      "firestoreDocIds": [
+        "444eeab683dc0cf58422d8137f6384232a665a11144639fcc5cf5e76b247f9ae"
+      ],
+      "foundInSlugs": [
+        "episode-11-platforms-empowering-independent-workers-in-2024"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/unemployable/episode-2-how-to-get-affordable-freelancer-health-insurance/",
+      "newPath": "/blog/episode-2-how-to-get-affordable-freelancer-health-insurance",
+      "firestoreDocIds": [
+        "1521fec94334e758b5da879491e61d5baf1eb6743f0d94d643e3762d46ae7bad"
+      ],
+      "foundInSlugs": [
+        "episode-1-spencer-graham-working-at-a-dao-web3-solopreneur"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/unemployable/episode-3-how-to-find-work-in-web3-daos/",
+      "newPath": "/blog/episode-3-how-to-find-work-in-web3-daos",
+      "firestoreDocIds": [
+        "bb4fe3bf9dae2065ae197d41305e0fcd6d38d7bd8434689638b4a1e9787d4dff"
+      ],
+      "foundInSlugs": [
+        "episode-2-how-to-get-affordable-freelancer-health-insurance"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/unemployable/episode-4-hsas-fsas-essentials-for-freelancers/",
+      "newPath": "/blog/episode-4-hsas-fsas-essentials-for-freelancers",
+      "firestoreDocIds": [
+        "0d1d925d2b5b5d380511a250383130aabf817f8b55854a59fda8f12ce0224a3b"
+      ],
+      "foundInSlugs": [
+        "episode-3-how-to-find-work-in-web3-daos"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/unemployable/episode-5-how-to-find-work-as-freelance-web-developer-in-web3/",
+      "newPath": "/blog/episode-5-how-to-find-work-as-freelance-web-developer-in-web3",
+      "firestoreDocIds": [
+        "75cf9846ba7de2b0c33e7b739e9d86554e9aacf2a473c73c86af31f5fdea3b92"
+      ],
+      "foundInSlugs": [
+        "episode-4-hsas-fsas-essentials-for-freelancers"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/unemployable/episode-6-self-employed-401k-retirement-strategies/",
+      "newPath": "/blog/episode-6-self-employed-401k-retirement-strategies",
+      "firestoreDocIds": [
+        "0bc00d1a6d6af360c45e00b386bcb2f58788e25ddacd653f4f613b5afc35467b"
+      ],
+      "foundInSlugs": [
+        "episode-5-how-to-find-work-as-freelance-web-developer-in-web3"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/unemployable/episode-7-legal-tax-and-intellectual-property-tips-you-need-to-know-as-a-freelancer/",
+      "newPath": "/blog/episode-7-legal-tax-and-intellectual-property-tips-you-need-to-know-as-a-freelancer",
+      "firestoreDocIds": [
+        "560d69202017ca0c0f464cbdaaf1504a561c79f1b92335281887c385349feab6"
+      ],
+      "foundInSlugs": [
+        "episode-6-self-employed-401k-retirement-strategies"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/unemployable/episode-8-democratized-employment-for-the-decentralized-future/",
+      "newPath": "/blog/episode-8-democratized-employment-for-the-decentralized-future",
+      "firestoreDocIds": [
+        "823fd4ffd810a06cd53344b2e48a8fe7161a262f9ab23a370963362bca1fa552"
+      ],
+      "foundInSlugs": [
+        "episode-7-legal-tax-and-intellectual-property-tips-you-need-to-know-as-a-freelancer"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/unemployable/episode-9-a-freelancers-guide-to-the-2023-tax-season/",
+      "newPath": "/blog/episode-9-a-freelancers-guide-to-the-2023-tax-season",
+      "firestoreDocIds": [
+        "47f63132fd89297c06fe99ab0416521bfea57f508153d1fd25c3b885692ae71a"
+      ],
+      "foundInSlugs": [
+        "episode-8-democratized-employment-for-the-decentralized-future"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/unemployable/unemployable-podcast-trailer-control-your-work-freedom/",
+      "newPath": "/blog/unemployable-podcast-trailer-control-your-work-freedom",
+      "firestoreDocIds": [
+        "ca93aaf78507588929730442989f8aadd533da5a384ab75f8412811716838eb7"
+      ],
+      "foundInSlugs": [
+        "episode-15-gitcoin-opolis-benefits-for-freelance-developers"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/unlocking-business-structures/",
+      "newPath": null,
+      "firestoreDocIds": [
+        "30fa5270a2b5c9e51780b3fa14ac64f5e8b112a837e3e0e5651eab5c0caf9717",
+        "3ef34a122d91590c5549c6d71f76737329f823942140d73c1770cc320b9bf43c",
+        "d9e992d8a69b11f97cca323596e5d4964153c079b55a35791a71325212f718af"
+      ],
+      "foundInSlugs": [
+        "legal-considerations-for-independent-workers-what-to-know",
+        "opolis-s-corp-benefits-secret-sauce-to-a-cushy-retirement",
+        "the-best-states-for-llc-formation-where-to-plant-your-roots"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/unlocking-opolis-benefits-beyond-payroll-and-health-insurance/",
+      "newPath": "/blog/unlocking-opolis-benefits-beyond-payroll-and-health-insurance",
+      "firestoreDocIds": [
+        "13a3a76f378db5943d011f20d05c6d02251f8d5b2cd22ba723206e3446626273",
+        "a063317e4e11cc20e56cb94b68cf321cb9391a4972ad34794ddff04937a484c6",
+        "d75810e84450accd7fdca7e50bbb13a5bfd9929d6f80f687c07e161cead1a1e6"
+      ],
+      "foundInSlugs": [
+        "getting-started-with-opolis-tips-for-a-smooth-onboarding",
+        "how-to-protect-your-family-and-be-an-entrepreneur",
+        "opolis-s-corp-benefits-secret-sauce-to-a-cushy-retirement"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/why-freelancers-need-liability-insurance-protect-your-biz/",
+      "newPath": "/blog/why-freelancers-need-liability-insurance-protect-your-biz",
+      "firestoreDocIds": [
+        "22e352c050bec2d358ded05a3ed811cae359e999153cac1272869f16a9c313b9",
+        "2d538d30fe5449d667739ebd7cfc994ec65d235121c427ce32effdc95d20d779",
+        "52c9425c84e6c85a18705c06e9674fef85686ecfba963b7dfb8e1d853482eb56",
+        "6ec9fb627b1d3b1e47b76f49ad19f35e2c8c9ad68d47f23873e1720572852bc4",
+        "a3b9669af8bf9ba0677ffaa1ab2accfd6e2a249fd14ec052e60d9303906482c9",
+        "b778c32fb6b07ca86563890a831cfa8b4ed48ad3a98986d3ad1a1602e66722c9",
+        "c2a9ff6d7a6b17ebf8934ef651ea0a5636c221cb392058c728a19cf3241fcabe",
+        "cb76405f5c88e260f8427e2c3d7e1bd742ac9311d4c7fadd3ff215b08e487faa",
+        "f9df7ecc07d08c6275682fae2a3a9f1a2d906b21c9d8020551a5f0fe6043af8d",
+        "fd3acf8fa2f2c16bfb888acb97c7e77f5b9848d0713a36d7d335dd53d82a5d0f"
+      ],
+      "foundInSlugs": [
+        "a-guide-to-the-best-insurance-plans-for-independent-workers",
+        "affordable-cigna-healthcare-options-for-freelancers",
+        "getting-started-with-opolis-tips-for-a-smooth-onboarding",
+        "group-health-insurance-for-freelancers-how-it-works",
+        "how-freelancers-band-together-for-premium-perks-with-opolis",
+        "how-s-corp-and-payroll-work-making-life-easier-for-freelancers",
+        "last-call-for-open-enrollment-get-health-insurance-now",
+        "legal-considerations-for-freelancers-how-opolis-can-help",
+        "legal-considerations-for-independent-workers-what-to-know",
+        "s-corp-tax-benefits-payroll-savings-business-structure"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/why-freelancers-should-consider-using-payroll-services/",
+      "newPath": "/blog/why-freelancers-should-consider-using-payroll-services",
+      "firestoreDocIds": [
+        "8a46296469b49bafbd8ad0109b8d4b8ca9e20eeeb3758c811605f21056b9928b"
+      ],
+      "foundInSlugs": [
+        "5-time-saving-payroll-tips-for-solopreneurs"
+      ]
+    },
+    {
+      "oldUrl": "https://opolis.co/why-proof-of-income-is-difficult-for-independent-workers/",
+      "newPath": "/blog/why-proof-of-income-is-difficult-for-independent-workers",
+      "firestoreDocIds": [
+        "d1deb4ff1261c134101b1b374b1ddbfe874abbd3660240602db81e659330d183"
+      ],
+      "foundInSlugs": [
+        "the-freelancers-guide-to-flawless-payroll-records"
+      ]
+    },
+    {
+      "oldUrl": "https://partner.opolis.co/Bench",
+      "newPath": null,
+      "firestoreDocIds": [
+        "1ee712b64d2406f42c2af17cbf4a96ca74778e28ce21b024620f8e37ffe6620b",
+        "442ee161620425f6fff9df383661702c9e15acbf4c0c7e570f51a13e9fc68835",
+        "a3f2f005e4d15d3bb75c8db8ecebee0aae1c4742581a651982bd67f50be4a865",
+        "c782c294fc671f42198f0b21addbeeca930dcfe52f42d52d5832a4c3d2af2612",
+        "e219980276bef42b81cbe6dee7d4fb4c05835e949c4be16f7d68e5e36921017b"
+      ],
+      "foundInSlugs": [
+        "how-freelancers-union-opolis-help-your-business-thrive",
+        "how-regular-payroll-sets-you-up-for-financial-success",
+        "maximize-savings-how-opolis-bench-optimize-your-finances",
+        "opolis-bench-the-ultimate-freelance-financial-duo",
+        "top-payroll-mistakes-freelancers-make-how-to-avoid-them"
+      ]
+    }
+  ]
+}

@@ -16,7 +16,8 @@
     "wp:verify": "tsx scripts/wp-import/verify.ts",
     "wp:inspect-resources": "tsx scripts/wp-import/inspect-resources-firestore.ts",
     "wp:extract-links": "tsx scripts/wp-import/extract-links.ts",
-    "wp:fill-url-map": "tsx scripts/wp-import/fill-url-map-pending.ts"
+    "wp:fill-url-map": "tsx scripts/wp-import/fill-url-map-pending.ts",
+    "wp:export-url-map-pending": "tsx scripts/wp-import/export-url-map-pending.ts"
   },
   "dependencies": {
     "cheerio": "^1.2.0",
