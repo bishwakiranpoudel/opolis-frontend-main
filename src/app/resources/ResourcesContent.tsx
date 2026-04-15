@@ -837,24 +837,14 @@ export function ResourcesContent({
 
       {/* CTA */}
       <section
+        className="cta-section"
         style={{
           background: C.red,
-          padding: "80px 0",
           textAlign: "center",
-          position: "relative",
-          overflow: "hidden",
         }}
       >
-        <div
-          className="o-pattern"
-          style={{
-            position: "absolute",
-            inset: 0,
-            opacity: 0.04,
-            pointerEvents: "none",
-          }}
-        />
-        <div className="wrap" style={{ position: "relative", zIndex: 1 }}>
+        <div className="cta-pattern-layer" aria-hidden />
+        <div className="wrap">
           <h2 className="cond h2-section h2-section--promo">
             Now you know. Ready to join?
           </h2>

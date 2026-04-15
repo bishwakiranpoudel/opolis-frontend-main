@@ -260,6 +260,42 @@ export default function BenefitsPage() {
         </div>
       </section>
 
+      <section
+        className="cta-section"
+        style={{
+          background: C.red,
+          textAlign: "center",
+        }}
+      >
+        <div className="cta-pattern-layer" aria-hidden />
+        <div className="wrap">
+          <h2
+            className="cond"
+            style={{
+              fontSize: "clamp(32px,4vw,56px)",
+              fontWeight: 900,
+              color: "#fff",
+              maxWidth: 720,
+              margin: "0 auto 14px",
+              lineHeight: 1.05,
+            }}
+          >
+            For many Employee Members, cooperative group health pricing is one
+            of the largest savings versus the individual market — and it is
+            only part of what full membership unlocks.
+          </h2>
+          <a
+            href={JOIN_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-wht lg"
+            style={{ marginTop: 28 }}
+          >
+            Join the Co-op →
+          </a>
+        </div>
+      </section>
+
       <section className="sec-dark" id="benefits-cta">
         <div className="wrap">
           <div className="section-cta-stack section-cta-stack--measure-sm">

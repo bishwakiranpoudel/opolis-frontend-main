@@ -3,6 +3,13 @@ import { SITE_URL } from "@/lib/constants";
 import { STATIC_SITEMAP_PATHS } from "@/lib/site-paths";
 import { getBlogPosts } from "@/lib/wordpress";
 
+/**
+ * Build-time sitemaps often run without Firestore / WordPress credentials, so
+ * `getBlogPosts()` returns [] and every `/blog/{slug}` URL would be missing.
+ * Generating on request picks up the same env as the live app.
+ */
+export const dynamic = "force-dynamic";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticEntries: MetadataRoute.Sitemap = STATIC_SITEMAP_PATHS.map((path) => ({
     url: `${SITE_URL}${path}`,

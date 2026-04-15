@@ -266,6 +266,50 @@ export function TheCooperativeContent() {
       </section>
 
       <MemberDashboardMockups />
+
+      <section
+        className="cta-section"
+        style={{
+          background: C.red,
+          textAlign: "center",
+        }}
+      >
+        <div className="cta-pattern-layer" aria-hidden />
+        <div className="wrap">
+          <h2
+            className="cond"
+            style={{
+              fontSize: "clamp(42px,6vw,80px)",
+              fontWeight: 900,
+              color: "#fff",
+              lineHeight: 1.0,
+              marginBottom: 14,
+            }}
+          >
+            You belong here.
+          </h2>
+          <p
+            style={{
+              color: "rgba(255,255,255,.82)",
+              fontSize: 17,
+              maxWidth: 520,
+              margin: "0 auto 34px",
+              lineHeight: 1.68,
+            }}
+          >
+            Independent work is better when it&apos;s owned collectively. Join
+            the cooperative and start building something that belongs to you.
+          </p>
+          <a
+            href={JOIN_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-wht lg"
+          >
+            Join the Co-op →
+          </a>
+        </div>
+      </section>
     </>
   );
 }

@@ -14,6 +14,7 @@ import {
   TrendingUp,
   Handshake,
   Check,
+  X,
 } from "lucide-react";
 
 const JOIN_URL = "https://commons.opolis.co/coalition/webinarspecial";
@@ -533,35 +534,287 @@ export function EligibilityContent() {
         </div>
       </section>
 
+      <section className="sec-alt">
+        <div className="wrap" style={{ maxWidth: 860 }}>
+          <div
+            className="eligibility-entity-grid"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: 48,
+              alignItems: "center",
+            }}
+          >
+            <div>
+              <span className="slabel">No Entity Yet?</span>
+              <h2
+                className="cond"
+                style={{
+                  fontSize: "clamp(34px,4vw,54px)",
+                  fontWeight: 900,
+                  color: "#fff",
+                  lineHeight: 1.04,
+                  marginBottom: 16,
+                }}
+              >
+                Opolis can create
+                <br />
+                your entity for you.
+              </h2>
+              <p
+                style={{
+                  color: C.lgray,
+                  fontSize: 15,
+                  lineHeight: 1.78,
+                  marginBottom: 24,
+                }}
+              >
+                Don&apos;t have an S-Corp yet? Opolis handles the entire setup —
+                LLC formation, EIN, and S-Corp election — so you can activate
+                Employee Membership without the guesswork. The service costs
+                $299 and takes about 5 days on average.
+              </p>
+              <p style={{ color: C.gray, fontSize: 13, lineHeight: 1.7 }}>
+                Consult a CPA or tax attorney to confirm the right structure for
+                your situation.
+              </p>
+            </div>
+            <div className="dc" style={{ padding: "32px" }}>
+              <div
+                style={{
+                  fontSize: 11,
+                  fontWeight: 700,
+                  letterSpacing: ".12em",
+                  textTransform: "uppercase",
+                  color: C.red,
+                  marginBottom: 20,
+                }}
+              >
+                What&apos;s included — $299
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 14,
+                  marginBottom: 28,
+                }}
+              >
+                {[
+                  {
+                    t: "LLC Articles of Organization",
+                    d: "Filed in the state of your choice — home state, Wyoming, or Delaware.",
+                  },
+                  {
+                    t: "EIN from the IRS",
+                    d: "Your Employer Identification Number, required to run payroll.",
+                  },
+                  {
+                    t: "S-Corp election (Form 2553)",
+                    d: "Opolis files on your behalf once your LLC is confirmed.",
+                  },
+                  {
+                    t: "1 year Registered Agent service",
+                    d: "Included free with your entity creation.",
+                  },
+                ].map((b) => (
+                  <div
+                    key={b.t}
+                    style={{
+                      display: "flex",
+                      gap: 10,
+                      alignItems: "flex-start",
+                    }}
+                  >
+                    <span
+                      style={{
+                        color: C.red,
+                        fontWeight: 800,
+                        fontSize: 15,
+                        flexShrink: 0,
+                        marginTop: 1,
+                      }}
+                    >
+                      ✓
+                    </span>
+                    <div>
+                      <div
+                        style={{
+                          fontWeight: 700,
+                          color: "#fff",
+                          fontSize: 13,
+                          marginBottom: 2,
+                        }}
+                      >
+                        {b.t}
+                      </div>
+                      <div
+                        style={{ color: C.gray, fontSize: 12, lineHeight: 1.6 }}
+                      >
+                        {b.d}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <a
+                href="https://opolis.typeform.com/OpolisBizee"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-red"
+                style={{
+                  display: "inline-flex",
+                  width: "100%",
+                  justifyContent: "center",
+                  textDecoration: "none",
+                }}
+              >
+                Start your entity with Opolis →
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="sec-dark">
+        <div className="wrap" style={{ maxWidth: 860 }}>
+          <span className="slabel" style={{ color: "#E84040" }}>
+            Honest Assessment
+          </span>
+          <h2
+            className="cond"
+            style={{
+              fontSize: "clamp(34px,4vw,54px)",
+              fontWeight: 900,
+              color: "#fff",
+              marginBottom: 12,
+            }}
+          >
+            When Opolis isn&apos;t the right answer.
+          </h2>
+          <p
+            style={{
+              color: C.gray,
+              fontSize: 14,
+              lineHeight: 1.72,
+              marginBottom: 32,
+            }}
+          >
+            We respect your time. Here are situations where you&apos;ll be
+            better served elsewhere:
+          </p>
+          <div className="g2" style={{ gap: 14 }}>
+            {[
+              {
+                t: "Highly complex tax strategies",
+                d: "Multi-entity arrangements, aggressive deductions, or advanced structuring — you need a CPA-led solution.",
+              },
+              {
+                t: "Irregular or very low income",
+                d: "Below your state's exempt minimum, highly variable income, or primarily project-based without recurring revenue.",
+              },
+              {
+                t: "DIY operators who want full control",
+                d: "Opolis is a cooperative. If the shared model doesn't resonate, the structure delivers less value than going it alone.",
+              },
+              {
+                t: "Expecting CPA or financial planning",
+                d: "Opolis handles payroll and benefits administration — not tax return prep, financial planning, or legal counsel.",
+              },
+            ].map((f) => (
+              <div
+                key={f.t}
+                className="dc"
+                style={{
+                  padding: "18px 20px",
+                  borderColor: "rgba(232,67,45,.18)",
+                }}
+              >
+                <div
+                  style={{ display: "flex", gap: 10, alignItems: "flex-start" }}
+                >
+                  <span
+                    style={{
+                      color: "#E84040",
+                      flexShrink: 0,
+                      marginTop: 1,
+                      display: "flex",
+                    }}
+                    aria-hidden
+                  >
+                    <X size={16} strokeWidth={2.5} />
+                  </span>
+                  <div>
+                    <div
+                      style={{
+                        fontWeight: 700,
+                        color: "#fff",
+                        fontSize: 14,
+                        marginBottom: 4,
+                      }}
+                    >
+                      {f.t}
+                    </div>
+                    <p
+                      style={{ color: C.gray, fontSize: 13, lineHeight: 1.65 }}
+                    >
+                      {f.d}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section
+        className="cta-section"
+        style={{
+          background: C.red,
+          textAlign: "center",
+        }}
+      >
+        <div className="cta-pattern-layer" aria-hidden />
         <div className="wrap">
-          <div className="section-cta-stack section-cta-stack--measure-sm">
-            <h2 className="cond h2-section h2-section--page">
-              Ready to join?
-            </h2>
-            <p
-              className="section-lead section-lead--center"
-              style={{ maxWidth: 520 }}
-            >
-              Start with Community Membership for $97, or go straight to
-              Employee Membership if you already run an S-Corp.
-            </p>
-            <div
-              className="cta-buttons-row"
-              style={{ display: "flex", gap: 14, flexWrap: "wrap" }}
-            >
+          <h2
+            className="cond"
+            style={{
+              fontSize: "clamp(42px,5vw,70px)",
+              fontWeight: 900,
+              color: "#fff",
+              marginBottom: 14,
+            }}
+          >
+            Sound like the right fit?
+          </h2>
+          <p
+            style={{
+              color: "rgba(255,255,255,.82)",
+              maxWidth: 520,
+              margin: "0 auto 32px",
+              lineHeight: 1.68,
+              fontSize: 17,
+            }}
+          >
+            Start with Community Membership and upgrade to Employee Membership
+            when your S-Corp is in place.
+          </p>
+          <div
+            className="cta-buttons-row"
+            style={{ display: "flex", gap: 14, flexWrap: "wrap" }}
+          >
             <a
               href={JOIN_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-red"
+              className="btn btn-wht lg"
             >
               Join the Co-op →
             </a>
             <Link href="/resources" className="btn-outline">
               FAQs & Resources
             </Link>
-            </div>
           </div>
         </div>
       </section>

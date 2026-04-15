@@ -72,7 +72,11 @@ export const STATE_FLOORS: Record<string, number> = {
 
 export const US_STATES = Object.keys(STATE_FLOORS).sort();
 
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://opolis.co";
+/** Canonical origin, no trailing slash. Empty env falls back so sitemap/canonicals stay valid. */
+const rawSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+export const SITE_URL = (
+  rawSiteUrl && rawSiteUrl.length > 0 ? rawSiteUrl : "https://opolis.co"
+).replace(/\/$/, "");
 
 /** Official Privacy Policy PDF (linked from footer and mirrored legal pages). */
 export const LEGAL_PRIVACY_POLICY_PDF_URL =

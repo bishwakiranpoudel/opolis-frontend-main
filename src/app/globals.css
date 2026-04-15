@@ -24,16 +24,19 @@
   --space-section-inner-bottom: 8px; /* extra air below last block in a section */
   /* Hero photo (public/background.png) — scrim matches C.black #0D0D0D */
   --hero-photo: url("/background.png");
-  --hero-photo-blur: 2px;
-  --hero-photo-scale: 1.01;
+  --hero-photo-blur: 6px;
+  --hero-photo-scale: 1.04;
   --hero-photo-scrim: linear-gradient(
     180deg,
-    rgba(13, 13, 13, 0.55) 0%,
-    rgba(13, 13, 13, 0.72) 42%,
-    rgba(13, 13, 13, 0.86) 100%
+    rgba(13, 13, 13, 0.72) 0%,
+    rgba(13, 13, 13, 0.88) 42%,
+    rgba(13, 13, 13, 0.94) 100%
   );
   /* Sticky header (progress bar + nav row) — used by sidebar offset */
   --nav-sticky-height: 72px;
+  /* Very subtle tile (generic); red CTAs use --cta-section-pattern-image so it reads on brand orange */
+  --o-pattern-image: url("data:image/svg+xml,%3Csvg width='120' height='150' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h120v150H0z' fill='%23fff' fill-opacity='.01'/%3E%3C/svg%3E");
+  --cta-section-pattern-image: url("data:image/svg+xml,%3Csvg width='120' height='150' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h120v150H0z' fill='%23fff' fill-opacity='.14'/%3E%3C/svg%3E");
 }
 
 *, *::before, *::after {
@@ -1278,7 +1281,7 @@ main {
 }
 
 .o-pattern {
-  background-image: url("data:image/svg+xml,%3Csvg width='120' height='150' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h120v150H0z' fill='%23fff' fill-opacity='.01'/%3E%3C/svg%3E");
+  background-image: var(--o-pattern-image);
   background-size: 120px 150px;
   background-repeat: repeat;
 }
@@ -1385,7 +1388,26 @@ main {
 }
 
 .cta-section {
+  position: relative;
+  overflow: hidden;
   padding: 80px 0;
+}
+
+/* Real DOM layer (not ::before) — reliable above flat bg on all engines */
+.cta-pattern-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: var(--cta-section-pattern-image);
+  background-size: 120px 150px;
+  background-repeat: repeat;
+  opacity: 0.22;
+}
+
+.cta-section > .wrap {
+  position: relative;
+  z-index: 1;
 }
 
 .stats-section {
@@ -1606,6 +1628,10 @@ main {
   }
   .eligibility-requirements-grid {
     grid-template-columns: 1fr !important;
+  }
+  .eligibility-entity-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
   }
   .income-labels-row {
     grid-template-columns: 1fr !important;
