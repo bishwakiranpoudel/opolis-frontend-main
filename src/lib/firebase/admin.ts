@@ -16,6 +16,14 @@ function resolveCredentialPath(raw: string): string {
 export function getFirebaseAdmin(): admin.app.App {
   if (app) return app;
 
+  // Next.js dev (Turbopack) can reload this module while firebase-admin still
+  // holds [DEFAULT] from the prior evaluation. Reuse it instead of calling
+  // initializeApp again with a new Credential (SDK throws).
+  if (admin.apps.length > 0) {
+    app = admin.app();
+    return app;
+  }
+
   const bucket =
     process.env.FIREBASE_STORAGE_BUCKET ||
     process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET;

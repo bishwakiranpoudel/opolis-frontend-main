@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { buildMetadata, breadcrumbJsonLd } from "@/lib/seo";
 import { C } from "@/lib/constants";
-import { Mail, Handshake, Wrench } from "lucide-react";
+import { Mail, Handshake, Headphones, MessagesSquare } from "lucide-react";
 
 const PRESS_KIT_URL =
   "https://drive.google.com/drive/folders/14i7BEhfGyNL0uZPzpMxJ-KA3Xw9o6Xj7?usp=drive_link";
@@ -276,7 +276,7 @@ export default function ContactPage() {
               className="dc"
               style={{
                 padding: "36px 40px",
-                border: `1px solid ${C.border}`,
+                border: "1px solid rgba(232,67,45,.25)",
               }}
             >
               <div
@@ -291,8 +291,8 @@ export default function ContactPage() {
                     width: 44,
                     height: 44,
                     borderRadius: "50%",
-                    background: "rgba(255,255,255,.06)",
-                    border: `1px solid ${C.border}`,
+                    background: "rgba(232,67,45,.12)",
+                    border: "1px solid rgba(232,67,45,.25)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -301,7 +301,7 @@ export default function ContactPage() {
                   }}
                   aria-hidden
                 >
-                  <Wrench size={20} strokeWidth={1.8} />
+                  <Headphones size={20} strokeWidth={1.8} />
                 </div>
                 <div style={{ flex: 1 }}>
                   <div
@@ -310,11 +310,11 @@ export default function ContactPage() {
                       fontWeight: 700,
                       letterSpacing: "0.12em",
                       textTransform: "uppercase",
-                      color: C.gray,
+                      color: C.red,
                       marginBottom: 8,
                     }}
                   >
-                    Member Support
+                    Active Members
                   </div>
                   <h2
                     style={{
@@ -325,7 +325,7 @@ export default function ContactPage() {
                       lineHeight: 1.3,
                     }}
                   >
-                    Active Member Support
+                    Membership &amp; Dashboard Support
                   </h2>
                   <p
                     style={{
@@ -335,8 +335,9 @@ export default function ContactPage() {
                       marginBottom: 20,
                     }}
                   >
-                    For current Members: payroll, benefits, portal, or account
-                    questions.
+                    If you&apos;re a current Opolis Employee Member or Community
+                    Member and have questions about your membership or issues
+                    with your dashboard, reach out here.
                   </p>
                   <a
                     href="mailto:support@opolis.co"
@@ -344,8 +345,8 @@ export default function ContactPage() {
                       display: "inline-flex",
                       alignItems: "center",
                       gap: 10,
-                      background: "rgba(255,255,255,.05)",
-                      border: `1px solid ${C.border}`,
+                      background: "rgba(232,67,45,.1)",
+                      border: "1px solid rgba(232,67,45,.3)",
                       borderRadius: 8,
                       padding: "12px 20px",
                       textDecoration: "none",
@@ -363,12 +364,126 @@ export default function ContactPage() {
                     >
                       support@opolis.co
                     </span>
-                    <span style={{ color: C.gray, fontSize: 14 }}>→</span>
+                    <span style={{ color: C.red, fontSize: 14 }}>→</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div
+              className="dc"
+              style={{
+                padding: "36px 40px",
+                border: `1px solid ${C.border}`,
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  gap: 20,
+                  alignItems: "flex-start",
+                }}
+              >
+                <div
+                  style={{
+                    width: 44,
+                    height: 44,
+                    borderRadius: "50%",
+                    background: "rgba(88,101,242,.12)",
+                    border: "1px solid rgba(88,101,242,.3)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexShrink: 0,
+                    color: "#818cf8",
+                  }}
+                  aria-hidden
+                >
+                  <MessagesSquare size={20} strokeWidth={1.8} />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <div
+                    style={{
+                      fontSize: 11,
+                      fontWeight: 700,
+                      letterSpacing: "0.12em",
+                      textTransform: "uppercase",
+                      color: "#818cf8",
+                      marginBottom: 8,
+                    }}
+                  >
+                    Community
+                  </div>
+                  <h2
+                    style={{
+                      fontSize: 20,
+                      fontWeight: 700,
+                      color: "#fff",
+                      marginBottom: 10,
+                      lineHeight: 1.3,
+                    }}
+                  >
+                    Join the Conversation on Discord
+                  </h2>
+                  <p
+                    style={{
+                      color: C.lgray,
+                      fontSize: 14,
+                      lineHeight: 1.78,
+                      marginBottom: 20,
+                    }}
+                  >
+                    Got a general question? Want to connect with other Members or
+                    hear how others are using Opolis? The Discord is the place
+                    for community discussion, peer answers, and staying plugged
+                    in. Not a support line — just a good room to be in.
+                  </p>
+                  <a
+                    href="https://discord.gg/7qWZ9PEB"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 10,
+                      background: "rgba(88,101,242,.1)",
+                      border: "1px solid rgba(88,101,242,.3)",
+                      borderRadius: 8,
+                      padding: "12px 20px",
+                      textDecoration: "none",
+                      transition: "background 0.15s",
+                      color: "#fff",
+                      fontFamily: "'DM Sans', sans-serif",
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontSize: 15,
+                        fontWeight: 700,
+                        letterSpacing: "0.01em",
+                      }}
+                    >
+                      Join the Opolis Discord →
+                    </span>
                   </a>
                 </div>
               </div>
             </div>
           </div>
+
+          <p
+            style={{
+              color: C.gray,
+              fontSize: 13,
+              lineHeight: 1.7,
+              marginTop: 32,
+              paddingTop: 24,
+              borderTop: `1px solid ${C.border}`,
+            }}
+          >
+            Opolis is a lean cooperative — we don&apos;t have a phone support
+            line. Email is the fastest path to the right person.
+          </p>
         </div>
       </section>
     </>

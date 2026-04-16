@@ -176,7 +176,7 @@ export const GUIDES_DATA: GuidesSection[] = [
     cc: "#a78bfa",
     items: [
       { type: "Guide", label: "Why set up an entity", url: "https://opolis.co/wp-content/uploads/2023/07/Setting-Up-Your-Business-Entity-Opolis-5.pdf" },
-      { type: "Article", label: "Sole Proprietor vs. LLC", url: "https://learn.opolis.co/understanding-the-differences-sole-proprietor-vs-llc/" },
+      { type: "Article", label: "Sole Proprietor vs. LLC", url: "/blog/understanding-the-differences-sole-proprietor-vs-llc" },
       { type: "Guide", label: "How to create your S-Corp", url: "https://opolis.co/wp-content/uploads/2023/06/How-to-Create-Your-S-Corp-Opolis-1.pdf" },
       { type: "Video", label: "From freelancing to owning your business", url: "https://www.youtube.com/watch?v=4IuprqKfQQ0&t=1s" },
       { type: "Video", label: "Setting up your S-Corp or C-Corp", url: "https://www.youtube.com/watch?v=Izh04QhYfVw" },
