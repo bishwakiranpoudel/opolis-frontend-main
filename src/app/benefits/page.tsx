@@ -263,21 +263,21 @@ export default function BenefitsPage() {
       <section
         className="cta-section"
         style={{
-          background: C.red,
           textAlign: "center",
         }}
       >
         <div className="cta-pattern-layer" aria-hidden />
         <div className="wrap">
           <h2
-            className="cond"
+            className="cond benefits-page__health-pricing-cta"
             style={{
-              fontSize: "clamp(32px,4vw,56px)",
-              fontWeight: 900,
+              fontSize: "clamp(22px, 2.6vw, 34px)",
+              fontWeight: 700,
               color: "#fff",
-              maxWidth: 720,
+              maxWidth: 560,
               margin: "0 auto 14px",
-              lineHeight: 1.05,
+              lineHeight: 1.4,
+              letterSpacing: "-0.02em",
             }}
           >
             For many Employee Members, cooperative group health pricing is one

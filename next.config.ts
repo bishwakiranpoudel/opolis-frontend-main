@@ -45,6 +45,13 @@ function loadRedirectsFromMap(): {
   }
 }
 
+function normalizeRedirectPath(p: string): string {
+  let s = p.trim();
+  if (!s.startsWith("/")) return s;
+  if (s.length > 1 && s.endsWith("/")) s = s.slice(0, -1);
+  return s.toLowerCase();
+}
+
 /** Entries in data/url-map-unresolved.json with both oldPath and newPath set (SEO / legacy URLs). */
 function loadRedirectsFromUnresolved(): {
   source: string;
@@ -67,6 +74,12 @@ function loadRedirectsFromUnresolved(): {
       if (!from || !to) continue;
       if (!from.startsWith("/")) continue;
       if (!to.startsWith("/") && !/^https?:\/\//i.test(to)) continue;
+      if (
+        to.startsWith("/") &&
+        normalizeRedirectPath(from) === normalizeRedirectPath(to)
+      ) {
+        continue;
+      }
       out.push({
         source: from,
         destination: to,
@@ -83,6 +96,16 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: "/blog", destination: "/resources/blog", permanent: true },
+      {
+        source: "/unemployable/:path*",
+        destination: "/resources/podcasts/:path*",
+        permanent: true,
+      },
+      {
+        source: "/podcast",
+        destination: "/resources/podcasts",
+        permanent: true,
+      },
       ...loadRedirectsFromMap(),
       ...loadRedirectsFromUnresolved(),
     ];

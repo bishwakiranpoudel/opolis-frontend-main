@@ -10,8 +10,10 @@ export interface BlogPost {
   date: string;
   h: string;
   url: string;
-  /** Present when from WordPress; used for in-app /blog/[slug] links */
+  /** Present when from WordPress; used for in-app /resources/blog/[category]/[slug] links */
   slug?: string;
+  /** URL-safe primary category slug (e.g. "entity-creation"); fallback "blog" */
+  categorySlug: string;
   /** ISO date from API for sitemap lastModified */
   dateIso?: string;
 }
@@ -25,6 +27,22 @@ export interface FullBlogPost extends BlogPost {
   dateIso?: string;
   /** ISO date for JSON-LD dateModified */
   modifiedIso?: string;
+  /** Hero / OG image when stored on the post document */
+  featuredImageUrl?: string;
 }
 
 export const ALL_POSTS: BlogPost[] = [];
+
+export const BLOG_CATEGORY_FALLBACK_SLUG = "blog";
+
+/**
+ * Canonical in-site path for a blog post.
+ * `/resources/blog/{categorySlug}/{slug}`
+ */
+export function blogPostPath(
+  post: Pick<BlogPost, "slug" | "categorySlug">
+): string {
+  const category = post.categorySlug || BLOG_CATEGORY_FALLBACK_SLUG;
+  const slug = post.slug ?? "";
+  return `/resources/blog/${category}/${slug}`;
+}

@@ -1,5 +1,6 @@
 import { getBlogPosts } from "@/lib/wordpress";
 import { SITE_URL } from "@/lib/constants";
+import { blogPostPath } from "@/lib/blogPosts";
 
 function escapeXml(unsafe: string): string {
   return unsafe
@@ -28,7 +29,7 @@ export async function GET() {
     .filter((p) => p.slug)
     .slice(0, 50)
     .map((p) => {
-      const link = `${baseUrl}/blog/${p.slug}`;
+      const link = `${baseUrl}${blogPostPath(p)}`;
       const pubDate = toRfc2822(p.dateIso);
       const title = escapeXml(p.h);
       return `  <item>

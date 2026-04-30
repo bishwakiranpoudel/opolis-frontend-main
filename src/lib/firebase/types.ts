@@ -1,8 +1,12 @@
+import type { PodcastSeriesKey } from "@/lib/podcastTypes";
 import type { FaqSection, GuidesSection } from "@/lib/resourcesData";
+
+export type BlogPostSource = "wordpress" | "cms";
 
 /** Stored blog post (Firestore `blog_posts/{slug}`) */
 export interface BlogPostDoc {
-  wpPostId: number;
+  /** WordPress post id when imported from WP; optional for CMS-authored posts */
+  wpPostId?: number;
   slug: string;
   title: string;
   excerptHtml: string;
@@ -20,7 +24,7 @@ export interface BlogPostDoc {
   wpContentHash?: string;
   contentHash?: string;
   importedAt: string;
-  source: "wordpress";
+  source: BlogPostSource;
 }
 
 export interface BlogCategoryDoc {
@@ -61,13 +65,46 @@ export interface MediaMapDoc {
 export interface ResourcesGuidesDoc {
   guides: GuidesSection[];
   importedAt: string;
-  source: "wordpress" | "static_fallback";
+  source: "wordpress" | "static_fallback" | "cms";
 }
 
 export interface ResourcesFaqDoc {
   faq: FaqSection[];
   importedAt: string;
-  source: "wordpress" | "static_fallback";
+  source: "wordpress" | "static_fallback" | "cms";
+}
+
+/** Stored podcast episode (`podcast_episodes/{slug}`) — mirrors WP unemployable / OPR posts. */
+export interface PodcastEpisodeDoc {
+  wpPostId?: number;
+  slug: string;
+  title: string;
+  excerptHtml: string;
+  contentHtml: string;
+  dateIso: string;
+  modifiedIso?: string;
+  legacyPermalink: string;
+  /** Display grouping on /resources/podcasts */
+  seasonLabel: string;
+  /** Sort seasons on the listing (lower first): 1 = OPR, 2 = Unemployable */
+  seasonOrder: number;
+  /** Stable series id — set by import; omit on legacy docs (inferred from seasonOrder when reading). */
+  seriesKey?: PodcastSeriesKey;
+  /** Human-readable series title for Firestore console / denormalized reads. */
+  seriesTitle?: string;
+  wpCategoryIds: number[];
+  youtubeVideoId?: string;
+  thumbnailUrl?: string;
+  thumbnailStoragePath?: string;
+  wpContentHash?: string;
+  contentHash?: string;
+  /** Bump in import script when YouTube extraction or HTML rewrite rules change (triggers re-import). */
+  podcastImporterVersion?: number;
+  /** Unemployable S1 vs S2 (OPR uses “Season 1” only). */
+  episodeSeasonLabel?: string;
+  episodeSeasonSort?: number;
+  importedAt: string;
+  source: "wordpress" | "cms";
 }
 
 export interface ImportManifestDoc {

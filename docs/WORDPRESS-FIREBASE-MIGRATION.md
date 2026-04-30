@@ -18,7 +18,8 @@ This repo includes scripts to copy WordPress content into **Firestore** and **Cl
 | `npm run wp:import-media` | Full `wp/v2/media` library. Storage path mirrors `/wp-content/uploads/…` under `imports/wp-media/library/wp-{id}/…`. Use `--force` to re-upload and refresh labels after path/metadata changes. |
 | `npm run wp:verify` | Compares WP vs Firestore counts; spot-checks `wp-content` references in posts. |
 | `npm run wp:extract-links` | Lists unique `opolis.co` links from stored posts to `logs/extracted-opolis-links.json` for manual SEO mapping. |
-| `npm run wp:fill-url-map` | Reads `url_map_pending`, sets `suggestedNewPath` when the path exists on the current sitemap (see `src/lib/site-paths.ts`), writes unique gaps to `data/url-map-unresolved.json`. Use `--dry-run` to preview counts without writing Firestore. |
+| `npm run wp:fill-url-map` | Reads `url_map_pending`, validates existing `suggestedNewPath` against a live sitemap snapshot (static + blog + podcasts + guides, same idea as `src/app/sitemap.ts`), applies slug rules and legacy aliases (`src/lib/site-paths.ts`), updates Firestore, and writes `data/url-map-unresolved.json` (non-empty `newPath` rows become Next redirects via `next.config.ts`). Merges paths already listed in that JSON so manual entries are rechecked. Use `--dry-run` to preview counts without writing Firestore or the JSON file. |
+| `npm run wp:apply-url-map` | Rewrites stored HTML and guide URLs in Firestore (`blog_posts`, `podcast_episodes`, `resources_guides/data`, `resources_faq/data`) using resolved mappings from `url_map_pending` plus non-empty rows in `data/url-map-unresolved.json`. Refreshes `contentHash` on posts/episodes when body HTML changes. Use `--dry-run` to preview counts. Run after `wp:fill-url-map`. |
 
 Use `--force` on import commands to bypass idempotency skips.
 

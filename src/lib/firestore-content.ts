@@ -5,9 +5,25 @@
 
 import { getFirestore } from "firebase-admin/firestore";
 import type { BlogPost, FullBlogPost } from "@/lib/blogPosts";
+import { BLOG_CATEGORY_FALLBACK_SLUG } from "@/lib/blogPosts";
 import { getFirebaseAdmin } from "@/lib/firebase/admin";
 import { COLLECTIONS, RESOURCES_FAQ_DOC_ID, RESOURCES_GUIDES_DOC_ID } from "@/lib/firebase/schema";
-import type { BlogPostDoc } from "@/lib/firebase/types";
+import type { BlogCategoryDoc, BlogPostDoc, PodcastEpisodeDoc } from "@/lib/firebase/types";
+import {
+  comparePodcastEpisodes,
+  inferSeriesFromLegacyEpisode,
+  inferSeriesFromSlugAllowlist,
+  unemployableEpisodeSeasonLegacyDateOnly,
+  PODCAST_SERIES_META,
+  type FullPodcastEpisode,
+  type PodcastEpisode,
+} from "@/lib/podcastTypes";
+import {
+  decodeHtmlEntitiesLite,
+  rewriteLegacyOpolisLinks,
+} from "@/lib/podcastContent";
+import { SITE_URL, unemployableSeasonTwoStartIso } from "@/lib/constants";
+import { playlistYoutubeIdForPodcastSlug } from "@/lib/podcastYoutubeSlugMap";
 import type { FaqSection, GuidesSection } from "@/lib/resourcesData";
 import { FAQ_SECTIONS, GUIDES_DATA } from "@/lib/resourcesData";
 
@@ -124,7 +140,24 @@ function formatDate(isoDate: string): string {
   }
 }
 
-function docToBlogPost(d: BlogPostDoc): BlogPost {
+export type BlogCategoryMap = Map<number, { name: string; slug: string }>;
+
+function resolveCategorySlug(
+  d: BlogPostDoc,
+  categoriesMap: BlogCategoryMap
+): string {
+  const firstId = d.categoryIds?.[0];
+  if (firstId != null) {
+    const cat = categoriesMap.get(firstId);
+    if (cat?.slug) return cat.slug;
+  }
+  return BLOG_CATEGORY_FALLBACK_SLUG;
+}
+
+function docToBlogPost(
+  d: BlogPostDoc,
+  categoriesMap: BlogCategoryMap
+): BlogPost {
   return {
     cat: d.cat,
     cc: d.cc,
@@ -132,12 +165,16 @@ function docToBlogPost(d: BlogPostDoc): BlogPost {
     h: d.title,
     url: d.legacyPermalink || "",
     slug: d.slug,
+    categorySlug: resolveCategorySlug(d, categoriesMap),
     dateIso: d.dateIso,
   };
 }
 
-function docToFullBlogPost(d: BlogPostDoc): FullBlogPost {
-  const base = docToBlogPost(d);
+function docToFullBlogPost(
+  d: BlogPostDoc,
+  categoriesMap: BlogCategoryMap
+): FullBlogPost {
+  const base = docToBlogPost(d, categoriesMap);
   return {
     ...base,
     content: d.contentHtml,
@@ -145,7 +182,26 @@ function docToFullBlogPost(d: BlogPostDoc): FullBlogPost {
     modified: d.modifiedIso ? formatDate(d.modifiedIso) : undefined,
     dateIso: d.dateIso,
     modifiedIso: d.modifiedIso,
+    featuredImageUrl: d.featuredImageUrl,
   };
+}
+
+/**
+ * Loads every `blog_categories/{wpId}` document into an in-memory map.
+ * Callers should load once per request and pass to doc mappers.
+ */
+export async function getBlogCategoriesMapFromFirestore(): Promise<BlogCategoryMap> {
+  getFirebaseAdmin();
+  const db = getFirestore();
+  const snap = await db.collection(COLLECTIONS.blogCategories).get();
+  const map: BlogCategoryMap = new Map();
+  snap.forEach((doc) => {
+    const d = doc.data() as BlogCategoryDoc;
+    if (d.wpId != null) {
+      map.set(d.wpId, { name: d.name ?? "", slug: d.slug ?? "" });
+    }
+  });
+  return map;
 }
 
 /** Apply optional manual URL rewrites from blog HTML (SEO migration). */
@@ -167,14 +223,14 @@ export function applyUrlRewriteMap(html: string): string {
 export async function getBlogPostsFromFirestore(): Promise<BlogPost[]> {
   getFirebaseAdmin();
   const db = getFirestore();
-  const snap = await db
-    .collection(COLLECTIONS.blogPosts)
-    .orderBy("dateIso", "desc")
-    .get();
+  const [snap, categoriesMap] = await Promise.all([
+    db.collection(COLLECTIONS.blogPosts).orderBy("dateIso", "desc").get(),
+    getBlogCategoriesMapFromFirestore(),
+  ]);
   const out: BlogPost[] = [];
   snap.forEach((doc) => {
     const d = doc.data() as BlogPostDoc;
-    out.push(docToBlogPost(d));
+    out.push(docToBlogPost(d, categoriesMap));
   });
   return out;
 }
@@ -185,10 +241,13 @@ export async function getBlogPostBySlugFromFirestore(
   if (!slug) return null;
   getFirebaseAdmin();
   const db = getFirestore();
-  const ref = await db.collection(COLLECTIONS.blogPosts).doc(slug).get();
+  const [ref, categoriesMap] = await Promise.all([
+    db.collection(COLLECTIONS.blogPosts).doc(slug).get(),
+    getBlogCategoriesMapFromFirestore(),
+  ]);
   if (!ref.exists) return null;
   const d = ref.data() as BlogPostDoc;
-  const full = docToFullBlogPost(d);
+  const full = docToFullBlogPost(d, categoriesMap);
   return {
     ...full,
     content: applyUrlRewriteMap(full.content),
@@ -224,6 +283,145 @@ export async function getGuidesFromFirestore(): Promise<GuidesSection[]> {
     return GUIDES_DATA;
   }
   return parsed;
+}
+
+function formatPodcastDate(isoDate: string): string {
+  try {
+    const d = new Date(isoDate);
+    return d.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    });
+  } catch {
+    return isoDate.slice(0, 10);
+  }
+}
+
+function resolveEpisodeSeasonFields(d: PodcastEpisodeDoc): {
+  seasonLabel: string;
+  episodeSeasonLabel: string;
+  episodeSeasonSort: number;
+} {
+  const slugCanon = inferSeriesFromSlugAllowlist(d.slug);
+  if (slugCanon?.seriesKey === "opolis-public-radio") {
+    return {
+      seasonLabel: `${slugCanon.seriesTitle} · Season 1`,
+      episodeSeasonLabel: "Season 1",
+      episodeSeasonSort: 1,
+    };
+  }
+  if (slugCanon?.seriesKey === "unemployable") {
+    return {
+      seasonLabel: `${slugCanon.seriesTitle} · Season 2`,
+      episodeSeasonLabel: "Season 2",
+      episodeSeasonSort: 2,
+    };
+  }
+  const series = inferSeriesFromLegacyEpisode(d);
+  if (
+    d.episodeSeasonLabel != null &&
+    d.episodeSeasonSort != null
+  ) {
+    return {
+      episodeSeasonLabel: d.episodeSeasonLabel,
+      episodeSeasonSort: d.episodeSeasonSort,
+      seasonLabel:
+        d.seasonLabel ||
+        (series.seriesKey === "unemployable"
+          ? `${series.seriesTitle} · ${d.episodeSeasonLabel}`
+          : series.seriesKey === "opolis-public-radio"
+            ? `${series.seriesTitle} · Season 1`
+            : d.seasonLabel),
+    };
+  }
+  if (series.seriesKey === "unemployable") {
+    const u = unemployableEpisodeSeasonLegacyDateOnly(
+      d.dateIso,
+      unemployableSeasonTwoStartIso()
+    );
+    return {
+      episodeSeasonLabel: u.episodeSeasonLabel,
+      episodeSeasonSort: u.episodeSeasonSort,
+      seasonLabel: `${PODCAST_SERIES_META.unemployable.title} · ${u.episodeSeasonLabel}`,
+    };
+  }
+  if (series.seriesKey === "opolis-public-radio") {
+    return {
+      seasonLabel: `${series.seriesTitle} · Season 1`,
+      episodeSeasonLabel: "Season 1",
+      episodeSeasonSort: 1,
+    };
+  }
+  return {
+    seasonLabel: d.seasonLabel || "Podcast",
+    episodeSeasonLabel: "Season 1",
+    episodeSeasonSort: 0,
+  };
+}
+
+function docToPodcastEpisode(d: PodcastEpisodeDoc): PodcastEpisode {
+  const slugCanon = inferSeriesFromSlugAllowlist(d.slug);
+  const series = slugCanon
+    ? { seriesKey: slugCanon.seriesKey, seriesTitle: slugCanon.seriesTitle }
+    : inferSeriesFromLegacyEpisode(d);
+  const seasonOrder = slugCanon?.seasonOrder ?? d.seasonOrder;
+  const se = resolveEpisodeSeasonFields(d);
+  return {
+    slug: d.slug,
+    title: decodeHtmlEntitiesLite(d.title),
+    excerptHtml: rewriteLegacyOpolisLinks(d.excerptHtml, SITE_URL),
+    date: formatPodcastDate(d.dateIso),
+    dateIso: d.dateIso,
+    seasonLabel: se.seasonLabel,
+    seasonOrder,
+    episodeSeasonLabel: se.episodeSeasonLabel,
+    episodeSeasonSort: se.episodeSeasonSort,
+    seriesKey: series.seriesKey,
+    seriesTitle: series.seriesTitle,
+    thumbnailUrl: d.thumbnailUrl,
+    youtubeVideoId:
+      playlistYoutubeIdForPodcastSlug(d.slug) ?? d.youtubeVideoId,
+    legacyPermalink: d.legacyPermalink || undefined,
+  };
+}
+
+export async function getPodcastEpisodesFromFirestore(): Promise<PodcastEpisode[]> {
+  getFirebaseAdmin();
+  const db = getFirestore();
+  const snap = await db.collection(COLLECTIONS.podcastEpisodes).get();
+  const out: PodcastEpisode[] = [];
+  snap.forEach((doc) => {
+    const d = doc.data() as PodcastEpisodeDoc;
+    out.push(docToPodcastEpisode(d));
+  });
+  out.sort(comparePodcastEpisodes);
+  return out;
+}
+
+export async function getPodcastEpisodeBySlugFromFirestore(
+  slug: string
+): Promise<FullPodcastEpisode | null> {
+  if (!slug) return null;
+  getFirebaseAdmin();
+  const db = getFirestore();
+  const ref = await db.collection(COLLECTIONS.podcastEpisodes).doc(slug).get();
+  if (!ref.exists) return null;
+  const d = ref.data() as PodcastEpisodeDoc;
+  const base = docToPodcastEpisode(d);
+  return {
+    ...base,
+    excerptHtml: rewriteLegacyOpolisLinks(
+      applyUrlRewriteMap(d.excerptHtml),
+      SITE_URL
+    ),
+    contentHtml: rewriteLegacyOpolisLinks(
+      applyUrlRewriteMap(d.contentHtml),
+      SITE_URL
+    ),
+    modified: d.modifiedIso ? formatPodcastDate(d.modifiedIso) : undefined,
+    modifiedIso: d.modifiedIso,
+  };
 }
 
 export async function getFaqFromFirestore(): Promise<FaqSection[]> {

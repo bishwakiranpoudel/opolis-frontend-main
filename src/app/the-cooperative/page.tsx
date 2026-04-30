@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { buildMetadata, breadcrumbJsonLd } from "@/lib/seo";
-import { C } from "@/lib/constants";
 import { TheCooperativeContent } from "./TheCooperativeContent";
 
 export const metadata: Metadata = buildMetadata({

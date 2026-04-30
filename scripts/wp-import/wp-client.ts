@@ -68,6 +68,36 @@ export async function fetchAllPostsFull(): Promise<WPPostListItem[]> {
   return posts;
 }
 
+/** Posts in any of the given categories (deduped by post id). For podcast import. */
+export async function fetchPostsForCategories(
+  categoryIds: readonly number[]
+): Promise<WPPostListItem[]> {
+  const base = WORDPRESS_URL.replace(/\/$/, "");
+  const fields =
+    "id,slug,title,content,excerpt,date,modified,link,categories,featured_media";
+  const byId = new Map<number, WPPostListItem>();
+
+  for (const catId of categoryIds) {
+    const firstUrl = `${base}/wp-json/wp/v2/posts?categories=${catId}&per_page=100&status=publish&_fields=${fields}`;
+    const { data: first, headers } = await fetchJson<WPPostListItem[]>(firstUrl);
+    const batch = Array.isArray(first) ? [...first] : [];
+    for (const p of batch) byId.set(p.id, p);
+    const total = headers.get("X-WP-Total");
+    const totalNum = total ? parseInt(total, 10) : batch.length;
+    const totalPages = Math.max(1, Math.ceil(totalNum / 100));
+
+    for (let page = 2; page <= totalPages; page++) {
+      const url = `${base}/wp-json/wp/v2/posts?categories=${catId}&per_page=100&page=${page}&status=publish&_fields=${fields}`;
+      const { data } = await fetchJson<WPPostListItem[]>(url);
+      if (Array.isArray(data)) {
+        for (const p of data) byId.set(p.id, p);
+      }
+    }
+  }
+
+  return Array.from(byId.values());
+}
+
 export async function fetchMediaItem(id: number): Promise<WPMedia | null> {
   if (!id) return null;
   const base = WORDPRESS_URL.replace(/\/$/, "");

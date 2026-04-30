@@ -55,7 +55,6 @@ export default function RootLayout({
             }),
           }}
         />
-        <meta name="theme-color" content="#0D0D0D" />
       </head>
       <body
         style={{

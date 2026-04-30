@@ -17,7 +17,7 @@ import {
 } from "../../src/lib/firestore-content";
 import { FAQ_SECTIONS, GUIDES_DATA } from "../../src/lib/resourcesData";
 
-function describeValue(v: unknown, depth = 0): string {
+function describeValue(v: unknown): string {
   if (v == null) return String(v);
   if (Array.isArray(v)) return `array(len=${v.length})`;
   if (typeof v === "object" && v && "toDate" in (v as object)) return "FirestoreTimestamp";

@@ -12,7 +12,7 @@ import { getFirebaseAdmin } from "../../src/lib/firebase/admin";
 import { COLLECTIONS, RESOURCES_GUIDES_DOC_ID } from "../../src/lib/firebase/schema";
 
 const LABEL = "Sole Proprietor vs. LLC";
-const NEW_URL = "/blog/understanding-the-differences-sole-proprietor-vs-llc";
+const NEW_URL = "/resources/blog/entity-creation/understanding-the-differences-sole-proprietor-vs-llc";
 
 function coerceFirestoreArray(value: unknown): unknown[] {
   if (value == null) return [];

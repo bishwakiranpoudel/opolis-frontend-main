@@ -771,7 +771,6 @@ export function EligibilityContent() {
       <section
         className="cta-section"
         style={{
-          background: C.red,
           textAlign: "center",
         }}
       >

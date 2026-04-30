@@ -1,7 +1,11 @@
 import { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/constants";
 import { STATIC_SITEMAP_PATHS } from "@/lib/site-paths";
+import { blogPostPath } from "@/lib/blogPosts";
+import { listGuideViewerPaths } from "@/lib/guideItems";
+import { getPodcastEpisodes, podcastEpisodePath } from "@/lib/podcasts";
 import { getBlogPosts } from "@/lib/wordpress";
+import { getGuides } from "@/lib/wordpressResources";
 
 /**
  * Build-time sitemaps often run without Firestore / WordPress credentials, so
@@ -18,15 +22,34 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: path === "" ? 1 : 0.8,
   }));
 
-  const posts = await getBlogPosts();
+  const [posts, podcastEpisodes, guides] = await Promise.all([
+    getBlogPosts(),
+    getPodcastEpisodes(),
+    getGuides(),
+  ]);
   const blogEntries: MetadataRoute.Sitemap = posts
     .filter((p) => p.slug)
     .map((p) => ({
-      url: `${SITE_URL}/blog/${p.slug}`,
+      url: `${SITE_URL}${blogPostPath(p)}`,
       lastModified: p.dateIso ? new Date(p.dateIso) : new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.7,
     }));
 
-  return [...staticEntries, ...blogEntries];
+  const podcastEntries: MetadataRoute.Sitemap = podcastEpisodes.map((ep) => ({
+    url: `${SITE_URL}${podcastEpisodePath(ep.slug)}`,
+    lastModified: ep.dateIso ? new Date(ep.dateIso) : new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.65,
+  }));
+
+  const guideViewerPaths = listGuideViewerPaths(guides);
+  const guideEntries: MetadataRoute.Sitemap = guideViewerPaths.map((path) => ({
+    url: `${SITE_URL}${path}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.62,
+  }));
+
+  return [...staticEntries, ...blogEntries, ...podcastEntries, ...guideEntries];
 }

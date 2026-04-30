@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import { buildMetadata, breadcrumbJsonLd, faqJsonLd, webPageJsonLd } from "@/lib/seo";
+import { buildMetadata, breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 import { getBlogPosts } from "@/lib/wordpress";
 import { getGuides, getFaq } from "@/lib/wordpressResources";
 import { ResourcesContent } from "./ResourcesContent";
 
-/** Always read guides/FAQ from Firestore at request time (avoid caching static GUIDES_DATA fallback). */
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = buildMetadata({
@@ -21,11 +20,6 @@ export default async function ResourcesPage() {
     getGuides(),
     getFaq(),
   ]);
-
-  const faqForLd = faqSections.flatMap((s) =>
-    s.items.map((item) => ({ question: item.q, answer: item.a }))
-  );
-  const faqLd = faqJsonLd(faqForLd);
 
   const breadcrumbLd = breadcrumbJsonLd([
     { name: "Home", path: "/" },
@@ -47,10 +41,6 @@ export default async function ResourcesPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
       />
       <ResourcesContent
         initialPosts={blogPosts}

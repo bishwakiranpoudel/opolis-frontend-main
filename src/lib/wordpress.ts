@@ -4,6 +4,7 @@
  */
 
 import type { BlogPost, FullBlogPost } from "@/lib/blogPosts";
+import { BLOG_CATEGORY_FALLBACK_SLUG } from "@/lib/blogPosts";
 import { getContentSource } from "@/lib/content-source";
 import {
   DEFAULT_CATEGORY,
@@ -69,6 +70,18 @@ function formatDate(isoDate: string): string {
   }
 }
 
+function resolveWpCategorySlug(
+  post: { categories: number[] },
+  categoriesMap: Map<number, { name: string; slug: string }>
+): string {
+  const firstId = post.categories?.[0];
+  if (firstId != null) {
+    const cat = categoriesMap.get(firstId);
+    if (cat?.slug) return cat.slug;
+  }
+  return BLOG_CATEGORY_FALLBACK_SLUG;
+}
+
 function mapWpPostToBlogPost(
   post: WPPost,
   categoriesMap: Map<number, { name: string; slug: string }>
@@ -85,6 +98,7 @@ function mapWpPostToBlogPost(
     h: stripHtml(post.title?.rendered || ""),
     url: post.link || "",
     ...(post.slug && { slug: post.slug }),
+    categorySlug: resolveWpCategorySlug(post, categoriesMap),
     dateIso: post.date,
   };
 }
@@ -242,6 +256,7 @@ export async function getBlogPostBySlug(
       cc,
       date: formatDate(raw.date),
       url: raw.link || "",
+      categorySlug: resolveWpCategorySlug(raw, categoriesMap),
       content: raw.content?.rendered ?? "",
       excerpt: raw.excerpt?.rendered ?? "",
       modified: raw.modified ? formatDate(raw.modified) : undefined,

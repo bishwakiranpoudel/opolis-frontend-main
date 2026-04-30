@@ -78,6 +78,30 @@ export const SITE_URL = (
   rawSiteUrl && rawSiteUrl.length > 0 ? rawSiteUrl : "https://opolis.co"
 ).replace(/\/$/, "");
 
+/**
+ * Unemployable in-show “Season 2” if publish date is on/after this instant and no
+ * explicit S1/S2 WordPress category matched. Override with UNEMPLOYABLE_SEASON2_START_ISO (ISO 8601).
+ */
+export function unemployableSeasonTwoStartIso(): string {
+  const raw = process.env.UNEMPLOYABLE_SEASON2_START_ISO?.trim();
+  return raw || "2024-06-01T00:00:00.000Z";
+}
+
+/** Optional WP category ids that tag Unemployable S1 / S2 (numeric strings). */
+export function unemployableSeasonWpCategoryIds(): {
+  s1?: number;
+  s2?: number;
+} {
+  const n = (s: string | undefined) => {
+    const x = parseInt(s ?? "", 10);
+    return Number.isFinite(x) ? x : undefined;
+  };
+  return {
+    s1: n(process.env.UNEMPLOYABLE_SEASON1_WP_CATEGORY_ID),
+    s2: n(process.env.UNEMPLOYABLE_SEASON2_WP_CATEGORY_ID),
+  };
+}
+
 /** Official Privacy Policy PDF (linked from footer and mirrored legal pages). */
 export const LEGAL_PRIVACY_POLICY_PDF_URL =
   "https://opolis.co/wp-content/uploads/2026/01/25.12.18_Opolis-Privacy-Policy.docx.pdf";

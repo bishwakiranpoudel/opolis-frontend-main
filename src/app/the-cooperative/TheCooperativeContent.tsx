@@ -270,7 +270,6 @@ export function TheCooperativeContent() {
       <section
         className="cta-section"
         style={{
-          background: C.red,
           textAlign: "center",
         }}
       >

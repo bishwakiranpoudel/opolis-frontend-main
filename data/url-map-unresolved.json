@@ -1,34 +1,82 @@
 {
-  "generatedAt": "2026-03-31T18:49:53.061Z",
-  "description": "Opolis URLs whose path is not on the current sitemap; fill newPath for redirects / sheet import.",
+  "generatedAt": "2026-04-30T19:22:02.767Z",
+  "description": "Legacy opolis.co pathnames: newPath is the canonical on-site target when known (Next redirects use non-empty newPath). Empty newPath still needs a decision.",
   "mappings": [
     {
+      "oldPath": "/",
+      "newPath": "/"
+    },
+    {
       "oldPath": "/become-a-member",
-      "newPath": ""
+      "newPath": "/join"
     },
     {
       "oldPath": "/bench",
       "newPath": ""
     },
     {
+      "oldPath": "/benefits/opolis-member-benefits-explained-how-to-access-them",
+      "newPath": "/resources/blog/benefits/opolis-member-benefits-explained-how-to-access-them"
+    },
+    {
       "oldPath": "/blog",
-      "newPath": ""
+      "newPath": "/resources/blog"
+    },
+    {
+      "oldPath": "/business-setup/freelancer-toolkit-essential-tools-from-opolis-partners",
+      "newPath": "/resources/blog/entity/freelancer-toolkit-essential-tools-from-opolis-partners"
+    },
+    {
+      "oldPath": "/business-setup/how-freelancers-band-together-for-premium-perks-with-opolis",
+      "newPath": "/resources/blog/entity/how-freelancers-band-together-for-premium-perks-with-opolis"
+    },
+    {
+      "oldPath": "/business-setup/master-your-money-financial-goals-income-tax-documents",
+      "newPath": "/resources/blog/entity/master-your-money-financial-goals-income-tax-documents"
+    },
+    {
+      "oldPath": "/business-setup/opolis-s-corp-benefits-secret-sauce-to-a-cushy-retirement",
+      "newPath": "/resources/blog/entity/opolis-s-corp-benefits-secret-sauce-to-a-cushy-retirement"
+    },
+    {
+      "oldPath": "/business-setup/s-corp-tax-benefits-payroll-savings-business-structure",
+      "newPath": "/resources/blog/entity/s-corp-tax-benefits-payroll-savings-business-structure"
     },
     {
       "oldPath": "/business-setup/unlocking-business-structures",
       "newPath": ""
     },
     {
+      "oldPath": "/business-setup/what-should-i-expect-if-i-become-an-opolis-member",
+      "newPath": "/resources/blog/entity/what-should-i-expect-if-i-become-an-opolis-member"
+    },
+    {
+      "oldPath": "/can-health-insurance-help-you-save-on-taxes",
+      "newPath": "/resources/blog/benefits/can-health-insurance-help-you-save-on-taxes"
+    },
+    {
+      "oldPath": "/choosing-payroll-software-for-your-small-business",
+      "newPath": "/resources/blog/featured/choosing-payroll-software-for-your-small-business"
+    },
+    {
       "oldPath": "/cooperative-model-work-token-revolution",
       "newPath": ""
     },
     {
+      "oldPath": "/cooperative/how-opolis-and-forusalls-401k-benefits-you",
+      "newPath": "/resources/blog/entity/how-opolis-and-forusalls-401k-benefits-you"
+    },
+    {
       "oldPath": "/create-your-llc",
-      "newPath": ""
+      "newPath": "/eligibility"
     },
     {
       "oldPath": "/crypto-taxes",
       "newPath": ""
+    },
+    {
+      "oldPath": "/ditch-hourly-billing-earn-more-by-working-less",
+      "newPath": "/resources/blog/payroll/ditch-hourly-billing-earn-more-by-working-less"
     },
     {
       "oldPath": "/episode-6-self-employed-401k-and-retirement-strategies-for-freelancers-and-indie-workers",
@@ -36,75 +84,223 @@
     },
     {
       "oldPath": "/explore",
-      "newPath": ""
+      "newPath": "/resources"
     },
     {
       "oldPath": "/explore-benefits",
-      "newPath": ""
+      "newPath": "/benefits"
     },
     {
       "oldPath": "/explore-opolis/benefits",
-      "newPath": ""
+      "newPath": "/benefits"
     },
     {
       "oldPath": "/explore-opolis/entity",
-      "newPath": ""
+      "newPath": "/eligibility"
     },
     {
       "oldPath": "/explore-opolis/optimize-your-taxes",
-      "newPath": ""
+      "newPath": "/resources/compare"
     },
     {
       "oldPath": "/explore-opolis/payroll",
-      "newPath": ""
+      "newPath": "/benefits"
     },
     {
       "oldPath": "/explore-opolis/rewards",
-      "newPath": ""
+      "newPath": "/the-cooperative"
     },
     {
       "oldPath": "/explore/benefits",
-      "newPath": ""
+      "newPath": "/benefits"
     },
     {
       "oldPath": "/explore/entity",
-      "newPath": ""
+      "newPath": "/eligibility"
     },
     {
       "oldPath": "/explore/optimize-your-taxes",
-      "newPath": ""
+      "newPath": "/resources/compare"
     },
     {
       "oldPath": "/explore/payroll",
-      "newPath": ""
+      "newPath": "/benefits"
+    },
+    {
+      "oldPath": "/featured/choosing-payroll-software-for-your-small-business",
+      "newPath": "/resources/blog/featured/choosing-payroll-software-for-your-small-business"
     },
     {
       "oldPath": "/featured/maximizing-tax-efficiency",
       "newPath": ""
     },
     {
+      "oldPath": "/featured/why-freelancers-need-liability-insurance-protect-your-biz",
+      "newPath": "/resources/blog/entity/why-freelancers-need-liability-insurance-protect-your-biz"
+    },
+    {
+      "oldPath": "/freelancers-start-harnessing-the-power-of-ai",
+      "newPath": "/resources/blog/rewards/freelancers-start-harnessing-the-power-of-ai"
+    },
+    {
+      "oldPath": "/get-a-free-registered-agent-why-every-llc-needs-one",
+      "newPath": "/resources/blog/entity/get-a-free-registered-agent-why-every-llc-needs-one"
+    },
+    {
       "oldPath": "/hdhp-vs-copay",
       "newPath": ""
+    },
+    {
+      "oldPath": "/health-insurance/5-health-insurance-options-for-the-self-employed",
+      "newPath": "/resources/blog/benefits/5-health-insurance-options-for-the-self-employed"
+    },
+    {
+      "oldPath": "/health-insurance/a-guide-to-the-best-insurance-plans-for-independent-workers",
+      "newPath": "/resources/blog/benefits/a-guide-to-the-best-insurance-plans-for-independent-workers"
+    },
+    {
+      "oldPath": "/how-switching-to-an-s-corp-could-save-you-5k-or-more",
+      "newPath": "/resources/blog/entity/how-switching-to-an-s-corp-could-save-you-5k-or-more"
     },
     {
       "oldPath": "/how-to-calculate-and-make-estimated-tax-payments",
       "newPath": ""
     },
     {
+      "oldPath": "/how-we-assist-in-setting-up-your-llc-the-opolis-advantage",
+      "newPath": "/resources/blog/entity/how-we-assist-in-setting-up-your-llc-the-opolis-advantage"
+    },
+    {
+      "oldPath": "/hsa-vs-fsa-whats-the-real-difference",
+      "newPath": "/resources/blog/benefits/hsa-vs-fsa-whats-the-real-difference"
+    },
+    {
       "oldPath": "/insurance/bonds",
-      "newPath": ""
+      "newPath": "/resources/faq"
+    },
+    {
+      "oldPath": "/invoices-vs-receipts-what-small-businesses-need-to-know",
+      "newPath": "/resources/blog/entity/invoices-vs-receipts-what-small-businesses-need-to-know"
+    },
+    {
+      "oldPath": "/making-the-switch-how-to-seamlessly-transition-to-opolis",
+      "newPath": "/resources/blog/featured/making-the-switch-how-to-seamlessly-transition-to-opolis"
+    },
+    {
+      "oldPath": "/maximizing-solo-401k-benefits-with-opolis-forusall",
+      "newPath": "/resources/blog/featured/maximizing-solo-401k-benefits-with-opolis-forusall"
     },
     {
       "oldPath": "/maximizing-tax-efficiency",
       "newPath": ""
     },
     {
+      "oldPath": "/opolis-bench-the-ultimate-freelance-financial-duo",
+      "newPath": "/resources/blog/entity/opolis-bench-the-ultimate-freelance-financial-duo"
+    },
+    {
+      "oldPath": "/opolis-blog/how-switching-to-an-s-corp-could-save-you-5k-or-more",
+      "newPath": "/resources/blog/entity/how-switching-to-an-s-corp-could-save-you-5k-or-more"
+    },
+    {
+      "oldPath": "/opolis-blog/the-best-insurance-for-freelancers",
+      "newPath": "/resources/blog/benefits/the-best-insurance-for-freelancers"
+    },
+    {
+      "oldPath": "/opolis-public-radio/episode-10-bill-warren-on-opolis-commons-daos",
+      "newPath": "/resources/podcasts/episode-10-bill-warren-on-opolis-commons-daos"
+    },
+    {
+      "oldPath": "/opolis-public-radio/episode-11-opolis-rewards-token-launch-with-eric-arsenault",
+      "newPath": "/resources/podcasts/episode-11-opolis-rewards-token-launch-with-eric-arsenault"
+    },
+    {
+      "oldPath": "/opolis-public-radio/episode-12-cooperativism-governance-with-auryn-macmillan",
+      "newPath": "/resources/podcasts/episode-12-cooperativism-governance-with-auryn-macmillan"
+    },
+    {
+      "oldPath": "/opolis-public-radio/episode-13-opolis-governance-open-enrollment-with-barry-goers",
+      "newPath": "/resources/podcasts/episode-13-opolis-governance-open-enrollment-with-barry-goers"
+    },
+    {
+      "oldPath": "/opolis-public-radio/episode-14-crypto-invoicing-tips-with-david-gold",
+      "newPath": "/resources/podcasts/episode-14-crypto-invoicing-tips-with-david-gold"
+    },
+    {
+      "oldPath": "/opolis-public-radio/episode-15-gitcoin-opolis-benefits-for-freelance-developers",
+      "newPath": "/resources/podcasts/episode-15-gitcoin-opolis-benefits-for-freelance-developers"
+    },
+    {
+      "oldPath": "/opolis-public-radio/episode-3-eddie-pastore-on-launching-the-employment-commons",
+      "newPath": "/resources/podcasts/episode-3-eddie-pastore-on-launching-the-employment-commons"
+    },
+    {
+      "oldPath": "/opolis-public-radio/episode-4-legalizing-the-commons-with-jason-wiener-yev-muchnik",
+      "newPath": "/resources/podcasts/episode-4-legalizing-the-commons-with-jason-wiener-yev-muchnik"
+    },
+    {
+      "oldPath": "/opolis-public-radio/episode-5-sean-li-on-digital-identity-web3-mass-adoption",
+      "newPath": "/resources/podcasts/episode-5-sean-li-on-digital-identity-web3-mass-adoption"
+    },
+    {
+      "oldPath": "/opolis-public-radio/episode-6-kevin-owocki-on-employment-quadratic-funding",
+      "newPath": "/resources/podcasts/episode-6-kevin-owocki-on-employment-quadratic-funding"
+    },
+    {
+      "oldPath": "/opolis-public-radio/episode-7-nathan-schneider-on-governance-the-next-economy",
+      "newPath": "/resources/podcasts/episode-7-nathan-schneider-on-governance-the-next-economy"
+    },
+    {
+      "oldPath": "/opolis-public-radio/episode-8-vignesh-sundaresan-on-defi-changing-crypto-payments",
+      "newPath": "/resources/podcasts/episode-8-vignesh-sundaresan-on-defi-changing-crypto-payments"
+    },
+    {
+      "oldPath": "/opolis-public-radio/episode-9-russell-castagnaro-on-colorados-digital-innovation",
+      "newPath": "/resources/podcasts/episode-9-russell-castagnaro-on-colorados-digital-innovation"
+    },
+    {
+      "oldPath": "/opolis-s-corp-benefits-secret-sauce-to-a-cushy-retirement",
+      "newPath": "/resources/blog/entity/opolis-s-corp-benefits-secret-sauce-to-a-cushy-retirement"
+    },
+    {
+      "oldPath": "/payroll/how-payroll-services-simplify-tax-filing-for-freelancers",
+      "newPath": "/resources/blog/payroll/how-payroll-services-simplify-tax-filing-for-freelancers"
+    },
+    {
+      "oldPath": "/payroll/why-proof-of-income-is-difficult-for-independent-workers",
+      "newPath": "/resources/blog/payroll/why-proof-of-income-is-difficult-for-independent-workers"
+    },
+    {
       "oldPath": "/podcast",
-      "newPath": ""
+      "newPath": "/resources/podcasts"
+    },
+    {
+      "oldPath": "/professionalize-your-self-employed-practice-with-opolis",
+      "newPath": "/resources/blog/entity/professionalize-your-self-employed-practice-with-opolis"
+    },
+    {
+      "oldPath": "/resources",
+      "newPath": "/resources"
     },
     {
       "oldPath": "/resources/podcast",
-      "newPath": ""
+      "newPath": "/resources/podcasts"
+    },
+    {
+      "oldPath": "/retirement-plans-for-self-employed-401k-ira-options",
+      "newPath": "/resources/blog/retirement/retirement-plans-for-self-employed-401k-ira-options"
+    },
+    {
+      "oldPath": "/retirement/opolis-solo-401k-maximize-your-retirement-savings-today",
+      "newPath": "/resources/blog/retirement/opolis-solo-401k-maximize-your-retirement-savings-today"
+    },
+    {
+      "oldPath": "/rewards/how-opolis-transformed-teds-freelance-benefits-journey",
+      "newPath": "/resources/blog/rewards/how-opolis-transformed-teds-freelance-benefits-journey"
+    },
+    {
+      "oldPath": "/rewards/unlocking-opolis-benefits-beyond-payroll-and-health-insurance",
+      "newPath": "/resources/blog/benefits/unlocking-opolis-benefits-beyond-payroll-and-health-insurance"
     },
     {
       "oldPath": "/schedule-tax-schedule-c-schedule-se-and-form-1040",
@@ -123,16 +319,128 @@
       "newPath": ""
     },
     {
+      "oldPath": "/simplify-loan-lease-applications-with-opolis",
+      "newPath": "/resources/blog/featured/simplify-loan-lease-applications-with-opolis"
+    },
+    {
       "oldPath": "/strategies-for-self-employed-individuals-to-minimize-tax-liability-and-maximize-deductions",
       "newPath": ""
+    },
+    {
+      "oldPath": "/taxes-for-self-employed-start-right-with-opolis",
+      "newPath": "/resources/blog/taxes/taxes-for-self-employed-start-right-with-opolis"
+    },
+    {
+      "oldPath": "/taxes/2025-tax-guide-how-opolis-simplifies-freelance-filing",
+      "newPath": "/resources/blog/taxes/2025-tax-guide-how-opolis-simplifies-freelance-filing"
+    },
+    {
+      "oldPath": "/taxes/simplify-your-taxes-tips-and-tools-from-opolis",
+      "newPath": "/resources/blog/taxes/simplify-your-taxes-tips-and-tools-from-opolis"
+    },
+    {
+      "oldPath": "/taxes/strategies-to-minimize-tax-liability-for-self-employed-individuals",
+      "newPath": "/resources/blog/taxes/strategies-to-minimize-tax-liability-for-self-employed-individuals"
+    },
+    {
+      "oldPath": "/taxes/tax-write-offs-every-freelancer-should-know-about",
+      "newPath": "/resources/blog/taxes/tax-write-offs-every-freelancer-should-know-about"
+    },
+    {
+      "oldPath": "/taxes/taxes-for-self-employed-start-right-with-opolis",
+      "newPath": "/resources/blog/taxes/taxes-for-self-employed-start-right-with-opolis"
+    },
+    {
+      "oldPath": "/the-benefits-of-an-s-corp-why-you-should-have-one",
+      "newPath": "/resources/blog/entity/the-benefits-of-an-s-corp-why-you-should-have-one"
+    },
+    {
+      "oldPath": "/the-top-5-benefits-of-automated-payroll-for-independent-workers",
+      "newPath": "/resources/blog/featured/the-top-5-benefits-of-automated-payroll-for-independent-workers"
     },
     {
       "oldPath": "/top-way-to-use-ai-as-a-self-employed-worker",
       "newPath": ""
     },
     {
+      "oldPath": "/understanding-self-employment-taxes-a-comprehensive-guide",
+      "newPath": "/resources/blog/taxes/understanding-self-employment-taxes-a-comprehensive-guide"
+    },
+    {
+      "oldPath": "/understanding-the-differences-sole-proprietor-vs-llc",
+      "newPath": "/resources/blog/entity/understanding-the-differences-sole-proprietor-vs-llc"
+    },
+    {
+      "oldPath": "/unemployable/episode-1-spencer-graham-working-at-a-dao-web3-solopreneur",
+      "newPath": "/resources/podcasts/episode-1-spencer-graham-working-at-a-dao-web3-solopreneur"
+    },
+    {
+      "oldPath": "/unemployable/episode-10-crypto-tax-strategies-from-a-crypto-cpa",
+      "newPath": "/resources/podcasts/episode-10-crypto-tax-strategies-from-a-crypto-cpa"
+    },
+    {
+      "oldPath": "/unemployable/episode-11-platforms-empowering-independent-workers-in-2024",
+      "newPath": "/resources/podcasts/episode-11-platforms-empowering-independent-workers-in-2024"
+    },
+    {
+      "oldPath": "/unemployable/episode-12-how-freelancers-can-earn-more-by-working-less",
+      "newPath": "/resources/podcasts/episode-12-how-freelancers-can-earn-more-by-working-less"
+    },
+    {
+      "oldPath": "/unemployable/episode-2-how-to-get-affordable-freelancer-health-insurance",
+      "newPath": "/resources/podcasts/episode-2-how-to-get-affordable-freelancer-health-insurance"
+    },
+    {
+      "oldPath": "/unemployable/episode-3-how-to-find-work-in-web3-daos",
+      "newPath": "/resources/podcasts/episode-3-how-to-find-work-in-web3-daos"
+    },
+    {
+      "oldPath": "/unemployable/episode-4-hsas-fsas-essentials-for-freelancers",
+      "newPath": "/resources/podcasts/episode-4-hsas-fsas-essentials-for-freelancers"
+    },
+    {
+      "oldPath": "/unemployable/episode-5-how-to-find-work-as-freelance-web-developer-in-web3",
+      "newPath": "/resources/podcasts/episode-5-how-to-find-work-as-freelance-web-developer-in-web3"
+    },
+    {
+      "oldPath": "/unemployable/episode-6-self-employed-401k-retirement-strategies",
+      "newPath": "/resources/podcasts/episode-6-self-employed-401k-retirement-strategies"
+    },
+    {
+      "oldPath": "/unemployable/episode-7-legal-tax-and-intellectual-property-tips-you-need-to-know-as-a-freelancer",
+      "newPath": "/resources/podcasts/episode-7-legal-tax-and-intellectual-property-tips-you-need-to-know-as-a-freelancer"
+    },
+    {
+      "oldPath": "/unemployable/episode-8-democratized-employment-for-the-decentralized-future",
+      "newPath": "/resources/podcasts/episode-8-democratized-employment-for-the-decentralized-future"
+    },
+    {
+      "oldPath": "/unemployable/episode-9-a-freelancers-guide-to-the-2023-tax-season",
+      "newPath": "/resources/podcasts/episode-9-a-freelancers-guide-to-the-2023-tax-season"
+    },
+    {
+      "oldPath": "/unemployable/unemployable-podcast-trailer-control-your-work-freedom",
+      "newPath": "/resources/podcasts/unemployable-podcast-trailer-control-your-work-freedom"
+    },
+    {
       "oldPath": "/unlocking-business-structures",
       "newPath": ""
+    },
+    {
+      "oldPath": "/unlocking-opolis-benefits-beyond-payroll-and-health-insurance",
+      "newPath": "/resources/blog/benefits/unlocking-opolis-benefits-beyond-payroll-and-health-insurance"
+    },
+    {
+      "oldPath": "/why-freelancers-need-liability-insurance-protect-your-biz",
+      "newPath": "/resources/blog/entity/why-freelancers-need-liability-insurance-protect-your-biz"
+    },
+    {
+      "oldPath": "/why-freelancers-should-consider-using-payroll-services",
+      "newPath": "/resources/blog/payroll/why-freelancers-should-consider-using-payroll-services"
+    },
+    {
+      "oldPath": "/why-proof-of-income-is-difficult-for-independent-workers",
+      "newPath": "/resources/blog/payroll/why-proof-of-income-is-difficult-for-independent-workers"
     }
   ]
 }

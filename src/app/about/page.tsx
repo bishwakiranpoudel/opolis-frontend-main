@@ -469,7 +469,6 @@ export default function AboutPage() {
       <section
         className="cta-section"
         style={{
-          background: C.red,
           textAlign: "center",
         }}
       >

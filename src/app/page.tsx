@@ -21,7 +21,6 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homeBreadcrumb) }}
       />
-      {/* HERO */}
       <section
         className="hero-section"
         style={{
@@ -89,7 +88,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CREDIBILITY STATS */}
       <section
         className="stats-section"
         style={{
@@ -148,7 +146,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* KEY OUTCOMES */}
       <section className="sec-alt">
         <div className="wrap">
           <span className="slabel">What Membership Gets You</span>
@@ -263,7 +260,6 @@ export default function HomePage() {
             infrastructure.
           </p>
           <div className="g2" style={{ gap: 24 }}>
-            {/* Tier 1: Community */}
             <div
               className="dc"
               style={{
@@ -373,7 +369,6 @@ export default function HomePage() {
               </a>
             </div>
 
-            {/* Tier 2: Employee */}
             <div
               style={{
                 background: "rgba(232,67,45,.05)",
@@ -497,7 +492,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* PROOF */}
       <section className="sec-dark">
         <div className="wrap">
           <span className="slabel">Member Stories</span>
@@ -609,7 +603,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* WHO IT'S FOR */}
       <section className="sec-dark">
         <div className="wrap">
           <div
@@ -713,11 +706,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA */}
       <section
         className="cta-section"
         style={{
-          background: C.red,
           textAlign: "center",
         }}
       >

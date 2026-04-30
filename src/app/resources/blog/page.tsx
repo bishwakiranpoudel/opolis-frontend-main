@@ -61,7 +61,6 @@ export default async function ResourcesBlogPage() {
         initialPosts={blogPosts}
         initialGuides={guides}
         initialFaq={faqSections}
-        initialTab="blog"
       />
     </>
   );

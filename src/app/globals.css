@@ -24,19 +24,19 @@
   --space-section-inner-bottom: 8px; /* extra air below last block in a section */
   /* Hero photo (public/background.png) — scrim matches C.black #0D0D0D */
   --hero-photo: url("/background.png");
-  --hero-photo-blur: 6px;
   --hero-photo-scale: 1.04;
+  /* Scrim alphas +25% vs prior (0.72/0.88/0.94) */
   --hero-photo-scrim: linear-gradient(
     180deg,
-    rgba(13, 13, 13, 0.72) 0%,
-    rgba(13, 13, 13, 0.88) 42%,
-    rgba(13, 13, 13, 0.94) 100%
+    rgba(13, 13, 13, 0.9) 0%,
+    rgba(13, 13, 13, 1) 42%,
+    rgba(13, 13, 13, 1) 100%
   );
   /* Sticky header (progress bar + nav row) — used by sidebar offset */
   --nav-sticky-height: 72px;
-  /* Very subtle tile (generic); red CTAs use --cta-section-pattern-image so it reads on brand orange */
   --o-pattern-image: url("data:image/svg+xml,%3Csvg width='120' height='150' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h120v150H0z' fill='%23fff' fill-opacity='.01'/%3E%3C/svg%3E");
-  --cta-section-pattern-image: url("data:image/svg+xml,%3Csvg width='120' height='150' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h120v150H0z' fill='%23fff' fill-opacity='.14'/%3E%3C/svg%3E");
+  /* CTA fallback / edge color — deeper burnt orange than C.red for calmer band over background.png */
+  --cta-section-fill: #b83222;
 }
 
 *, *::before, *::after {
@@ -781,6 +781,40 @@ main {
   outline-offset: 2px;
 }
 
+/* Podcast episode sidebar: thumb + title */
+.podcast-sidebar-item__link .podcast-sidebar-item__row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.podcast-sidebar-item__thumb {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid #252525;
+  background: #141414;
+}
+
+.podcast-sidebar-item__thumb--placeholder {
+  display: inline-block;
+  background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
+}
+
+.podcast-sidebar-item__text {
+  min-width: 0;
+  flex: 1;
+}
+
+.podcast-sidebar-item__text .blog-sidebar-item__title {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 /* Prose styling for WordPress post content */
 .blog-content {
   color: #C8C8C8;
@@ -793,6 +827,13 @@ main {
 .blog-content p {
   margin: 0 0 1em;
   line-height: var(--lh-body-loose);
+}
+
+/* Embedded players inside episode body */
+.blog-content.podcast-episode-body iframe {
+  max-width: 100%;
+  border-radius: 10px;
+  border: 1px solid #252525;
 }
 .blog-content h2 {
   font-family: 'Barlow Condensed', sans-serif;
@@ -1037,6 +1078,9 @@ main {
 }
 
 .tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 9px 20px;
   border-radius: 6px;
   font-size: 13px;
@@ -1046,6 +1090,9 @@ main {
   transition: all 0.18s;
   text-decoration: none;
   font-family: 'DM Sans', sans-serif;
+  background: transparent;
+  cursor: pointer;
+  box-sizing: border-box;
 }
 
 .tab:hover,
@@ -1329,7 +1376,7 @@ main {
   isolation: isolate;
 }
 
-/* Hero: blurred photo + dark scrim; .wrap above (z-index) */
+/* Hero: photo + dark scrim; .wrap above (z-index) */
 .hero-section::before,
 .page-hero::before {
   content: "";
@@ -1341,7 +1388,6 @@ main {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  filter: blur(var(--hero-photo-blur));
   transform: scale(var(--hero-photo-scale));
 }
 
@@ -1364,7 +1410,6 @@ main {
 @media (prefers-reduced-motion: reduce) {
   .hero-section::before,
   .page-hero::before {
-    filter: none;
     transform: none;
   }
 }
@@ -1391,18 +1436,30 @@ main {
   position: relative;
   overflow: hidden;
   padding: 80px 0;
+  isolation: isolate;
+  background-color: var(--cta-section-fill);
 }
 
-/* Real DOM layer (not ::before) — reliable above flat bg on all engines */
+/*
+ * Same image as hero (`public/background.png` → --hero-photo). Brand tint keeps white headline/button readable.
+ */
 .cta-pattern-layer {
   position: absolute;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background-image: var(--cta-section-pattern-image);
-  background-size: 120px 150px;
-  background-repeat: repeat;
-  opacity: 0.22;
+  background-color: var(--cta-section-fill);
+  background-image:
+    linear-gradient(
+      180deg,
+      rgba(184, 50, 34, 0.88) 0%,
+      rgba(148, 40, 28, 0.82) 42%,
+      rgba(22, 14, 13, 0.72) 100%
+    ),
+    var(--hero-photo);
+  background-size: cover, cover;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
 }
 
 .cta-section > .wrap {

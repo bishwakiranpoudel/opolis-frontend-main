@@ -122,6 +122,10 @@ export async function mirrorWpAssetToStorage(args: {
     customMetadata
   );
 
+  const extraClean = Object.fromEntries(
+    Object.entries(extraFields ?? {}).filter(([, v]) => v !== undefined)
+  ) as Partial<MediaMapDoc>;
+
   const entry: MediaMapDoc = {
     wpUrl,
     storagePath,
@@ -129,7 +133,7 @@ export async function mirrorWpAssetToStorage(args: {
     mimeType: contentType,
     bytes: buffer.length,
     importedAt: new Date().toISOString(),
-    ...extraFields,
+    ...extraClean,
     sourceKind,
     contentSha256,
   };

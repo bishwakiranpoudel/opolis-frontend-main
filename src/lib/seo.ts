@@ -6,7 +6,6 @@ export interface PageSEO {
   description: string;
   path: string;
   noIndex?: boolean;
-  /** Optional meta keywords (low impact, harmless). */
   keywords?: string[];
   openGraph?: {
     type?: "website" | "article";
@@ -70,7 +69,7 @@ export function organizationJsonLd() {
     description:
       "A member-owned employment cooperative providing W-2 employment infrastructure for independent professionals.",
     foundingDate: "2019",
-    sameAs: SAME_AS_URLS.length > 0 ? SAME_AS_URLS : [],
+    ...(SAME_AS_URLS.length > 0 ? { sameAs: SAME_AS_URLS } : {}),
   };
 }
 
@@ -84,12 +83,19 @@ export function websiteJsonLd() {
       "Independent work. Collective power. Employment infrastructure for independent professionals.",
     publisher: { "@id": `${SITE_URL}/#organization` },
     inLanguage: "en-US",
-    potentialAction: {
-      "@type": "SearchAction",
-      target: { "@type": "EntryPoint", url: `${SITE_URL}/resources` },
-      "query-input": "required name=search_term_string",
-    },
   };
+}
+
+function plainTextForSchema(html: string): string {
+  return html
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 export function faqJsonLd(faq: { question: string; answer: string }[]) {
@@ -98,10 +104,10 @@ export function faqJsonLd(faq: { question: string; answer: string }[]) {
     "@type": "FAQPage",
     mainEntity: faq.map((item) => ({
       "@type": "Question",
-      name: item.question,
+      name: plainTextForSchema(item.question),
       acceptedAnswer: {
         "@type": "Answer",
-        text: item.answer,
+        text: plainTextForSchema(item.answer),
       },
     })),
   };
@@ -110,12 +116,9 @@ export function faqJsonLd(faq: { question: string; answer: string }[]) {
 export interface ArticleJsonLdPost {
   title: string;
   description: string;
-  /** ISO 8601 preferred for datePublished */
   date: string;
-  /** ISO 8601 preferred for dateModified */
   modified?: string;
-  slug: string;
-  /** Optional featured image URL(s) for Article schema */
+  path: string;
   image?: string | string[];
 }
 
@@ -181,7 +184,7 @@ export function articleJsonLd(post: ArticleJsonLdPost) {
     publisher: { "@id": `${SITE_URL}/#organization` },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `${SITE_URL}/blog/${post.slug}`,
+      "@id": `${SITE_URL}${post.path}`,
     },
   };
 }

@@ -3,6 +3,7 @@
 export const COLLECTIONS = {
   blogPosts: "blog_posts",
   blogCategories: "blog_categories",
+  podcastEpisodes: "podcast_episodes",
   mediaMap: "media_map",
   resourcesGuides: "resources_guides",
   resourcesFaq: "resources_faq",

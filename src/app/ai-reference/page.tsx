@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { buildMetadata, breadcrumbJsonLd } from "@/lib/seo";
-import { C } from "@/lib/constants";
 import { AIPageContent } from "./AIPageContent";
 
 export const metadata: Metadata = buildMetadata({

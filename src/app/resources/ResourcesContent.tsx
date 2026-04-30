@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { Check, X, Minus } from "lucide-react";
 import { C } from "@/lib/constants";
 import type { FaqSection, GuidesSection } from "@/lib/resourcesData";
@@ -15,63 +15,80 @@ import {
   BLOG_CATS,
   BLOG_CAT_COLORS,
 } from "@/lib/resourcesData";
-import { ALL_POSTS, type BlogPost } from "@/lib/blogPosts";
+import { ALL_POSTS, blogPostPath, type BlogPost } from "@/lib/blogPosts";
+import { decodeHtmlEntitiesLite } from "@/lib/podcastContent";
+import {
+  PODCAST_SERIES_META,
+  podcastEpisodePath,
+  type PodcastEpisode,
+} from "@/lib/podcastTypes";
+import {
+  RESOURCES_COMPARE_PATH,
+  RESOURCES_FAQ_PATH,
+  RESOURCES_GUIDES_PATH,
+  RESOURCES_PRICING_PATH,
+} from "@/lib/resourcesPaths";
+import { resolveGuideItemHref } from "@/lib/guideItems";
 
 const JOIN_URL = "https://commons.opolis.co/coalition/webinarspecial";
 
 /** Blog listing tab URL (legacy `/blog` can redirect here). */
 export const RESOURCES_BLOG_PATH = "/resources/blog";
 
-type ResourcesTab = "pricing" | "compare" | "guides" | "faq" | "blog";
+/** Podcast listing (UNEMPLOYABLE & Opolis Public Radio episodes). */
+export const RESOURCES_PODCASTS_PATH = "/resources/podcasts";
+
+export {
+  RESOURCES_COMPARE_PATH,
+  RESOURCES_FAQ_PATH,
+  RESOURCES_GUIDES_PATH,
+  RESOURCES_PRICING_PATH,
+} from "@/lib/resourcesPaths";
+
+type ResourcesTab = "pricing" | "compare" | "guides" | "faq" | "blog" | "podcasts";
+
+function resourcesTabFromPath(pathname: string): ResourcesTab {
+  const p = pathname.toLowerCase();
+  if (p.startsWith("/resources/blog")) return "blog";
+  if (p.startsWith("/resources/podcasts")) return "podcasts";
+  if (p.startsWith("/resources/guides")) return "guides";
+  if (p === RESOURCES_FAQ_PATH) return "faq";
+  if (p === RESOURCES_COMPARE_PATH) return "compare";
+  if (p === RESOURCES_PRICING_PATH || p === "/resources") return "pricing";
+  return "pricing";
+}
 
 type ResourcesContentProps = {
   initialPosts?: BlogPost[];
+  initialPodcasts?: PodcastEpisode[];
   initialGuides?: GuidesSection[];
   initialFaq?: FaqSection[];
-  initialTab?: ResourcesTab;
 };
 
 export function ResourcesContent({
   initialPosts,
+  initialPodcasts,
   initialGuides,
   initialFaq,
-  initialTab = "pricing",
 }: ResourcesContentProps) {
   const pathname = usePathname();
-  const router = useRouter();
   const guides = initialGuides ?? GUIDES_DATA;
   const faqSections = initialFaq ?? FAQ_SECTIONS;
 
-  const [tab, setTab] = useState<ResourcesTab>(initialTab);
+  const tab = resourcesTabFromPath(pathname);
   const [openSection, setOpenSection] = useState(faqSections[0]?.id ?? "overview");
   const [openItem, setOpenItem] = useState<number | null>(null);
   const [blogCat, setBlogCat] = useState("All");
   const [blogSearch, setBlogSearch] = useState("");
 
   const posts = initialPosts ?? ALL_POSTS;
+  const podcasts = initialPodcasts ?? [];
 
   const filteredPosts = posts.filter(
     (p) =>
       (blogCat === "All" || p.cat === blogCat) &&
       (blogSearch === "" || p.h.toLowerCase().includes(blogSearch.toLowerCase()))
   );
-
-  useEffect(() => {
-    if (pathname === RESOURCES_BLOG_PATH) setTab("blog");
-    else if (pathname === "/resources") {
-      setTab((t) => (t === "blog" ? "pricing" : t));
-    }
-  }, [pathname]);
-
-  function selectTab(id: ResourcesTab) {
-    if (id === "blog") {
-      router.push(RESOURCES_BLOG_PATH);
-      setTab("blog");
-    } else {
-      if (pathname === RESOURCES_BLOG_PATH) router.push("/resources");
-      setTab(id);
-    }
-  }
 
   return (
     <>
@@ -89,21 +106,21 @@ export function ResourcesContent({
           <div className="tabs">
             {(
               [
-                { id: "pricing" as const, l: "Pricing" },
-                { id: "compare" as const, l: "Comparisons" },
-                { id: "guides" as const, l: "Guides" },
-                { id: "faq" as const, l: "FAQ" },
-                { id: "blog" as const, l: "Blog" },
+                { id: "pricing" as const, l: "Pricing", href: RESOURCES_PRICING_PATH },
+                { id: "compare" as const, l: "Comparisons", href: RESOURCES_COMPARE_PATH },
+                { id: "guides" as const, l: "Guides", href: RESOURCES_GUIDES_PATH },
+                { id: "faq" as const, l: "FAQ", href: RESOURCES_FAQ_PATH },
+                { id: "blog" as const, l: "Blog", href: RESOURCES_BLOG_PATH },
+                { id: "podcasts" as const, l: "Podcast", href: RESOURCES_PODCASTS_PATH },
               ] as const
             ).map((t) => (
-              <button
+              <Link
                 key={t.id}
-                type="button"
+                href={t.href}
                 className={`tab${tab === t.id ? " on" : ""}`}
-                onClick={() => selectTab(t.id)}
               >
                 {t.l}
-              </button>
+              </Link>
             ))}
           </div>
         </div>
@@ -413,8 +430,7 @@ export function ResourcesContent({
                     }}
                   >
                     {sec.items.map((item) => {
-                      const isInternal =
-                        item.url.startsWith("/") && !item.url.startsWith("//");
+                      const href = resolveGuideItemHref(item, sec, guides);
                       const linkStyle = {
                         display: "flex",
                         alignItems: "center",
@@ -450,14 +466,14 @@ export function ResourcesContent({
                               fontSize: 13,
                             }}
                           >
-                            {isInternal ? "→" : "↗"}
+                            {href.startsWith("http") ? "↗" : "→"}
                           </span>
                         </>
                       );
-                      return isInternal ? (
+                      return (
                         <Link
-                          key={item.label}
-                          href={item.url}
+                          key={`${sec.cat}-${item.label}-${item.url}`}
+                          href={href}
                           style={linkStyle}
                           onMouseEnter={(e) => {
                             e.currentTarget.style.background = C.card;
@@ -468,22 +484,6 @@ export function ResourcesContent({
                         >
                           {content}
                         </Link>
-                      ) : (
-                        <a
-                          key={item.label}
-                          href={item.url}
-                          target="_blank"
-                          rel="noreferrer"
-                          style={linkStyle}
-                          onMouseEnter={(e) => {
-                            e.currentTarget.style.background = C.card;
-                          }}
-                          onMouseLeave={(e) => {
-                            e.currentTarget.style.background = "transparent";
-                          }}
-                        >
-                          {content}
-                        </a>
                       );
                     })}
                   </div>
@@ -800,7 +800,7 @@ export function ResourcesContent({
                     color: "inherit" as const,
                   };
                   return p.slug ? (
-                    <Link key={i} href={`/blog/${p.slug}`} style={linkStyle}>
+                    <Link key={i} href={blogPostPath(p)} style={linkStyle}>
                       {cardContent}
                     </Link>
                   ) : (
@@ -828,8 +828,246 @@ export function ResourcesContent({
                 }}
               >
                 <strong style={{ color: C.lgray }}>Note:</strong> Blog
-                articles open on this site. Full list above.
+                articles open on this site.                 Full list above.
               </div>
+            </div>
+          )}
+
+          {/* PODCASTS */}
+          {tab === "podcasts" && (
+            <div style={{ maxWidth: 960 }}>
+              <div style={{ marginBottom: 32 }}>
+                <h2
+                  id="podcasts"
+                  className="cond h2-section h2-section--resources-tab"
+                  style={{ marginBottom: 6 }}
+                >
+                  Podcast
+                </h2>
+                <p style={{ color: C.gray, fontSize: 14, lineHeight: 1.6 }}>
+                  Two series —{" "}
+                  <strong style={{ color: C.lgray }}>
+                    {PODCAST_SERIES_META["opolis-public-radio"].title}
+                  </strong>{" "}
+                  (
+                  {
+                    podcasts.filter(
+                      (p) => p.seriesKey === "opolis-public-radio"
+                    ).length
+                  }
+                  ) and{" "}
+                  <strong style={{ color: C.lgray }}>
+                    {PODCAST_SERIES_META.unemployable.title}
+                  </strong>{" "}
+                  (
+                  {
+                    podcasts.filter((p) => p.seriesKey === "unemployable")
+                      .length
+                  }
+                  ). {podcasts.length} episodes total.
+                </p>
+              </div>
+              {podcasts.length === 0 ? (
+                <p style={{ color: C.gray, fontSize: 14, padding: "32px 0" }}>
+                  No episodes loaded yet. Import podcast episodes into Firestore
+                  or set WORDPRESS_URL for WordPress mode.
+                </p>
+              ) : (
+                <>
+                  {podcasts.map((ep, idx) => {
+                    const prev = idx > 0 ? podcasts[idx - 1] : null;
+                    const showSeriesHeading =
+                      !prev ||
+                      prev.seriesKey !== ep.seriesKey ||
+                      (ep.seriesKey === "unemployable" &&
+                        prev.episodeSeasonSort !== ep.episodeSeasonSort);
+                    const excerptPlain = ep.excerptHtml
+                      .replace(/<[^>]+>/g, "")
+                      .replace(/\s+/g, " ")
+                      .trim();
+                    const excerptPreview = excerptPlain.slice(0, 160);
+                    const preview = decodeHtmlEntitiesLite(
+                      excerptPreview.length >= 160
+                        ? `${excerptPreview}…`
+                        : excerptPreview
+                    );
+                    return (
+                      <div key={ep.slug}>
+                        {showSeriesHeading && (
+                          <div
+                            style={{
+                              marginTop: idx === 0 ? 0 : 40,
+                              marginBottom: 18,
+                            }}
+                          >
+                            <h3
+                              className="cond"
+                              style={{
+                                fontSize: 18,
+                                fontWeight: 700,
+                                color: "#fff",
+                                marginBottom: 6,
+                              }}
+                            >
+                              {ep.seriesKey === "unemployable"
+                                ? `${ep.seriesTitle} · ${ep.episodeSeasonLabel}`
+                                : ep.seriesTitle}
+                            </h3>
+                            <p
+                              style={{
+                                margin: 0,
+                                fontSize: 12,
+                                color: C.gray,
+                                letterSpacing: "0.04em",
+                              }}
+                            >
+                              <span
+                                style={{
+                                  display: "inline-block",
+                                  marginRight: 10,
+                                  padding: "2px 8px",
+                                  borderRadius: 6,
+                                  fontSize: 10,
+                                  fontWeight: 700,
+                                  textTransform: "uppercase",
+                                  background: `${C.red}33`,
+                                  color: C.red,
+                                }}
+                              >
+                                {PODCAST_SERIES_META[ep.seriesKey].shortLabel}
+                              </span>
+                              {ep.seriesKey === "unemployable"
+                                ? ep.episodeSeasonLabel
+                                : ep.seasonLabel}
+                            </p>
+                          </div>
+                        )}
+                        <Link
+                          href={podcastEpisodePath(ep.slug)}
+                          style={{
+                            display: "block",
+                            textDecoration: "none",
+                            color: "inherit",
+                            marginBottom: 14,
+                          }}
+                        >
+                          <div
+                            className="bcard"
+                            style={{
+                              background: C.card,
+                              border: `1px solid ${C.border}`,
+                              borderRadius: 10,
+                              overflow: "hidden",
+                              display: "grid",
+                              gridTemplateColumns:
+                                "minmax(120px, 200px) 1fr",
+                              gap: 0,
+                              transition: "border-color 0.15s",
+                            }}
+                          >
+                            <div
+                              style={{
+                                background: "#141414",
+                                minHeight: 120,
+                                position: "relative",
+                              }}
+                            >
+                              {ep.thumbnailUrl ? (
+                                // eslint-disable-next-line @next/next/no-img-element -- CMS URLs
+                                <img
+                                  src={ep.thumbnailUrl}
+                                  alt=""
+                                  style={{
+                                    width: "100%",
+                                    height: "100%",
+                                    objectFit: "cover",
+                                    display: "block",
+                                    aspectRatio: "16 / 9",
+                                  }}
+                                />
+                              ) : (
+                                <div
+                                  style={{
+                                    width: "100%",
+                                    aspectRatio: "16 / 9",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    color: C.gray,
+                                    fontSize: 11,
+                                  }}
+                                >
+                                  No thumbnail
+                                </div>
+                              )}
+                            </div>
+                            <div style={{ padding: "18px 20px" }}>
+                              <div
+                                style={{
+                                  display: "flex",
+                                  justifyContent: "space-between",
+                                  alignItems: "center",
+                                  marginBottom: 10,
+                                  gap: 12,
+                                }}
+                              >
+                                <span
+                                  style={{
+                                    fontSize: 10,
+                                    fontWeight: 700,
+                                    letterSpacing: "0.1em",
+                                    textTransform: "uppercase",
+                                    color: C.red,
+                                  }}
+                                >
+                                  {PODCAST_SERIES_META[ep.seriesKey].shortLabel}
+                                </span>
+                                <span style={{ fontSize: 11, color: C.gray }}>
+                                  {ep.date}
+                                </span>
+                              </div>
+                              <h3
+                                style={{
+                                  fontSize: 15,
+                                  fontWeight: 700,
+                                  color: "#fff",
+                                  lineHeight: 1.45,
+                                  marginBottom: preview ? 10 : 0,
+                                }}
+                              >
+                                {decodeHtmlEntitiesLite(ep.title)}
+                              </h3>
+                              {preview ? (
+                                <p
+                                  style={{
+                                    fontSize: 13,
+                                    color: C.lgray,
+                                    lineHeight: 1.55,
+                                    margin: 0,
+                                  }}
+                                >
+                                  {preview}
+                                </p>
+                              ) : null}
+                              <span
+                                style={{
+                                  fontSize: 12,
+                                  color: C.red,
+                                  fontWeight: 600,
+                                  display: "inline-block",
+                                  marginTop: 12,
+                                }}
+                              >
+                                Listen / watch →
+                              </span>
+                            </div>
+                          </div>
+                        </Link>
+                      </div>
+                    );
+                  })}
+                </>
+              )}
             </div>
           )}
         </div>
@@ -839,7 +1077,6 @@ export function ResourcesContent({
       <section
         className="cta-section"
         style={{
-          background: C.red,
           textAlign: "center",
         }}
       >
