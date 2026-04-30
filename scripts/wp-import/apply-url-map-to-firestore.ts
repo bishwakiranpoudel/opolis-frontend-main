@@ -24,7 +24,10 @@ import type {
   UrlMapPendingDoc,
 } from "../../src/lib/firebase/types";
 import { SITE_URL } from "../../src/lib/constants";
-import { rewriteLegacyOpolisLinks } from "../../src/lib/podcastContent";
+import {
+  rewriteLegacyOpolisLinks,
+  rewriteStoredDevOrigin,
+} from "../../src/lib/podcastContent";
 import {
   mergeUnresolvedJsonIntoPathMap,
   pathnameTargetMapFromPendingRows,
@@ -63,7 +66,46 @@ function contentHashHex(html: string, modifiedOrDate: string): string {
 function pipeHtml(html: string, pathMap: Map<string, string>): string {
   let out = rewriteHtmlOpolisUrlMap(html, pathMap, SITE_URL);
   out = rewriteLegacyOpolisLinks(out, SITE_URL);
+  out = rewriteStoredDevOrigin(out, SITE_URL);
   return out;
+}
+
+function normalizeLegacyPermalink(raw: string, pathMap: Map<string, string>): string {
+  let out = rewriteLegacyPermalinkField(raw, pathMap, SITE_URL);
+  out = rewriteStoredDevOrigin(out, SITE_URL);
+  return out;
+}
+
+function normalizeAssetUrl(raw: string | undefined): string | undefined {
+  if (raw == null || !String(raw).trim()) return raw;
+  let out = rewriteLegacyOpolisLinks(String(raw).trim(), SITE_URL);
+  out = rewriteStoredDevOrigin(out, SITE_URL);
+  return out;
+}
+
+/** Legacy opolis.co + dev localhost → SITE_URL (order-safe for strings). */
+function normalizeFirestoreString(s: string): string {
+  let out = rewriteLegacyOpolisLinks(s, SITE_URL);
+  out = rewriteStoredDevOrigin(out, SITE_URL);
+  return out;
+}
+
+function deepNormalizeFirestoreStrings(value: unknown): unknown {
+  if (typeof value === "string") {
+    return normalizeFirestoreString(value);
+  }
+  if (Array.isArray(value)) {
+    return value.map(deepNormalizeFirestoreStrings);
+  }
+  if (value && typeof value === "object") {
+    const o = value as Record<string, unknown>;
+    const next: Record<string, unknown> = {};
+    for (const [k, v] of Object.entries(o)) {
+      next[k] = deepNormalizeFirestoreStrings(v);
+    }
+    return next;
+  }
+  return value;
 }
 
 async function main() {
@@ -78,11 +120,12 @@ async function main() {
   mergeUnresolvedJsonIntoPathMap(pathMap, loadUnresolvedMappings());
 
   if (pathMap.size === 0) {
-    console.log("No pathname targets (empty suggestedNewPath everywhere). Run wp:fill-url-map first.");
-    return;
+    console.warn(
+      "No pathname targets from pending/unresolved — running legacy host + localhost cleanup only. Run wp:fill-url-map if you expect path rewrites."
+    );
+  } else {
+    console.log(`Pathname mappings: ${pathMap.size} (pending + unresolved JSON)`);
   }
-
-  console.log(`Pathname mappings: ${pathMap.size} (pending + unresolved JSON)`);
 
   let blogUpdated = 0;
   let podcastUpdated = 0;
@@ -96,15 +139,13 @@ async function main() {
     const d = doc.data() as BlogPostDoc;
     const nextContent = pipeHtml(d.contentHtml ?? "", pathMap);
     const nextExcerpt = pipeHtml(d.excerptHtml ?? "", pathMap);
-    const nextLegacy = rewriteLegacyPermalinkField(
-      d.legacyPermalink ?? "",
-      pathMap,
-      SITE_URL
-    );
+    const nextLegacy = normalizeLegacyPermalink(d.legacyPermalink ?? "", pathMap);
+    const nextFeatured = normalizeAssetUrl(d.featuredImageUrl);
     const blogChanged =
       nextContent !== (d.contentHtml ?? "") ||
       nextExcerpt !== (d.excerptHtml ?? "") ||
-      nextLegacy !== (d.legacyPermalink ?? "");
+      nextLegacy !== (d.legacyPermalink ?? "") ||
+      nextFeatured !== d.featuredImageUrl;
 
     if (!blogChanged) continue;
 
@@ -115,6 +156,7 @@ async function main() {
       excerptHtml: nextExcerpt,
       legacyPermalink: nextLegacy,
       contentHash: contentHashHex(nextContent, mod),
+      ...(nextFeatured !== undefined ? { featuredImageUrl: nextFeatured } : {}),
     };
 
     if (bw) {
@@ -127,15 +169,13 @@ async function main() {
     const d = doc.data() as PodcastEpisodeDoc;
     const nextContent = pipeHtml(d.contentHtml ?? "", pathMap);
     const nextExcerpt = pipeHtml(d.excerptHtml ?? "", pathMap);
-    const nextLegacy = rewriteLegacyPermalinkField(
-      d.legacyPermalink ?? "",
-      pathMap,
-      SITE_URL
-    );
+    const nextLegacy = normalizeLegacyPermalink(d.legacyPermalink ?? "", pathMap);
+    const nextThumb = normalizeAssetUrl(d.thumbnailUrl);
     const podChanged =
       nextContent !== (d.contentHtml ?? "") ||
       nextExcerpt !== (d.excerptHtml ?? "") ||
-      nextLegacy !== (d.legacyPermalink ?? "");
+      nextLegacy !== (d.legacyPermalink ?? "") ||
+      nextThumb !== d.thumbnailUrl;
 
     if (!podChanged) continue;
 
@@ -146,6 +186,7 @@ async function main() {
       excerptHtml: nextExcerpt,
       legacyPermalink: nextLegacy,
       contentHash: contentHashHex(nextContent, mod),
+      ...(nextThumb !== undefined ? { thumbnailUrl: nextThumb } : {}),
     };
 
     if (bw) {
@@ -159,7 +200,8 @@ async function main() {
   const guidesSnap = await guidesRef.get();
   if (guidesSnap.exists) {
     const raw = guidesSnap.data() as Record<string, unknown>;
-    const next = rewriteResourcesGuidesPayload(raw, pathMap, SITE_URL);
+    let next = rewriteResourcesGuidesPayload(raw, pathMap, SITE_URL);
+    next = deepNormalizeFirestoreStrings(next) as Record<string, unknown>;
     if (JSON.stringify(next) !== JSON.stringify(raw)) {
       guidesUpdated = 1;
       if (bw) bw.update(guidesRef, next as Record<string, unknown>);
@@ -170,7 +212,8 @@ async function main() {
   const faqSnap = await faqRef.get();
   if (faqSnap.exists) {
     const raw = faqSnap.data() as Record<string, unknown>;
-    const next = rewriteResourcesFaqPayload(raw, pathMap, SITE_URL);
+    let next = rewriteResourcesFaqPayload(raw, pathMap, SITE_URL);
+    next = deepNormalizeFirestoreStrings(next) as Record<string, unknown>;
     if (JSON.stringify(next) !== JSON.stringify(raw)) {
       faqUpdated = 1;
       if (bw) bw.update(faqRef, next as Record<string, unknown>);

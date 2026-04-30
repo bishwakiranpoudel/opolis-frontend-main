@@ -21,6 +21,7 @@ import {
 import {
   decodeHtmlEntitiesLite,
   rewriteLegacyOpolisLinks,
+  rewriteStoredDevOrigin,
 } from "@/lib/podcastContent";
 import { SITE_URL, unemployableSeasonTwoStartIso } from "@/lib/constants";
 import { playlistYoutubeIdForPodcastSlug } from "@/lib/podcastYoutubeSlugMap";
@@ -142,6 +143,19 @@ function formatDate(isoDate: string): string {
 
 export type BlogCategoryMap = Map<number, { name: string; slug: string }>;
 
+/** Permalinks or single URLs saved with a dev origin or legacy opolis.co. */
+function normalizeStoredSiteAbsoluteUrl(s: string | undefined): string {
+  if (s == null || !String(s).trim()) return s ?? "";
+  const t = String(s).trim();
+  return rewriteStoredDevOrigin(rewriteLegacyOpolisLinks(t, SITE_URL), SITE_URL);
+}
+
+function normalizeOptionalStoredUrl(s: string | undefined): string | undefined {
+  if (s == null || !String(s).trim()) return undefined;
+  const out = rewriteStoredDevOrigin(rewriteLegacyOpolisLinks(s.trim(), SITE_URL), SITE_URL);
+  return out || undefined;
+}
+
 function resolveCategorySlug(
   d: BlogPostDoc,
   categoriesMap: BlogCategoryMap
@@ -163,7 +177,7 @@ function docToBlogPost(
     cc: d.cc,
     date: formatDate(d.dateIso),
     h: d.title,
-    url: d.legacyPermalink || "",
+    url: normalizeStoredSiteAbsoluteUrl(d.legacyPermalink || ""),
     slug: d.slug,
     categorySlug: resolveCategorySlug(d, categoriesMap),
     dateIso: d.dateIso,
@@ -220,6 +234,13 @@ export function applyUrlRewriteMap(html: string): string {
   }
 }
 
+function normalizeBlogBodyHtml(html: string): string {
+  let out = applyUrlRewriteMap(html);
+  out = rewriteStoredDevOrigin(out, SITE_URL);
+  out = rewriteLegacyOpolisLinks(out, SITE_URL);
+  return out;
+}
+
 export async function getBlogPostsFromFirestore(): Promise<BlogPost[]> {
   getFirebaseAdmin();
   const db = getFirestore();
@@ -250,8 +271,10 @@ export async function getBlogPostBySlugFromFirestore(
   const full = docToFullBlogPost(d, categoriesMap);
   return {
     ...full,
-    content: applyUrlRewriteMap(full.content),
-    excerpt: applyUrlRewriteMap(full.excerpt),
+    url: normalizeStoredSiteAbsoluteUrl(full.url || d.legacyPermalink),
+    content: normalizeBlogBodyHtml(full.content),
+    excerpt: normalizeBlogBodyHtml(full.excerpt),
+    featuredImageUrl: normalizeOptionalStoredUrl(full.featuredImageUrl),
   };
 }
 
@@ -367,10 +390,11 @@ function docToPodcastEpisode(d: PodcastEpisodeDoc): PodcastEpisode {
     : inferSeriesFromLegacyEpisode(d);
   const seasonOrder = slugCanon?.seasonOrder ?? d.seasonOrder;
   const se = resolveEpisodeSeasonFields(d);
+  const legacyRaw = d.legacyPermalink?.trim();
   return {
     slug: d.slug,
     title: decodeHtmlEntitiesLite(d.title),
-    excerptHtml: rewriteLegacyOpolisLinks(d.excerptHtml, SITE_URL),
+    excerptHtml: normalizeBlogBodyHtml(d.excerptHtml ?? ""),
     date: formatPodcastDate(d.dateIso),
     dateIso: d.dateIso,
     seasonLabel: se.seasonLabel,
@@ -379,10 +403,12 @@ function docToPodcastEpisode(d: PodcastEpisodeDoc): PodcastEpisode {
     episodeSeasonSort: se.episodeSeasonSort,
     seriesKey: series.seriesKey,
     seriesTitle: series.seriesTitle,
-    thumbnailUrl: d.thumbnailUrl,
+    thumbnailUrl: normalizeOptionalStoredUrl(d.thumbnailUrl),
     youtubeVideoId:
       playlistYoutubeIdForPodcastSlug(d.slug) ?? d.youtubeVideoId,
-    legacyPermalink: d.legacyPermalink || undefined,
+    legacyPermalink: legacyRaw
+      ? normalizeStoredSiteAbsoluteUrl(legacyRaw)
+      : undefined,
   };
 }
 
@@ -411,14 +437,9 @@ export async function getPodcastEpisodeBySlugFromFirestore(
   const base = docToPodcastEpisode(d);
   return {
     ...base,
-    excerptHtml: rewriteLegacyOpolisLinks(
-      applyUrlRewriteMap(d.excerptHtml),
-      SITE_URL
-    ),
-    contentHtml: rewriteLegacyOpolisLinks(
-      applyUrlRewriteMap(d.contentHtml),
-      SITE_URL
-    ),
+    excerptHtml: normalizeBlogBodyHtml(d.excerptHtml ?? ""),
+    contentHtml: normalizeBlogBodyHtml(d.contentHtml ?? ""),
+    thumbnailUrl: normalizeOptionalStoredUrl(d.thumbnailUrl),
     modified: d.modifiedIso ? formatPodcastDate(d.modifiedIso) : undefined,
     modifiedIso: d.modifiedIso,
   };

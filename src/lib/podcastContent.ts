@@ -47,6 +47,16 @@ export function rewriteLegacyOpolisLinks(html: string, siteOrigin: string): stri
   return out;
 }
 
+/**
+ * Fixes HTML or plain URLs that were saved with a dev origin (common when
+ * `wp:apply-url-map` or imports ran with `NEXT_PUBLIC_SITE_URL=http://localhost:3000`).
+ */
+export function rewriteStoredDevOrigin(html: string, siteOrigin: string): string {
+  if (!html) return html;
+  const base = siteOrigin.replace(/\/$/, "");
+  return html.replace(/https?:\/\/(?:localhost|127\.0\.0\.1)(?::\d+)?/gi, base);
+}
+
 /** Oldest → newest by publish date (for prev/next). */
 export function sortPodcastsChronological(
   episodes: PodcastEpisode[]
