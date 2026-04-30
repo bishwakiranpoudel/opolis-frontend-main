@@ -19,6 +19,7 @@
     "wp:extract-links": "tsx scripts/wp-import/extract-links.ts",
     "wp:fill-url-map": "tsx scripts/wp-import/fill-url-map-pending.ts",
     "wp:apply-url-map": "tsx scripts/wp-import/apply-url-map-to-firestore.ts",
+    "wp:sync-media-map": "tsx scripts/wp-import/sync-media-map-to-storage.ts",
     "wp:export-url-map-pending": "tsx scripts/wp-import/export-url-map-pending.ts",
     "wp:patch-sole-proprietor-guide": "tsx scripts/wp-import/patch-guides-sole-proprietor-url.ts"
   },

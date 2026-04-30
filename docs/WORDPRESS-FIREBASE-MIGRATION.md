@@ -20,10 +20,11 @@ This repo includes scripts to copy WordPress content into **Firestore** and **Cl
 | `npm run wp:extract-links` | Lists unique `opolis.co` links from stored posts to `logs/extracted-opolis-links.json` for manual SEO mapping. |
 | `npm run wp:fill-url-map` | Reads `url_map_pending`, validates existing `suggestedNewPath` against a live sitemap snapshot (static + blog + podcasts + guides, same idea as `src/app/sitemap.ts`), applies slug rules and legacy aliases (`src/lib/site-paths.ts`), updates Firestore, and writes `data/url-map-unresolved.json` (non-empty `newPath` rows become Next redirects via `next.config.ts`). Merges paths already listed in that JSON so manual entries are rechecked. Use `--dry-run` to preview counts without writing Firestore or the JSON file. |
 | `npm run wp:apply-url-map` | Rewrites stored HTML and guide URLs in Firestore (`blog_posts`, `podcast_episodes`, `resources_guides/data`, `resources_faq/data`) using resolved mappings from `url_map_pending` plus non-empty rows in `data/url-map-unresolved.json`. Refreshes `contentHash` on posts/episodes when body HTML changes. Use `--dry-run` to preview counts. Run after `wp:fill-url-map`. |
+| `npm run wp:sync-media-map` | Normalizes `media_map`: sets `wpUrl` + `publicUrl` to the canonical Storage URL derived from `storagePath`, backfills `sourceWpUrl` from a legacy WordPress URL when still stored in `wpUrl`, and (with `--apply`, unless `--skip-html`) replaces those URLs in post/podcast HTML and resources payloads. Dry-run by default; pass `--apply` to write. |
 
 Use `--force` on import commands to bypass idempotency skips.
 
-**Large PDFs:** Default max download size is **200 MiB** (`WP_IMPORT_MAX_BYTES` in `.env.local`). `media_map` stores `contentSha256`, `sourceKind`, and WP labels for each file; dedupe key is `sha256(wpUrl)` (document id).
+**Large PDFs:** Default max download size is **200 MiB** (`WP_IMPORT_MAX_BYTES` in `.env.local`). `media_map` stores `contentSha256`, `sourceKind`, and WP labels for each file; document id is **`sha256(sourceWpUrl)`** (original WordPress asset URL). After import/sync, **`wpUrl` matches the public Storage URL**; use `sourceWpUrl` for the original WP link.
 
 ## Discovery vs static data
 

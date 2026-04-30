@@ -41,7 +41,13 @@ export type MediaSourceKind =
   | "resources_guide";
 
 export interface MediaMapDoc {
+  /**
+   * Canonical public URL for the Storage object (same bucket encoding as `publicUrl`).
+   * Legacy rows may still hold the WordPress download URL here until migration.
+   */
   wpUrl: string;
+  /** Original WordPress (or other source) URL used to dedupe: document id = sha256(sourceWpUrl). */
+  sourceWpUrl?: string;
   storagePath: string;
   publicUrl: string;
   mimeType?: string;

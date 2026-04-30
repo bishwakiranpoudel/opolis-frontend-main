@@ -59,8 +59,9 @@ export type MirrorWpAssetResult = {
 };
 
 /**
- * Download wpUrl, upload to Storage, upsert media_map doc id = sha256(wpUrl).
- * Skips if doc exists and file exists (unless force). Re-uploads if doc exists but file missing.
+ * Download from the WordPress asset URL, upload to Storage, upsert `media_map`.
+ * Document id = sha256(source URL) so imports stay idempotent; `sourceWpUrl` stores that URL;
+ * `wpUrl` and `publicUrl` store the canonical Storage HTTPS URL.
  */
 export async function mirrorWpAssetToStorage(args: {
   wpUrl: string;
@@ -79,7 +80,8 @@ export async function mirrorWpAssetToStorage(args: {
     return { publicUrl: seen.get(wpUrl)!, action: "seen" };
   }
 
-  const docId = hashWpAssetUrl(wpUrl);
+  const sourceWpUrl = wpUrl;
+  const docId = hashWpAssetUrl(sourceWpUrl);
   const ref = db.collection(COLLECTIONS.mediaMap).doc(docId);
   const existingSnap = await ref.get();
 
@@ -123,11 +125,15 @@ export async function mirrorWpAssetToStorage(args: {
   );
 
   const extraClean = Object.fromEntries(
-    Object.entries(extraFields ?? {}).filter(([, v]) => v !== undefined)
+    Object.entries(extraFields ?? {}).filter(
+      ([k, v]) =>
+        v !== undefined && k !== "wpUrl" && k !== "sourceWpUrl" && k !== "publicUrl"
+    )
   ) as Partial<MediaMapDoc>;
 
   const entry: MediaMapDoc = {
-    wpUrl,
+    sourceWpUrl,
+    wpUrl: publicUrl,
     storagePath,
     publicUrl,
     mimeType: contentType,
