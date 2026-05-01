@@ -266,12 +266,23 @@ export default function BenefitsPage() {
         }}
       >
         <div className="cta-pattern-layer" aria-hidden />
-        <div className="wrap">
+        <div className="wrap" style={{ position: "relative", zIndex: 1 }}>
+          <h2
+            className="cond"
+            style={{
+              fontSize: "clamp(42px, 6vw, 80px)",
+              fontWeight: 900,
+              color: "#fff",
+              lineHeight: 1.0,
+              marginBottom: 14,
+            }}
+          >
+            Membership pays for itself.
+          </h2>
           <p
             style={{
               color: "rgba(255,255,255,0.82)",
               fontSize: 17,
-              fontWeight: 400,
               maxWidth: 560,
               margin: "0 auto 34px",
               lineHeight: 1.68,
