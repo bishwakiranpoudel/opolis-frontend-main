@@ -23,6 +23,10 @@ import {
   rewriteLegacyOpolisLinks,
   rewriteStoredDevOrigin,
 } from "@/lib/podcastContent";
+import {
+  rewriteFirebaseGatewayUrlToGcsPublic,
+  rewriteFirebaseGatewayUrlsInHtml,
+} from "@/lib/firebase/storage-public-url";
 import { SITE_URL, unemployableSeasonTwoStartIso } from "@/lib/constants";
 import { playlistYoutubeIdForPodcastSlug } from "@/lib/podcastYoutubeSlugMap";
 import type { FaqSection, GuidesSection } from "@/lib/resourcesData";
@@ -152,7 +156,9 @@ function normalizeStoredSiteAbsoluteUrl(s: string | undefined): string {
 
 function normalizeOptionalStoredUrl(s: string | undefined): string | undefined {
   if (s == null || !String(s).trim()) return undefined;
-  const out = rewriteStoredDevOrigin(rewriteLegacyOpolisLinks(s.trim(), SITE_URL), SITE_URL);
+  const out = rewriteFirebaseGatewayUrlToGcsPublic(
+    rewriteStoredDevOrigin(rewriteLegacyOpolisLinks(s.trim(), SITE_URL), SITE_URL)
+  );
   return out || undefined;
 }
 
@@ -238,6 +244,7 @@ function normalizeBlogBodyHtml(html: string): string {
   let out = applyUrlRewriteMap(html);
   out = rewriteStoredDevOrigin(out, SITE_URL);
   out = rewriteLegacyOpolisLinks(out, SITE_URL);
+  out = rewriteFirebaseGatewayUrlsInHtml(out);
   return out;
 }
 

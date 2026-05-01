@@ -1,6 +1,7 @@
 import { getStorage } from "firebase-admin/storage";
 import { NextResponse } from "next/server";
 import { getFirebaseAdmin } from "@/lib/firebase/admin";
+import { gcsPublicObjectUrl } from "@/lib/firebase/storage-public-url";
 import { authorizeCreate } from "@/lib/create-content/auth";
 
 const MAX_BYTES = 12 * 1024 * 1024;
@@ -9,11 +10,6 @@ const ALLOWED_PREFIX = /^image\/|^application\/pdf$/;
 
 /** IAM-based signing often caps V4 signed URLs at 7 days; avoid long expiries. */
 const SIGNED_URL_MAX_MS = 6 * 24 * 60 * 60 * 1000;
-
-function firebasePublicObjectUrl(bucketName: string, objectPath: string): string {
-  const enc = encodeURIComponent(objectPath);
-  return `https://firebasestorage.googleapis.com/v0/b/${encodeURIComponent(bucketName)}/o/${enc}?alt=media`;
-}
 
 export async function POST(request: Request) {
   const denied = await authorizeCreate(request);
@@ -76,7 +72,8 @@ export async function POST(request: Request) {
     let url: string;
     try {
       await gcsFile.makePublic();
-      url = firebasePublicObjectUrl(bucketName, objectPath);
+      /** Direct GCS URL so anonymous readers are not blocked by Firebase Storage Rules. */
+      url = gcsPublicObjectUrl(bucketName, objectPath);
     } catch {
       const expires = new Date(Date.now() + SIGNED_URL_MAX_MS);
       const [signedUrl] = await gcsFile.getSignedUrl({
