@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { buildMetadata, breadcrumbJsonLd } from "@/lib/seo";
-import { C } from "@/lib/constants";
+import { buildMetadata, breadcrumbJsonLd, contactPageJsonLd } from "@/lib/seo";
+import { C, SITE_URL } from "@/lib/constants";
 import { Mail, Handshake, Headphones, MessagesSquare } from "lucide-react";
 
 const PRESS_KIT_URL =
@@ -18,6 +18,14 @@ const contactBreadcrumb = breadcrumbJsonLd([
   { name: "Contact", path: "/contact" },
 ]);
 
+const contactStructuredLd = contactPageJsonLd({
+  name: "Contact Opolis — Membership, Press & Partnerships",
+  description:
+    "Get in touch with Opolis. General: hello@opolis.co. Membership: membership@opolis.co. Support: support@opolis.co. Press kit and contact details.",
+  url: `${SITE_URL}/contact`,
+  speakableCssSelectors: [".speakable"],
+});
+
 export default function ContactPage() {
   return (
     <>
@@ -25,6 +33,12 @@ export default function ContactPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(contactBreadcrumb),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(contactStructuredLd),
         }}
       />
       <section
@@ -39,7 +53,7 @@ export default function ContactPage() {
           <div style={{ maxWidth: 720 }}>
             <span className="slabel">Get in Touch</span>
             <h1 className="cond">Contact.</h1>
-            <p className="page-hero-lead page-hero-lead--contact">
+            <p className="page-hero-lead page-hero-lead--contact speakable">
             We&apos;re a small, lean team. The right email gets you to the right
             person faster.
           </p>

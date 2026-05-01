@@ -20,6 +20,7 @@ const webLd = webPageJsonLd({
   description:
     "Terms of Service for the Employment Commons LCA and Opolis platform.",
   url: `${SITE_URL.replace(/\/$/, "")}/terms-of-service`,
+  speakableCssSelectors: [".speakable"],
 });
 
 export default function TermsOfServicePage() {

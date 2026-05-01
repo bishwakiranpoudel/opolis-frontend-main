@@ -39,7 +39,7 @@ export function EligibilityContent() {
             <br />
             <span style={{ color: C.red }}>right for you?</span>
           </h1>
-          <p className="page-hero-lead">
+          <p className="page-hero-lead speakable">
             The cooperative works best for a specific kind of professional.
             Being honest about fit is part of how we keep it working for
             everyone.

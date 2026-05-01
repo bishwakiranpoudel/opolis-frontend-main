@@ -12,7 +12,7 @@ export function CoalitionMemberContent() {
         <h1 className="legal-coalition-h1">Membership Agreement</h1>
       </header>
 
-      <p>
+      <p className="speakable">
         {`This Coalition Member Membership Agreement (the "Agreement") is made effective as of the date the undersigned (the "Coalition Member" or "Member") has applied for and has been accepted by the Board of Stewards of the Employment Commons LCA, a Colorado public benefit limited cooperative association (the "Cooperative") as a Member of the Cooperative, under which it is hereby agreed as follows:`}
       </p>
 

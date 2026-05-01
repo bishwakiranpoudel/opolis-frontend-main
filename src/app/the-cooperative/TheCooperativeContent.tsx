@@ -22,7 +22,7 @@ export function TheCooperativeContent() {
             <br />
             <span style={{ color: C.red }}>Works.</span>
           </h1>
-          <p className="page-hero-lead">
+          <p className="page-hero-lead speakable">
             Two membership tiers. One cooperative. Start in minutes — upgrade
             when you&apos;re ready for the full employment stack.
           </p>

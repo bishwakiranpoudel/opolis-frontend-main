@@ -16,7 +16,7 @@ export function TermsOfServiceContent() {
         </p>
       </header>
 
-      <p>
+      <p className="speakable">
         {`These Terms of Service (the "Terms"), each Member's Membership Agreement, the Bylaws, and Articles of Incorporation, as such may be amended from time to time, constitute the entire agreement by and between the Employment Commons LCA, a Colorado public benefit limited cooperative association (the "Commons" or "we") and each Employee Member or Coalition Member, which includes authorized users representing each such respective Member, or other persons using or accessing the services provided by us (each, a "User" and collectively, the "Member").`}
       </p>
       <p>

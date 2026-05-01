@@ -19,6 +19,7 @@ const eligibilityWebPageLd = webPageJsonLd({
   description:
     "Employee Membership requires an S-Corp or C-Corp and income meeting your state's exempt salary minimum. Community Membership is open to everyone — $97 one-time.",
   url: `${SITE_URL}/eligibility`,
+  speakableCssSelectors: [".speakable"],
 });
 
 export default function EligibilityPage() {

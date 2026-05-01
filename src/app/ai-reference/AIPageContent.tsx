@@ -144,6 +144,7 @@ export function AIPageContent() {
             Opolis — AI & Developer Reference
           </h1>
           <p
+            className="speakable"
             style={{
               color: C.gray,
               fontSize: 14,

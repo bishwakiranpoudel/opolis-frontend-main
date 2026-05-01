@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { buildMetadata, breadcrumbJsonLd } from "@/lib/seo";
-import { C, COMMUNITY_SIGNUP_URL } from "@/lib/constants";
+import { buildMetadata, breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
+import { C, COMMUNITY_SIGNUP_URL, SITE_URL } from "@/lib/constants";
 
 const TIMELINE_ITEMS = [
   {
@@ -99,6 +99,17 @@ const aboutBreadcrumb = breadcrumbJsonLd([
   { name: "About Opolis", path: "/about" },
 ]);
 
+const aboutWebPageLd = webPageJsonLd(
+  {
+    name: "About Opolis — Vision, Genesis & Team",
+    description:
+      "Opolis: work city, owned by workers. Member-owned employment cooperative — vision, genesis from Lakeshore to $210M+ payroll, Board of Stewards, and team.",
+    url: `${SITE_URL}/about`,
+    speakableCssSelectors: [".speakable"],
+  },
+  "AboutPage"
+);
+
 export default function AboutPage() {
   return (
     <>
@@ -106,6 +117,12 @@ export default function AboutPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(aboutBreadcrumb),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(aboutWebPageLd),
         }}
       />
       <section
@@ -123,7 +140,7 @@ export default function AboutPage() {
             <br />
             <span style={{ color: C.red }}>Owned by workers.</span>
           </h1>
-          <p className="page-hero-lead page-hero-lead--wide">
+          <p className="page-hero-lead page-hero-lead--wide speakable">
             <em>Opus</em> — work. <em>Polis</em> — community. A platform where
             independent professionals choose how, where, and with whom they
             work, with the full infrastructure of employment behind them.

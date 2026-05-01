@@ -20,6 +20,7 @@ const webLd = webPageJsonLd({
   description:
     "Coalition Member Membership Agreement for the Employment Commons LCA.",
   url: `${SITE_URL.replace(/\/$/, "")}/coalition-member`,
+  speakableCssSelectors: [".speakable"],
 });
 
 export default function CoalitionMemberPage() {

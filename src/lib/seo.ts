@@ -137,18 +137,94 @@ export interface WebPageJsonLdProps {
   url: string;
   datePublished?: string;
   dateModified?: string;
+  /** e.g. `[".speakable"]` — maps to SpeakableSpecification for voice / AI Overviews. */
+  speakableCssSelectors?: string[];
 }
 
-export function webPageJsonLd(props: WebPageJsonLdProps) {
+/** Subtypes of WebPage for richer semantics on key marketing URLs (Google supports these). */
+export type WebPageStructuredType = "WebPage" | "AboutPage" | "ContactPage";
+
+export function webPageJsonLd(
+  props: WebPageJsonLdProps,
+  /** Default WebPage; use ContactPage / AboutPage on contact & about routes. */
+  structuredType: WebPageStructuredType = "WebPage"
+) {
+  const speakable =
+    props.speakableCssSelectors &&
+    props.speakableCssSelectors.length > 0
+      ? {
+          "@type": "SpeakableSpecification",
+          cssSelector: props.speakableCssSelectors,
+        }
+      : undefined;
+
   return {
     "@context": "https://schema.org",
-    "@type": "WebPage",
+    "@type": structuredType,
     name: props.name,
     description: props.description,
     url: props.url,
     ...(props.datePublished && { datePublished: props.datePublished }),
     ...(props.dateModified && { dateModified: props.dateModified }),
+    ...(speakable && { speakable }),
     isPartOf: { "@id": `${SITE_URL}/#website` },
+  };
+}
+
+export interface ContactPageJsonLdInput {
+  name: string;
+  description: string;
+  url: string;
+  speakableCssSelectors?: string[];
+}
+
+/**
+ * ContactPage + Organization contact points (aligned with visible emails on /contact).
+ */
+export function contactPageJsonLd(input: ContactPageJsonLdInput) {
+  const speakable =
+    input.speakableCssSelectors &&
+    input.speakableCssSelectors.length > 0
+      ? {
+          "@type": "SpeakableSpecification",
+          cssSelector: input.speakableCssSelectors,
+        }
+      : undefined;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: input.name,
+    description: input.description,
+    url: input.url,
+    ...(speakable && { speakable }),
+    isPartOf: { "@id": `${SITE_URL}/#website` },
+    mainEntity: {
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
+      name: "Opolis",
+      url: SITE_URL,
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          contactType: "media inquiries",
+          email: "hello@opolis.co",
+          availableLanguage: ["English", "en-US"],
+        },
+        {
+          "@type": "ContactPoint",
+          contactType: "membership",
+          email: "membership@opolis.co",
+          availableLanguage: ["English", "en-US"],
+        },
+        {
+          "@type": "ContactPoint",
+          contactType: "customer support",
+          email: "support@opolis.co",
+          availableLanguage: ["English", "en-US"],
+        },
+      ],
+    },
   };
 }
 

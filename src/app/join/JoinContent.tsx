@@ -60,7 +60,7 @@ export function JoinContent() {
         <div className="wrap" style={{ position: "relative", zIndex: 1 }}>
           <span className="slabel">Get Started</span>
           <h1 className="cond">Join Opolis.</h1>
-          <p className="page-hero-lead page-hero-lead--wide">
+          <p className="page-hero-lead page-hero-lead--wide speakable">
             The application takes minutes. New Members activate on the 1st of
             each month.
           </p>

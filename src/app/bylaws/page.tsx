@@ -20,6 +20,7 @@ const webLd = webPageJsonLd({
   description:
     "Employment Commons LCA Bylaws: membership, governance, capital, and member rights.",
   url: `${SITE_URL.replace(/\/$/, "")}/bylaws`,
+  speakableCssSelectors: [".speakable"],
 });
 
 export default function BylawsPage() {

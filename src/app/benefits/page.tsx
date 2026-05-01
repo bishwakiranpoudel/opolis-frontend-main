@@ -98,6 +98,7 @@ const benefitsWebPageLd = webPageJsonLd({
   description:
     "Group health, dental, vision, 401(k), disability, life insurance, workers' comp, and unemployment. Employee Members get the same benefits infrastructure as large employers.",
   url: `${SITE_URL}/benefits`,
+  speakableCssSelectors: [".speakable"],
 });
 
 export default function BenefitsPage() {
@@ -130,7 +131,7 @@ export default function BenefitsPage() {
             <br />
             <span style={{ color: C.red }}>benefits package.</span>
           </h1>
-          <p className="page-hero-lead page-hero-lead--wide">
+          <p className="page-hero-lead page-hero-lead--wide speakable">
             Group benefits aren&apos;t a perk of the cooperative — they&apos;re
             the reason it exists. The rates, the access, the coverage options:
             none of it would be possible for a solo professional. All of it

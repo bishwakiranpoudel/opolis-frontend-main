@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { buildMetadata, breadcrumbJsonLd } from "@/lib/seo";
+import { buildMetadata, breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
+import { SITE_URL } from "@/lib/constants";
 import { AIPageContent } from "./AIPageContent";
 
 export const metadata: Metadata = buildMetadata({
@@ -15,6 +16,14 @@ const aiRefBreadcrumb = breadcrumbJsonLd([
   { name: "AI Reference", path: "/ai-reference" },
 ]);
 
+const aiRefWebPageLd = webPageJsonLd({
+  name: "Opolis — AI & Developer Reference | Machine-Readable Information",
+  description:
+    "Authoritative, structured information about Opolis for AI assistants and developers: membership, eligibility, pricing, payroll, benefits, comparison to alternatives, and canonical definitions. Last updated March 2026.",
+  url: `${SITE_URL}/ai-reference`,
+  speakableCssSelectors: [".speakable"],
+});
+
 export default function AIReferencePage() {
   return (
     <>
@@ -22,6 +31,12 @@ export default function AIReferencePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(aiRefBreadcrumb),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(aiRefWebPageLd),
         }}
       />
       <AIPageContent />

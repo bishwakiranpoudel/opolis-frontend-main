@@ -2,7 +2,7 @@ export function BylawsPreamble() {
   return (
     <>
       <h2>Preamble</h2>
-      <p>
+      <p className="speakable">
         {`Employment Commons LCA (the "Cooperative") is a public benefit limited cooperative association organized under the Uniform Limited Cooperative Association Act, C.R.S. Title 7, Article 58 ("ULCAA") and the Public Benefit Corporation Act, C.R.S. Title 7, Article 101, Part 5 ("PBCA"). The Cooperative's business shall be conducted on a cooperative basis for the mutual benefit of the Cooperative's members.`}
       </p>
       <p>

@@ -17,6 +17,7 @@ const homeWebPage = webPageJsonLd({
   description:
     "Employment infrastructure for independent professionals. Member-owned cooperative: W-2 payroll, group benefits, and compliance — owned collectively, built to last.",
   url: `${SITE_URL}/`,
+  speakableCssSelectors: [".speakable"],
 });
 
 export default function HomePage() {
@@ -63,7 +64,7 @@ export default function HomePage() {
             <span style={{ color: C.red }}>Collective power.</span>
           </h1>
           <p
-            className="fu fu2"
+            className="fu fu2 speakable"
             style={{
               fontSize: 17,
               color: C.lgray,
