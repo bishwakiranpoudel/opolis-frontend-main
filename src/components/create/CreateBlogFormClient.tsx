@@ -6,6 +6,7 @@ import {
   createAuthHeaders,
   useCreateToken,
 } from "@/components/create/CreateTokenContext";
+import { CmsStorageUploadField } from "@/components/create/CmsStorageUploadField";
 import { TiptapBlogEditor } from "@/components/create/TiptapBlogEditor";
 import { slugifyBlogTitle } from "@/lib/create-content/blog-slug";
 import type { BlogPostDoc } from "@/lib/firebase/types";
@@ -160,30 +161,6 @@ function CreateBlogFormInner() {
       });
     });
   }
-
-  const uploadFeatured = useCallback(
-    async (file: File) => {
-      const headers = await getUploadHeaders();
-      if (!Object.keys(headers).length) return;
-      const fd = new FormData();
-      fd.append("file", file);
-      const res = await fetch("/api/create/upload", {
-        method: "POST",
-        headers,
-        body: fd,
-      });
-      const data = (await res.json().catch(() => ({}))) as {
-        url?: string;
-        error?: string;
-      };
-      if (!res.ok) {
-        setMsg({ ok: false, text: data.error || "Featured image upload failed" });
-        return;
-      }
-      if (data.url) setFeaturedUrl(data.url);
-    },
-    [getUploadHeaders]
-  );
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -390,35 +367,14 @@ function CreateBlogFormInner() {
               }
             />
           </div>
-          <div className="create-form-row">
-            <label className="slabel" htmlFor="blog-featured">
-              Featured image URL
-            </label>
-            <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-              <input
-                id="blog-featured"
-                className="create-input"
-                style={{ flex: 1, minWidth: 200 }}
-                value={featuredUrl}
-                onChange={(e) => setFeaturedUrl(e.target.value)}
-                placeholder="https://…"
-              />
-              <label className="btn btn-outline" style={{ cursor: "pointer" }}>
-                Upload
-                <input
-                  type="file"
-                  accept="image/*"
-                  className="create-file-hidden"
-                  aria-hidden
-                  onChange={(e) => {
-                    const f = e.target.files?.[0];
-                    e.target.value = "";
-                    if (f) void uploadFeatured(f);
-                  }}
-                />
-              </label>
-            </div>
-          </div>
+          <CmsStorageUploadField
+            label="Featured image"
+            value={featuredUrl}
+            onChange={setFeaturedUrl}
+            getUploadHeaders={getUploadHeaders}
+            onError={(text) => setMsg({ ok: false, text })}
+            accept="image/*"
+          />
         </div>
 
         <div className="create-form-row">

@@ -6,6 +6,7 @@ import {
   createAuthHeaders,
   useCreateToken,
 } from "@/components/create/CreateTokenContext";
+import { CmsStorageUploadField } from "@/components/create/CmsStorageUploadField";
 import { TiptapBlogEditor } from "@/components/create/TiptapBlogEditor";
 import type { PodcastEpisodeDoc } from "@/lib/firebase/types";
 import { C } from "@/lib/constants";
@@ -318,18 +319,14 @@ export function CreatePodcastsCrudClient() {
                   placeholder="optional"
                 />
               </div>
-              <div className="create-form-row">
-                <label className="slabel" htmlFor="pod-thumb">
-                  Thumbnail URL
-                </label>
-                <input
-                  id="pod-thumb"
-                  className="create-input"
-                  value={thumbnailUrl}
-                  onChange={(e) => setThumbnailUrl(e.target.value)}
-                  placeholder="optional"
-                />
-              </div>
+              <CmsStorageUploadField
+                label="Thumbnail"
+                value={thumbnailUrl}
+                onChange={setThumbnailUrl}
+                getUploadHeaders={getUploadHeaders}
+                onError={(text) => setMsg({ ok: false, text })}
+                accept="image/*"
+              />
             </div>
 
             <div className="create-form-row">

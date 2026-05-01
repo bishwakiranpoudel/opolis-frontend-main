@@ -22,6 +22,7 @@ import {
   Undo2,
 } from "lucide-react";
 import { useCallback, useRef, type ReactNode } from "react";
+import { uploadCmsFileToStorage } from "@/lib/create-content/cms-upload-client";
 import { C } from "@/lib/constants";
 
 type Props = {
@@ -113,34 +114,11 @@ export function TiptapBlogEditor({
 
   const uploadImage = useCallback(
     async (file: File) => {
-      let headers: HeadersInit;
       try {
-        headers = await getUploadHeaders();
-      } catch {
-        window.alert("Sign in to upload images.");
-        return;
-      }
-      if (!headers || Object.keys(headers).length === 0) {
-        window.alert("Sign in to upload images.");
-        return;
-      }
-      const fd = new FormData();
-      fd.append("file", file);
-      const res = await fetch("/api/create/upload", {
-        method: "POST",
-        headers,
-        body: fd,
-      });
-      const data = (await res.json().catch(() => ({}))) as {
-        url?: string;
-        error?: string;
-      };
-      if (!res.ok) {
-        window.alert(data.error || "Upload failed");
-        return;
-      }
-      if (data.url && editor) {
-        editor.chain().focus().setImage({ src: data.url }).run();
+        const url = await uploadCmsFileToStorage(file, getUploadHeaders);
+        editor?.chain().focus().setImage({ src: url }).run();
+      } catch (e) {
+        window.alert(e instanceof Error ? e.message : "Upload failed");
       }
     },
     [editor, getUploadHeaders]
@@ -239,7 +217,7 @@ export function TiptapBlogEditor({
           <Link2 size={18} strokeWidth={2.25} />
         </ToolbarBtn>
         <ToolbarBtn
-          title="Image from upload"
+          title="Upload image to storage"
           onClick={() => fileRef.current?.click()}
         >
           <ImageIcon size={18} strokeWidth={2.25} />
