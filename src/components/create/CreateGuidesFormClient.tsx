@@ -1,9 +1,6 @@
 "use client";
 
-import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
-import { CreateSessionBar } from "@/components/create/CreateSessionBar";
-import { CreateTokenGate } from "@/components/create/CreateTokenGate";
 import {
   createAuthHeaders,
   useCreateToken,
@@ -14,11 +11,7 @@ import type { GuidesSection } from "@/lib/resourcesData";
 const TYPE_OPTIONS = ["Guide", "Article", "Video", "Graphic"] as const;
 
 export function CreateGuidesFormClient() {
-  return (
-    <CreateTokenGate>
-      <CreateGuidesFormInner />
-    </CreateTokenGate>
-  );
+  return <CreateGuidesFormInner />;
 }
 
 function CreateGuidesFormInner() {
@@ -151,20 +144,73 @@ function CreateGuidesFormInner() {
     }
   }
 
+  async function removeSection(sectionIndex: number) {
+    if (!token) return;
+    if (!window.confirm(`Delete guides block #${sectionIndex + 1}?`)) return;
+    setBusy(true);
+    setMsg(null);
+    try {
+      const res = await fetch("/api/create/guides", {
+        method: "POST",
+        headers: {
+          ...createAuthHeaders(token),
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ mode: "delete_section", sectionIndex }),
+      });
+      const data = (await res.json().catch(() => ({}))) as { error?: string };
+      if (!res.ok) {
+        setMsg({ ok: false, text: data.error || "Delete failed" });
+        return;
+      }
+      setMsg({ ok: true, text: "Block removed." });
+      await load();
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function removeItem(sectionIndex: number, itemIndex: number) {
+    if (!token) return;
+    if (!window.confirm("Remove this link row?")) return;
+    setBusy(true);
+    setMsg(null);
+    try {
+      const res = await fetch("/api/create/guides", {
+        method: "POST",
+        headers: {
+          ...createAuthHeaders(token),
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ mode: "delete_item", sectionIndex, itemIndex }),
+      });
+      const data = (await res.json().catch(() => ({}))) as { error?: string };
+      if (!res.ok) {
+        setMsg({ ok: false, text: data.error || "Delete failed" });
+        return;
+      }
+      setMsg({ ok: true, text: "Row removed." });
+      await load();
+    } finally {
+      setBusy(false);
+    }
+  }
+
   return (
     <>
-      <CreateSessionBar />
       {loadErr && (
         <p className="create-form-error" role="alert">
           {loadErr}
         </p>
       )}
-      <p className="create-muted">
-        Guides are stored in{" "}
-        <code style={{ color: C.lgray }}>resources_guides/data</code>. Each
-        section has a title, accent color, and typed links (same as the
-        Resources page guides tab).
-      </p>
+      <div className="create-workspace">
+        <div className="create-editor-panel" id="cms-editor-panel">
+          <h2 className="cond" style={{ fontSize: 22, margin: "0 0 8px", color: "#fff" }}>
+            Add guides content
+          </h2>
+          <p className="create-muted" style={{ margin: "0 0 18px" }}>
+            Add a category block or append rows to an existing block. Live content appears on the right.
+          </p>
 
       <div className="create-form-row" style={{ marginBottom: 20 }}>
         <span className="slabel">Mode</span>
@@ -459,7 +505,7 @@ function CreateGuidesFormInner() {
 
         <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
           <button type="submit" className="btn btn-red" disabled={busy}>
-            {busy ? "Saving…" : "Save to Firestore"}
+            {busy ? "Saving…" : "Save"}
           </button>
           <button
             type="button"
@@ -468,11 +514,88 @@ function CreateGuidesFormInner() {
           >
             Refresh list
           </button>
-          <Link href="/create" className="btn-outline">
-            Back
-          </Link>
         </div>
       </form>
+        </div>
+
+        <section className="create-library-panel" aria-labelledby="guides-live-heading">
+          <h2
+            id="guides-live-heading"
+            className="cond"
+            style={{ fontSize: 20, margin: "0 0 8px", color: "#fff" }}
+          >
+            Live guide blocks
+          </h2>
+          <p className="create-muted" style={{ margin: "0 0 16px" }}>
+            Each block must keep at least one link row.
+          </p>
+          <div className="create-library-scroll" style={{ maxHeight: "min(560px, 55vh)" }}>
+            {guides.length === 0 ? (
+              <p style={{ color: C.gray, margin: 0 }}>No blocks yet—use the form above.</p>
+            ) : (
+              <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+                {guides.map((section, si) => (
+                  <div
+                    key={`${section.cat}-${si}`}
+                    style={{
+                      border: "1px solid #252525",
+                      borderRadius: 10,
+                      padding: 14,
+                      background: "#141414",
+                    }}
+                  >
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        gap: 12,
+                        marginBottom: 10,
+                      }}
+                    >
+                      <strong style={{ color: C.lgray }}>
+                        #{si + 1} · {section.cat}{" "}
+                        <span style={{ color: section.cc }}>●</span>
+                      </strong>
+                      <button
+                        type="button"
+                        className="btn-text"
+                        style={{ color: "#f87171" }}
+                        disabled={busy}
+                        onClick={() => void removeSection(si)}
+                      >
+                        Delete block
+                      </button>
+                    </div>
+                    <ul style={{ margin: 0, paddingLeft: 18, color: C.gray }}>
+                      {section.items.map((it, idx) => (
+                        <li key={idx} style={{ marginBottom: 8 }}>
+                          <span style={{ fontSize: 13 }}>
+                            [{it.type}] {it.label}
+                          </span>{" "}
+                          <button
+                            type="button"
+                            className="btn-text"
+                            disabled={busy || section.items.length <= 1}
+                            title={
+                              section.items.length <= 1
+                                ? "Keep at least one row per block"
+                                : undefined
+                            }
+                            onClick={() => void removeItem(si, idx)}
+                          >
+                            Remove
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+      </div>
     </>
   );
 }

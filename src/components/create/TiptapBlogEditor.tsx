@@ -23,13 +23,13 @@ import {
 } from "lucide-react";
 import { useCallback, useRef, type ReactNode } from "react";
 import { C } from "@/lib/constants";
-import { createAuthHeaders } from "@/components/create/CreateTokenContext";
 
 type Props = {
   initialHtml: string;
   onChange: (html: string) => void;
-  getToken: () => string | null;
+  getUploadHeaders: () => Promise<HeadersInit>;
   placeholder?: string;
+  shellClassName?: string;
 };
 
 function ToolbarBtn({
@@ -58,8 +58,9 @@ function ToolbarBtn({
 export function TiptapBlogEditor({
   initialHtml,
   onChange,
-  getToken,
+  getUploadHeaders,
   placeholder = "Write the article. Use the toolbar for headings, lists, links, and images.",
+  shellClassName,
 }: Props) {
   const fileRef = useRef<HTMLInputElement>(null);
 
@@ -112,16 +113,22 @@ export function TiptapBlogEditor({
 
   const uploadImage = useCallback(
     async (file: File) => {
-      const token = getToken();
-      if (!token) {
-        window.alert("Unlock the CMS with your secret first.");
+      let headers: HeadersInit;
+      try {
+        headers = await getUploadHeaders();
+      } catch {
+        window.alert("Sign in to upload images.");
+        return;
+      }
+      if (!headers || Object.keys(headers).length === 0) {
+        window.alert("Sign in to upload images.");
         return;
       }
       const fd = new FormData();
       fd.append("file", file);
       const res = await fetch("/api/create/upload", {
         method: "POST",
-        headers: createAuthHeaders(token),
+        headers,
         body: fd,
       });
       const data = (await res.json().catch(() => ({}))) as {
@@ -136,22 +143,21 @@ export function TiptapBlogEditor({
         editor.chain().focus().setImage({ src: data.url }).run();
       }
     },
-    [editor, getToken]
+    [editor, getUploadHeaders]
   );
+
+  const shellCls = `create-editor-shell${shellClassName ? ` ${shellClassName}` : ""}`;
 
   if (!editor) {
     return (
-      <div
-        className="create-editor-shell"
-        style={{ color: C.gray, padding: 24 }}
-      >
+      <div className={shellCls} style={{ color: C.gray, padding: 24 }}>
         Preparing editor…
       </div>
     );
   }
 
   return (
-    <div className="create-editor-shell">
+    <div className={shellCls}>
       <div className="create-toolbar">
         <ToolbarBtn
           title="Bold"

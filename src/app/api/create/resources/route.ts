@@ -5,7 +5,7 @@ import { getFaqFromFirestore, getGuidesFromFirestore } from "@/lib/firestore-con
 
 /** Current FAQ + guides from Firestore (or fallbacks) for CMS forms. */
 export async function GET(request: Request) {
-  const denied = authorizeCreate(request);
+  const denied = await authorizeCreate(request);
   if (denied) return denied;
 
   try {

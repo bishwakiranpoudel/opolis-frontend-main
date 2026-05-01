@@ -1,25 +1,37 @@
 import Link from "next/link";
-import { BookOpen, FileText, HelpCircle } from "lucide-react";
+import { BookOpen, FileText, FolderTree, HelpCircle, Mic } from "lucide-react";
 import { C } from "@/lib/constants";
 
 const cards = [
   {
     href: "/create/blog",
-    title: "Blog post",
-    desc: "Rich article with category, excerpt, featured image, and TipTap HTML body — stored in blog_posts.",
+    title: "Blog",
+    desc: "Articles, rich text, categories, and media.",
     Icon: FileText,
+  },
+  {
+    href: "/create/categories",
+    title: "Categories",
+    desc: "Blog taxonomy for posts.",
+    Icon: FolderTree,
   },
   {
     href: "/create/faq",
     title: "FAQ",
-    desc: "Add a new FAQ section or append Q&A pairs to an existing section — updates resources_faq/data.",
+    desc: "Resources FAQ sections and answers.",
     Icon: HelpCircle,
   },
   {
     href: "/create/guides",
     title: "Guides",
-    desc: "Add a guides category block or append typed links to an existing block — updates resources_guides/data.",
+    desc: "Resource guide blocks and links.",
     Icon: BookOpen,
+  },
+  {
+    href: "/create/podcasts",
+    title: "Podcasts",
+    desc: "Episodes, series, and show notes.",
+    Icon: Mic,
   },
 ] as const;
 
@@ -35,14 +47,12 @@ export default function CreateHubPage() {
         }}
       >
         <div className="wrap" style={{ textAlign: "center" }}>
-          <p className="kicker">Internal CMS</p>
+          <p className="kicker">Content</p>
           <h1 className="cond h2-section--page h2-section--after-lg">
-            Create content
+            Dashboard
           </h1>
           <p className="page-hero-lead page-hero-lead--wide section-lead--center">
-            Publish to Firestore using the same shapes as the live site. Requires{" "}
-            <code style={{ color: C.lgray }}>CREATE_CONTENT_SECRET</code> on the
-            server and Firebase Admin credentials.
+            Choose a section to edit.
           </p>
         </div>
       </section>

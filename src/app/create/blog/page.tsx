@@ -3,7 +3,7 @@ import { CreateBlogFormClient } from "@/components/create/CreateBlogFormClient";
 import { C } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Create blog post | Opolis",
+  title: "Blog | Opolis",
 };
 
 export default function CreateBlogPage() {
@@ -20,14 +20,9 @@ export default function CreateBlogPage() {
         <div className="wrap">
           <p className="kicker">Blog</p>
           <h1 className="cond h2-section--page h2-section--after-lg">
-            New article
+            Articles
           </h1>
-          <p className="page-hero-lead">
-            Matches Firestore <code className="create-gate__code">blog_posts</code>{" "}
-            documents and renders with the same{" "}
-            <code className="create-gate__code">blog-content</code> styles as migrated
-            WordPress posts.
-          </p>
+          <p className="page-hero-lead">Create and edit articles.</p>
         </div>
       </section>
       <section className="sec-alt">

@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { CreateGuidesFormClient } from "@/components/create/CreateGuidesFormClient";
+import { CreatePodcastsCrudClient } from "@/components/create/CreatePodcastsCrudClient";
 import { C } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Guides | Opolis",
+  title: "Podcasts | Opolis",
 };
 
-export default function CreateGuidesPage() {
+export default function CreatePodcastsPage() {
   return (
     <>
       <section
@@ -18,18 +18,18 @@ export default function CreateGuidesPage() {
         }}
       >
         <div className="wrap">
-          <p className="kicker">Guides</p>
+          <p className="kicker">Podcasts</p>
           <h1 className="cond h2-section--page h2-section--after-lg">
-            Resource guides
+            Episodes
           </h1>
           <p className="page-hero-lead">
-            Guide blocks and links for the resources guides tab.
+            Episodes and show notes for the podcasts section.
           </p>
         </div>
       </section>
       <section className="sec-alt">
         <div className="wrap create-layout-inner">
-          <CreateGuidesFormClient />
+          <CreatePodcastsCrudClient />
         </div>
       </section>
     </>

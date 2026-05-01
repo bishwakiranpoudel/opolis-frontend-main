@@ -8,7 +8,7 @@ const MAX_BYTES = 12 * 1024 * 1024;
 const ALLOWED_PREFIX = /^image\/|^application\/pdf$/;
 
 export async function POST(request: Request) {
-  const denied = authorizeCreate(request);
+  const denied = await authorizeCreate(request);
   if (denied) return denied;
 
   try {

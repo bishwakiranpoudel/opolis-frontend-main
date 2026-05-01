@@ -171,3 +171,180 @@ export async function mergeGuidesIntoFirestore(
   await ref.set(doc, { merge: false });
   return next;
 }
+
+export async function replaceAllFaqSections(sections: FaqSection[]): Promise<void> {
+  const db = getFirestore();
+  const ref = db.collection(COLLECTIONS.resourcesFaq).doc(RESOURCES_FAQ_DOC_ID);
+  const now = new Date().toISOString();
+  const doc: ResourcesFaqDoc = {
+    faq: sections,
+    importedAt: now,
+    source: "cms",
+  };
+  await ref.set(doc, { merge: false });
+}
+
+export async function replaceAllGuidesSections(
+  sections: GuidesSection[]
+): Promise<void> {
+  const db = getFirestore();
+  const ref = db.collection(COLLECTIONS.resourcesGuides).doc(RESOURCES_GUIDES_DOC_ID);
+  const now = new Date().toISOString();
+  const doc: ResourcesGuidesDoc = {
+    guides: sections,
+    importedAt: now,
+    source: "cms",
+  };
+  await ref.set(doc, { merge: false });
+}
+
+export async function deleteFaqSection(sectionId: string): Promise<FaqSection[]> {
+  const db = getFirestore();
+  const ref = db.collection(COLLECTIONS.resourcesFaq).doc(RESOURCES_FAQ_DOC_ID);
+  const snap = await ref.get();
+  const existing = snap.exists
+    ? parseFaqSectionsFromDoc(snap.data() as Record<string, unknown>)
+    : [];
+  const next = existing.filter((s) => s.id !== sectionId);
+  if (next.length === existing.length) {
+    throw new Error(`FAQ section not found: ${sectionId}`);
+  }
+  const now = new Date().toISOString();
+  await ref.set(
+    { faq: next, importedAt: now, source: "cms" } satisfies ResourcesFaqDoc,
+    { merge: false }
+  );
+  return next;
+}
+
+export async function updateFaqSection(section: FaqSection): Promise<FaqSection[]> {
+  if (!section?.id || !section.label || !section.items?.length) {
+    throw new Error("Invalid FAQ section");
+  }
+  const db = getFirestore();
+  const ref = db.collection(COLLECTIONS.resourcesFaq).doc(RESOURCES_FAQ_DOC_ID);
+  const snap = await ref.get();
+  const existing = snap.exists
+    ? parseFaqSectionsFromDoc(snap.data() as Record<string, unknown>)
+    : [];
+  const idx = existing.findIndex((s) => s.id === section.id);
+  if (idx === -1) throw new Error(`FAQ section not found: ${section.id}`);
+  const next = existing.map((s, i) => (i === idx ? section : s));
+  const now = new Date().toISOString();
+  await ref.set(
+    { faq: next, importedAt: now, source: "cms" } satisfies ResourcesFaqDoc,
+    { merge: false }
+  );
+  return next;
+}
+
+export async function deleteFaqItem(
+  sectionId: string,
+  itemIndex: number
+): Promise<FaqSection[]> {
+  const db = getFirestore();
+  const ref = db.collection(COLLECTIONS.resourcesFaq).doc(RESOURCES_FAQ_DOC_ID);
+  const snap = await ref.get();
+  const existing = snap.exists
+    ? parseFaqSectionsFromDoc(snap.data() as Record<string, unknown>)
+    : [];
+  const idx = existing.findIndex((s) => s.id === sectionId);
+  if (idx === -1) throw new Error(`FAQ section not found: ${sectionId}`);
+  const sec = existing[idx]!;
+  const items = sec.items.filter((_, i) => i !== itemIndex);
+  if (items.length === sec.items.length) throw new Error("Invalid item index");
+  if (items.length === 0) throw new Error("Section must keep at least one Q&A");
+  const next = existing.map((s, i) =>
+    i === idx ? { ...s, items } : s
+  );
+  const now = new Date().toISOString();
+  await ref.set(
+    { faq: next, importedAt: now, source: "cms" } satisfies ResourcesFaqDoc,
+    { merge: false }
+  );
+  return next;
+}
+
+export async function deleteGuidesSection(sectionIndex: number): Promise<GuidesSection[]> {
+  const db = getFirestore();
+  const ref = db.collection(COLLECTIONS.resourcesGuides).doc(RESOURCES_GUIDES_DOC_ID);
+  const snap = await ref.get();
+  const existing = snap.exists
+    ? parseGuidesSectionsFromDoc(snap.data() as Record<string, unknown>)
+    : [];
+  if (sectionIndex < 0 || sectionIndex >= existing.length) {
+    throw new Error("Invalid guides section index");
+  }
+  const next = existing.filter((_, i) => i !== sectionIndex);
+  const now = new Date().toISOString();
+  await ref.set(
+    {
+      guides: next,
+      importedAt: now,
+      source: "cms",
+    } satisfies ResourcesGuidesDoc,
+    { merge: false }
+  );
+  return next;
+}
+
+export async function updateGuidesSection(
+  sectionIndex: number,
+  section: GuidesSection
+): Promise<GuidesSection[]> {
+  if (!section?.cat || !section.cc || !section.items?.length) {
+    throw new Error("Invalid guides section");
+  }
+  const db = getFirestore();
+  const ref = db.collection(COLLECTIONS.resourcesGuides).doc(RESOURCES_GUIDES_DOC_ID);
+  const snap = await ref.get();
+  const existing = snap.exists
+    ? parseGuidesSectionsFromDoc(snap.data() as Record<string, unknown>)
+    : [];
+  if (sectionIndex < 0 || sectionIndex >= existing.length) {
+    throw new Error("Invalid guides section index");
+  }
+  const next = existing.map((s, i) => (i === sectionIndex ? section : s));
+  const now = new Date().toISOString();
+  await ref.set(
+    {
+      guides: next,
+      importedAt: now,
+      source: "cms",
+    } satisfies ResourcesGuidesDoc,
+    { merge: false }
+  );
+  return next;
+}
+
+export async function deleteGuidesItem(
+  sectionIndex: number,
+  itemIndex: number
+): Promise<GuidesSection[]> {
+  const db = getFirestore();
+  const ref = db.collection(COLLECTIONS.resourcesGuides).doc(RESOURCES_GUIDES_DOC_ID);
+  const snap = await ref.get();
+  const existing = snap.exists
+    ? parseGuidesSectionsFromDoc(snap.data() as Record<string, unknown>)
+    : [];
+  if (sectionIndex < 0 || sectionIndex >= existing.length) {
+    throw new Error("Invalid guides section index");
+  }
+  const sec = existing[sectionIndex]!;
+  const items = sec.items.filter((_, i) => i !== itemIndex);
+  if (items.length === sec.items.length) throw new Error("Invalid item index");
+  if (items.length === 0) throw new Error("Section must keep at least one link row");
+  const next = existing.map((s, i) =>
+    i === sectionIndex ? { ...s, items } : s
+  );
+  const now = new Date().toISOString();
+  await ref.set(
+    {
+      guides: next,
+      importedAt: now,
+      source: "cms",
+    } satisfies ResourcesGuidesDoc,
+    { merge: false }
+  );
+  return next;
+}

@@ -2,11 +2,17 @@ import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 import { getFirebaseAdmin } from "@/lib/firebase/admin";
 import { authorizeCreate } from "@/lib/create-content/auth";
-import { mergeGuidesIntoFirestore } from "@/lib/create-content/merge-resources";
+import {
+  deleteGuidesItem,
+  deleteGuidesSection,
+  mergeGuidesIntoFirestore,
+  replaceAllGuidesSections,
+  updateGuidesSection,
+} from "@/lib/create-content/merge-resources";
 import type { GuidesSection } from "@/lib/resourcesData";
 
 export async function POST(request: Request) {
-  const denied = authorizeCreate(request);
+  const denied = await authorizeCreate(request);
   if (denied) return denied;
 
   try {
@@ -99,14 +105,108 @@ export async function POST(request: Request) {
         );
       }
       await mergeGuidesIntoFirestore("append_items", { sectionIndex, items });
+    } else if (mode === "replace_all") {
+      const raw = b.guides;
+      if (!Array.isArray(raw)) {
+        return NextResponse.json({ error: "guides[] required" }, { status: 400 });
+      }
+      const sections: GuidesSection[] = [];
+      for (const sec of raw) {
+        if (!sec || typeof sec !== "object") continue;
+        const s = sec as Record<string, unknown>;
+        if (typeof s.cat !== "string" || typeof s.cc !== "string") continue;
+        const items: GuidesSection["items"] = [];
+        if (Array.isArray(s.items)) {
+          for (const it of s.items) {
+            if (!it || typeof it !== "object") continue;
+            const o = it as Record<string, unknown>;
+            if (
+              typeof o.type === "string" &&
+              typeof o.label === "string" &&
+              typeof o.url === "string"
+            ) {
+              items.push({
+                type: o.type.trim(),
+                label: o.label.trim(),
+                url: o.url.trim(),
+              });
+            }
+          }
+        }
+        if (items.length > 0) {
+          sections.push({ cat: s.cat.trim(), cc: s.cc.trim(), items });
+        }
+      }
+      await replaceAllGuidesSections(sections);
+    } else if (mode === "delete_section") {
+      const sectionIndex = Number(b.sectionIndex);
+      if (!Number.isInteger(sectionIndex)) {
+        return NextResponse.json(
+          { error: "sectionIndex (integer) required" },
+          { status: 400 }
+        );
+      }
+      await deleteGuidesSection(sectionIndex);
+    } else if (mode === "update_section") {
+      const sectionIndex = Number(b.sectionIndex);
+      const section = b.section as GuidesSection | undefined;
+      if (!Number.isInteger(sectionIndex) || !section?.cat || !section.cc) {
+        return NextResponse.json(
+          { error: "sectionIndex and section required" },
+          { status: 400 }
+        );
+      }
+      const items: GuidesSection["items"] = [];
+      if (Array.isArray(section.items)) {
+        for (const it of section.items) {
+          if (!it || typeof it !== "object") continue;
+          const o = it as Record<string, unknown>;
+          if (
+            typeof o.type === "string" &&
+            typeof o.label === "string" &&
+            typeof o.url === "string"
+          ) {
+            items.push({
+              type: o.type.trim(),
+              label: o.label.trim(),
+              url: o.url.trim(),
+            });
+          }
+        }
+      }
+      if (items.length === 0) {
+        return NextResponse.json(
+          { error: "Section must include at least one link row" },
+          { status: 400 }
+        );
+      }
+      await updateGuidesSection(sectionIndex, {
+        cat: section.cat.trim(),
+        cc: section.cc.trim(),
+        items,
+      });
+    } else if (mode === "delete_item") {
+      const sectionIndex = Number(b.sectionIndex);
+      const itemIndex = Number(b.itemIndex);
+      if (!Number.isInteger(sectionIndex) || !Number.isInteger(itemIndex)) {
+        return NextResponse.json(
+          { error: "sectionIndex and itemIndex (integers) required" },
+          { status: 400 }
+        );
+      }
+      await deleteGuidesItem(sectionIndex, itemIndex);
     } else {
       return NextResponse.json(
-        { error: "mode must be append_section or append_items" },
+        {
+          error:
+            "mode must be append_section, append_items, replace_all, delete_section, update_section, or delete_item",
+        },
         { status: 400 }
       );
     }
 
     revalidatePath("/resources");
+    revalidatePath("/resources/guides");
     return NextResponse.json({ ok: true });
   } catch (e) {
     const message = e instanceof Error ? e.message : "Write failed";

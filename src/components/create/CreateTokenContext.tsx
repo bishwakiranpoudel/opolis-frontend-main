@@ -1,5 +1,11 @@
 "use client";
 
+import type { User } from "firebase/auth";
+import {
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut as firebaseSignOut,
+} from "firebase/auth";
 import {
   createContext,
   useCallback,
@@ -8,38 +14,142 @@ import {
   useMemo,
   useState,
 } from "react";
-
-const STORAGE_KEY = "opolis-create-content-token";
+import { getFirebaseAuth } from "@/lib/firebase/client";
 
 type Ctx = {
+  user: User | null;
   token: string | null;
-  setToken: (t: string | null) => void;
   ready: boolean;
+  firebaseConfigured: boolean;
+  signIn: (email: string, password: string) => Promise<void>;
+  signOutCms: () => Promise<void>;
+  refreshIdToken: () => Promise<string | null>;
+  setLegacyToken: (t: string | null) => void;
 };
 
 const CreateTokenContext = createContext<Ctx | null>(null);
 
+const LEGACY_KEY = "opolis-create-content-token";
+
 export function CreateTokenProvider({ children }: { children: React.ReactNode }) {
-  const [token, setTokenState] = useState<string | null>(null);
+  const [user, setUser] = useState<User | null>(null);
+  const [token, setToken] = useState<string | null>(null);
+  const [legacyToken, setLegacyTokenState] = useState<string | null>(null);
   const [ready, setReady] = useState(false);
+  const [firebaseConfigured, setFirebaseConfigured] = useState(false);
 
   useEffect(() => {
     try {
-      setTokenState(sessionStorage.getItem(STORAGE_KEY));
-    } finally {
-      setReady(true);
+      setLegacyTokenState(sessionStorage.getItem(LEGACY_KEY));
+    } catch {
+      /* ignore */
     }
   }, []);
 
-  const setToken = useCallback((t: string | null) => {
-    setTokenState(t);
-    if (t) sessionStorage.setItem(STORAGE_KEY, t);
-    else sessionStorage.removeItem(STORAGE_KEY);
+  const [clientAuth, setClientAuth] =
+    useState<ReturnType<typeof getFirebaseAuth>>(null);
+
+  useEffect(() => {
+    setClientAuth(getFirebaseAuth());
   }, []);
 
+  useEffect(() => {
+    setFirebaseConfigured(clientAuth != null);
+    if (!clientAuth) {
+      setReady(true);
+      return;
+    }
+
+    const unsub = onAuthStateChanged(clientAuth, async (u) => {
+      setUser(u);
+      if (u) {
+        try {
+          const t = await u.getIdToken();
+          setToken(t);
+        } catch {
+          setToken(null);
+        }
+      } else {
+        setToken(null);
+      }
+      setReady(true);
+    });
+
+    return () => unsub();
+  }, [clientAuth]);
+
+  const refreshIdToken = useCallback(async (): Promise<string | null> => {
+    const a = getFirebaseAuth();
+    const u = a?.currentUser ?? user;
+    if (!u) return legacyToken;
+    try {
+      const t = await u.getIdToken(true);
+      setToken(t);
+      return t;
+    } catch {
+      return null;
+    }
+  }, [user, legacyToken]);
+
+  useEffect(() => {
+    if (!user) return;
+    const id = window.setInterval(() => {
+      void refreshIdToken();
+    }, 45 * 60 * 1000);
+    return () => window.clearInterval(id);
+  }, [user, refreshIdToken]);
+
+  const signIn = useCallback(async (email: string, password: string) => {
+    const a = getFirebaseAuth();
+    if (!a) throw new Error("Firebase Auth is not configured in this build.");
+    await signInWithEmailAndPassword(a, email.trim(), password);
+  }, []);
+
+  const signOutCms = useCallback(async () => {
+    const a = getFirebaseAuth();
+    if (a) await firebaseSignOut(a);
+    setLegacyTokenState(null);
+    try {
+      sessionStorage.removeItem(LEGACY_KEY);
+    } catch {
+      /* ignore */
+    }
+    setToken(null);
+  }, []);
+
+  const setLegacyToken = useCallback((t: string | null) => {
+    setLegacyTokenState(t);
+    try {
+      if (t) sessionStorage.setItem(LEGACY_KEY, t);
+      else sessionStorage.removeItem(LEGACY_KEY);
+    } catch {
+      /* ignore */
+    }
+  }, []);
+
+  const effectiveToken = token ?? legacyToken;
+
   const value = useMemo(
-    () => ({ token, setToken, ready }),
-    [token, setToken, ready]
+    () => ({
+      user,
+      token: effectiveToken,
+      ready,
+      firebaseConfigured,
+      signIn,
+      signOutCms,
+      refreshIdToken,
+      setLegacyToken,
+    }),
+    [
+      user,
+      effectiveToken,
+      ready,
+      firebaseConfigured,
+      signIn,
+      signOutCms,
+      refreshIdToken,
+      setLegacyToken,
+    ]
   );
 
   return (
