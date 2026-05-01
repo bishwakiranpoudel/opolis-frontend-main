@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Check, X, Minus } from "lucide-react";
-import { C } from "@/lib/constants";
+import { C, COMMUNITY_SIGNUP_URL } from "@/lib/constants";
 import type { FaqSection, GuidesSection } from "@/lib/resourcesData";
 import {
   FAQ_SECTIONS,
@@ -29,8 +29,6 @@ import {
   RESOURCES_PRICING_PATH,
 } from "@/lib/resourcesPaths";
 import { resolveGuideItemHref } from "@/lib/guideItems";
-
-const JOIN_URL = "https://commons.opolis.co/coalition/webinarspecial";
 
 /** Blog listing tab URL (legacy `/blog` can redirect here). */
 export const RESOURCES_BLOG_PATH = "/resources/blog";
@@ -278,7 +276,7 @@ export function ResourcesContent({
                       </Link>
                     ) : (
                       <a
-                        href={JOIN_URL}
+                        href={COMMUNITY_SIGNUP_URL}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="btn btn-red"
@@ -765,19 +763,6 @@ export function ResourcesContent({
                 })}
                 </div>
               )}
-              <div
-                style={{
-                  marginTop: 48,
-                  paddingTop: 24,
-                  borderTop: `1px solid ${C.border}`,
-                  color: C.gray,
-                  fontSize: 12,
-                  lineHeight: 1.7,
-                }}
-              >
-                <strong style={{ color: C.lgray }}>Note:</strong> Blog
-                articles open on this site.                 Full list above.
-              </div>
             </div>
           )}
 
@@ -1046,7 +1031,7 @@ export function ResourcesContent({
             is $97 to start.
           </p>
           <a
-            href={JOIN_URL}
+            href={COMMUNITY_SIGNUP_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn-wht"

@@ -46,6 +46,12 @@ export default function RootLayout({
           title="Opolis Blog"
           href={`${baseUrl}/blog/feed.xml`}
         />
+        <link
+          rel="alternate"
+          type="text/plain"
+          title="LLMs.txt — AI / crawler reference"
+          href={`${baseUrl}/llms.txt`}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

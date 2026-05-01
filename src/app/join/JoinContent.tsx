@@ -3,9 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Check } from "lucide-react";
-import { C, STATE_FLOORS, US_STATES } from "@/lib/constants";
-
-const JOIN_URL = "https://commons.opolis.co/coalition/webinarspecial";
+import { C, COMMUNITY_SIGNUP_URL, STATE_FLOORS, US_STATES } from "@/lib/constants";
 
 const STEPS = [
   { n: 1, l: "Community Membership" },
@@ -348,7 +346,7 @@ export function JoinContent() {
                       "Employee Membership requires an S-Corp (or plan to form one), U.S. work authorization, and income meeting your state's minimum. Start with Community Membership to join the cooperative and access resources."}
                   </p>
                   <a
-                    href={JOIN_URL}
+                    href={COMMUNITY_SIGNUP_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn btn-red"

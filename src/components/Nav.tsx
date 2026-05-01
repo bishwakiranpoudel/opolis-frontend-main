@@ -4,10 +4,9 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { NAV_PAGES, ROUTES } from "@/lib/constants";
+import { COMMUNITY_SIGNUP_URL, NAV_PAGES, ROUTES } from "@/lib/constants";
 
 const COMMONS_LOGIN = "https://commons.opolis.co/";
-const JOIN_URL = "https://commons.opolis.co/coalition/webinarspecial";
 
 function NavMobileControls({ pathname }: { pathname: string }) {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -95,7 +94,7 @@ function NavMobileControls({ pathname }: { pathname: string }) {
                 Log in
               </a>
               <a
-                href={JOIN_URL}
+                href={COMMUNITY_SIGNUP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-wht nav-overlay-cta"
@@ -192,7 +191,7 @@ export function Nav() {
                 Log in
               </a>
               <a
-                href={JOIN_URL}
+                href={COMMUNITY_SIGNUP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-wht nav-join"

@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { buildMetadata, breadcrumbJsonLd } from "@/lib/seo";
-import { C } from "@/lib/constants";
-
-const COMMUNITY_JOIN_URL = "https://commons.opolis.co/community";
+import { C, COMMUNITY_SIGNUP_URL } from "@/lib/constants";
 
 const TIMELINE_ITEMS = [
   {
@@ -499,7 +497,7 @@ export default function AboutPage() {
             you&apos;re ready.
           </p>
           <a
-            href={COMMUNITY_JOIN_URL}
+            href={COMMUNITY_SIGNUP_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn-wht lg"

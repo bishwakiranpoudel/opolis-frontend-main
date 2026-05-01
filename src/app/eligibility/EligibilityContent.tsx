@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { C, STATE_FLOORS, US_STATES } from "@/lib/constants";
+import { C, COMMUNITY_SIGNUP_URL, STATE_FLOORS, US_STATES } from "@/lib/constants";
 import {
   Users,
   BookOpen,
@@ -16,8 +16,6 @@ import {
   Check,
   X,
 } from "lucide-react";
-
-const JOIN_URL = "https://commons.opolis.co/coalition/webinarspecial";
 
 export function EligibilityContent() {
   const [selectedState, setSelectedState] = useState("");
@@ -81,7 +79,7 @@ export function EligibilityContent() {
                 ready.
               </p>
               <a
-                href={JOIN_URL}
+                href={COMMUNITY_SIGNUP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-red"
@@ -690,7 +688,7 @@ export function EligibilityContent() {
               marginBottom: 12,
             }}
           >
-            When Opolis isn&apos;t the right answer.
+            When Employee Membership isn&apos;t the right fit
           </h2>
           <p
             style={{
@@ -804,7 +802,7 @@ export function EligibilityContent() {
             style={{ display: "flex", gap: 14, flexWrap: "wrap" }}
           >
             <a
-              href={JOIN_URL}
+              href={COMMUNITY_SIGNUP_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-wht lg"

@@ -118,6 +118,10 @@ export function unemployableSeasonWpCategoryIds(): {
   };
 }
 
+/** Commons signup — “Join the Co-op” CTAs sitewide. */
+export const COMMUNITY_SIGNUP_URL =
+  "https://commons.opolis.co/community/signup";
+
 /** Official Privacy Policy PDF (linked from footer and mirrored legal pages). */
 export const LEGAL_PRIVACY_POLICY_PDF_URL =
   "https://opolis.co/wp-content/uploads/2026/01/25.12.18_Opolis-Privacy-Policy.docx.pdf";

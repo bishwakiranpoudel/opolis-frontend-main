@@ -7,10 +7,8 @@ import {
   Users,
   Check,
 } from "lucide-react";
-import { C, SITE_URL } from "@/lib/constants";
+import { C, COMMUNITY_SIGNUP_URL, SITE_URL } from "@/lib/constants";
 import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
-
-const JOIN_URL = "https://commons.opolis.co/coalition/webinarspecial";
 
 const homeBreadcrumb = breadcrumbJsonLd([{ name: "Home", path: "/" }]);
 
@@ -85,7 +83,7 @@ export default function HomePage() {
             style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}
           >
             <a
-              href={JOIN_URL}
+              href={COMMUNITY_SIGNUP_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-red lg"
@@ -370,7 +368,7 @@ export default function HomePage() {
                 ))}
               </ul>
               <a
-                href={JOIN_URL}
+                href={COMMUNITY_SIGNUP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-red btn-fit"
@@ -653,7 +651,7 @@ export default function HomePage() {
                 employees have taken for granted for decades.
               </p>
               <a
-                href={JOIN_URL}
+                href={COMMUNITY_SIGNUP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-red"
@@ -751,7 +749,7 @@ export default function HomePage() {
             every time someone new joins.
           </p>
           <a
-            href={JOIN_URL}
+            href={COMMUNITY_SIGNUP_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn-wht lg"

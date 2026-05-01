@@ -1,10 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { C } from "@/lib/constants";
+import { C, COMMUNITY_SIGNUP_URL } from "@/lib/constants";
 import { MemberDashboardMockups } from "./MemberDashboardMockups";
-
-const JOIN_URL = "https://commons.opolis.co/coalition/webinarspecial";
 
 export function TheCooperativeContent() {
   return (
@@ -71,7 +69,7 @@ export function TheCooperativeContent() {
                     as a co-owner.
                   </p>
                   <a
-                    href={JOIN_URL}
+                    href={COMMUNITY_SIGNUP_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn btn-red"
@@ -300,7 +298,7 @@ export function TheCooperativeContent() {
             the cooperative and start building something that belongs to you.
           </p>
           <a
-            href={JOIN_URL}
+            href={COMMUNITY_SIGNUP_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn-wht lg"

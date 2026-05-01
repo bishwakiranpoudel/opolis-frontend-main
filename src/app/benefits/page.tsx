@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { buildMetadata, breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
-import { C, SITE_URL } from "@/lib/constants";
+import { C, COMMUNITY_SIGNUP_URL, SITE_URL } from "@/lib/constants";
 import {
   Heart,
   TrendingUp,
@@ -10,8 +10,6 @@ import {
   Globe,
   Check,
 } from "lucide-react";
-
-const JOIN_URL = "https://commons.opolis.co/coalition/webinarspecial";
 
 export const metadata: Metadata = buildMetadata({
   title: "Benefits — Full Benefits Package for Employee Members | Opolis",
@@ -166,7 +164,7 @@ export default function BenefitsPage() {
             with a Community Membership for $97.
           </p>
           <a
-            href={JOIN_URL}
+            href={COMMUNITY_SIGNUP_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn-red"
@@ -268,28 +266,24 @@ export default function BenefitsPage() {
       >
         <div className="cta-pattern-layer" aria-hidden />
         <div className="wrap">
-          <h2
-            className="cond benefits-page__health-pricing-cta"
+          <p
             style={{
-              fontSize: "clamp(22px, 2.6vw, 34px)",
-              fontWeight: 700,
-              color: "#fff",
+              color: "rgba(255,255,255,0.82)",
+              fontSize: 17,
+              fontWeight: 400,
               maxWidth: 560,
-              margin: "0 auto 14px",
-              lineHeight: 1.4,
-              letterSpacing: "-0.02em",
+              margin: "0 auto 34px",
+              lineHeight: 1.68,
             }}
           >
-            For many Employee Members, cooperative group health pricing is one
-            of the largest savings versus the individual market — and it is
-            only part of what full membership unlocks.
-          </h2>
+            For most Members, the group health rates alone more than justify
+            the cost of membership.
+          </p>
           <a
-            href={JOIN_URL}
+            href={COMMUNITY_SIGNUP_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn-wht lg"
-            style={{ marginTop: 28 }}
           >
             Join the Co-op →
           </a>
@@ -307,7 +301,7 @@ export default function BenefitsPage() {
               if you already run an S-Corp.
             </p>
             <a
-              href={JOIN_URL}
+              href={COMMUNITY_SIGNUP_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-red lg"
