@@ -76,8 +76,6 @@ export function ResourcesContent({
   const faqSections = initialFaq ?? FAQ_SECTIONS;
 
   const tab = resourcesTabFromPath(pathname);
-  const [openSection, setOpenSection] = useState(faqSections[0]?.id ?? "overview");
-  const [openItem, setOpenItem] = useState<number | null>(null);
   const [blogCat, setBlogCat] = useState("All");
   const [blogSearch, setBlogSearch] = useState("");
 
@@ -492,7 +490,7 @@ export function ResourcesContent({
             </div>
           )}
 
-          {/* FAQ */}
+          {/* FAQ — all sections and Q&A in the DOM for crawlers; <details> keeps answers indexable */}
           {tab === "faq" && (
             <div style={{ maxWidth: 900 }}>
               <h2 id="faq" className="cond h2-section h2-section--resources-tab">
@@ -511,15 +509,11 @@ export function ResourcesContent({
                   alignItems: "start",
                 }}
               >
-                <div className="faq-sidebar">
+                <nav className="faq-sidebar" aria-label="FAQ sections">
                   {faqSections.map((s) => (
-                    <button
+                    <a
                       key={s.id}
-                      type="button"
-                      onClick={() => {
-                        setOpenSection(s.id);
-                        setOpenItem(null);
-                      }}
+                      href={`#faq-section-${s.id}`}
                       style={{
                         display: "block",
                         width: "100%",
@@ -527,99 +521,53 @@ export function ResourcesContent({
                         padding: "9px 14px",
                         borderRadius: 7,
                         fontSize: 13,
-                        fontWeight: openSection === s.id ? 700 : 400,
-                        color: openSection === s.id ? "#fff" : C.gray,
-                        background:
-                          openSection === s.id ? C.card : "transparent",
-                        border:
-                          openSection === s.id
-                            ? `1px solid ${C.border}`
-                            : "1px solid transparent",
+                        fontWeight: 500,
+                        color: C.gray,
+                        background: "transparent",
+                        border: "1px solid transparent",
                         fontFamily: "'DM Sans', sans-serif",
                         marginBottom: 3,
                         transition: "all 0.15s",
                         cursor: "pointer",
+                        textDecoration: "none",
                       }}
                     >
                       {s.label}
-                    </button>
+                    </a>
                   ))}
-                </div>
+                </nav>
                 <div>
-                  {faqSections.filter((s) => s.id === openSection).map(
-                    (s) => (
-                      <div key={s.id}>
-                        {s.items.map((item, i) => (
-                          <div
-                            key={i}
-                            style={{
-                              borderBottom: `1px solid ${C.border}`,
-                            }}
-                          >
-                            <button
-                              type="button"
-                              onClick={() =>
-                                setOpenItem(openItem === i ? null : i)
-                              }
-                              style={{
-                                width: "100%",
-                                display: "flex",
-                                justifyContent: "space-between",
-                                alignItems: "center",
-                                padding: "18px 0",
-                                textAlign: "left",
-                                fontFamily: "'DM Sans', sans-serif",
-                                background: "transparent",
-                                cursor: "pointer",
-                                border: "none",
-                                color: "inherit",
-                              }}
-                            >
-                              <span
-                                style={{
-                                  fontSize: 15,
-                                  fontWeight: 600,
-                                  color: "#fff",
-                                  lineHeight: 1.4,
-                                  paddingRight: 20,
-                                }}
-                              >
-                                {item.q}
-                              </span>
-                              <span
-                                style={{
-                                  color: C.red,
-                                  fontSize: 18,
-                                  flexShrink: 0,
-                                  transition: "transform 0.2s",
-                                  display: "inline-block",
-                                  transform:
-                                    openItem === i
-                                      ? "rotate(45deg)"
-                                      : "rotate(0deg)",
-                                }}
-                              >
-                                +
-                              </span>
-                            </button>
-                            {openItem === i && (
-                              <p
-                                style={{
-                                  color: C.lgray,
-                                  fontSize: 14,
-                                  lineHeight: 1.78,
-                                  paddingBottom: 20,
-                                  marginTop: -4,
-                                }}
-                              >
-                                {item.a}
-                              </p>
-                            )}
-                          </div>
-                        ))}
-                      </div>
-                    )
-                  )}
+                  {faqSections.map((s) => (
+                    <section
+                      key={s.id}
+                      id={`faq-section-${s.id}`}
+                      style={{ marginBottom: 48, scrollMarginTop: 96 }}
+                    >
+                      <h3
+                        className="cond"
+                        style={{
+                          fontSize: 17,
+                          fontWeight: 700,
+                          color: "#fff",
+                          marginBottom: 18,
+                          letterSpacing: "-0.02em",
+                        }}
+                      >
+                        {s.label}
+                      </h3>
+                      {s.items.map((item, i) => (
+                        <details key={i} className="faq-details">
+                          <summary>
+                            <span className="faq-details__q">{item.q}</span>
+                            <span className="faq-details__icon" aria-hidden>
+                              +
+                            </span>
+                          </summary>
+                          <p className="faq-details__a">{item.a}</p>
+                        </details>
+                      ))}
+                    </section>
+                  ))}
                 </div>
               </div>
             </div>

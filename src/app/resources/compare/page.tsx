@@ -29,7 +29,7 @@ export default async function ResourcesComparePage() {
   const faqForLd = faqSections.flatMap((s) =>
     s.items.map((item) => ({ question: item.q, answer: item.a }))
   );
-  const faqLd = faqJsonLd(faqForLd);
+  const faqLd = faqJsonLd(faqForLd, `${SITE_URL}/resources/compare`);
 
   const breadcrumbLd = breadcrumbJsonLd([
     { name: "Home", path: "/" },

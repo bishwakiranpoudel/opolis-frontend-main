@@ -7,12 +7,19 @@ import {
   Users,
   Check,
 } from "lucide-react";
-import { C } from "@/lib/constants";
-import { breadcrumbJsonLd } from "@/lib/seo";
+import { C, SITE_URL } from "@/lib/constants";
+import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
 
 const JOIN_URL = "https://commons.opolis.co/coalition/webinarspecial";
 
 const homeBreadcrumb = breadcrumbJsonLd([{ name: "Home", path: "/" }]);
+
+const homeWebPage = webPageJsonLd({
+  name: "Opolis — Independent work. Collective power.",
+  description:
+    "Employment infrastructure for independent professionals. Member-owned cooperative: W-2 payroll, group benefits, and compliance — owned collectively, built to last.",
+  url: `${SITE_URL}/`,
+});
 
 export default function HomePage() {
   return (
@@ -20,6 +27,10 @@ export default function HomePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homeBreadcrumb) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeWebPage) }}
       />
       <section
         className="hero-section"

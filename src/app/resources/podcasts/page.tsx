@@ -31,7 +31,7 @@ export default async function ResourcesPodcastsPage() {
   const faqForLd = faqSections.flatMap((s) =>
     s.items.map((item) => ({ question: item.q, answer: item.a }))
   );
-  const faqLd = faqJsonLd(faqForLd);
+  const faqLd = faqJsonLd(faqForLd, `${SITE_URL}/resources/podcasts`);
 
   const breadcrumbLd = breadcrumbJsonLd([
     { name: "Home", path: "/" },

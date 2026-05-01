@@ -98,10 +98,14 @@ function plainTextForSchema(html: string): string {
     .trim();
 }
 
-export function faqJsonLd(faq: { question: string; answer: string }[]) {
+export function faqJsonLd(
+  faq: { question: string; answer: string }[],
+  pageUrl?: string
+) {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    ...(pageUrl ? { url: pageUrl } : {}),
     mainEntity: faq.map((item) => ({
       "@type": "Question",
       name: plainTextForSchema(item.question),

@@ -72,11 +72,27 @@ export const STATE_FLOORS: Record<string, number> = {
 
 export const US_STATES = Object.keys(STATE_FLOORS).sort();
 
-/** Canonical origin, no trailing slash. Empty env falls back so sitemap/canonicals stay valid. */
-const rawSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
-export const SITE_URL = (
-  rawSiteUrl && rawSiteUrl.length > 0 ? rawSiteUrl : "https://opolis.co"
-).replace(/\/$/, "");
+/**
+ * Canonical origin, no trailing slash.
+ * - Prefer `NEXT_PUBLIC_SITE_URL` (set in Vercel prod to https://opolis.co).
+ * - On Vercel *preview* builds only, fall back to `VERCEL_URL` so audits on
+ *   *.vercel.app match canonicals and JSON-LD.
+ * - Production without explicit env stays on opolis.co (never *.vercel.app).
+ */
+function resolveSiteUrl(): string {
+  const explicit = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (explicit) return explicit.replace(/\/$/, "");
+  const vercelEnv = process.env.VERCEL_ENV;
+  const isPreview = vercelEnv === "preview" || vercelEnv === "development";
+  const vercel = process.env.VERCEL_URL?.trim();
+  if (isPreview && vercel) {
+    const host = vercel.replace(/^https?:\/\//i, "");
+    return `https://${host}`.replace(/\/$/, "");
+  }
+  return "https://opolis.co";
+}
+
+export const SITE_URL = resolveSiteUrl();
 
 /**
  * Unemployable in-show “Season 2” if publish date is on/after this instant and no

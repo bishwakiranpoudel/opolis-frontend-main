@@ -29,7 +29,7 @@ export default async function ResourcesGuidesPage() {
   const faqForLd = faqSections.flatMap((s) =>
     s.items.map((item) => ({ question: item.q, answer: item.a }))
   );
-  const faqLd = faqJsonLd(faqForLd);
+  const faqLd = faqJsonLd(faqForLd, `${SITE_URL}/resources/guides`);
 
   const breadcrumbLd = breadcrumbJsonLd([
     { name: "Home", path: "/" },
