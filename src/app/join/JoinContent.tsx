@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Check } from "lucide-react";
-import { C, COMMUNITY_SIGNUP_URL, STATE_FLOORS, US_STATES } from "@/lib/constants";
+import { C, COMMUNITY_SIGNUP_URL } from "@/lib/constants";
 
 const STEPS = [
   { n: 1, l: "Community Membership" },
@@ -12,7 +12,13 @@ const STEPS = [
   { n: 4, l: "Timeline" },
 ];
 
-export function JoinContent() {
+export function JoinContent({
+  stateFloors,
+  usStates,
+}: {
+  stateFloors: Record<string, number>;
+  usStates: string[];
+}) {
   const [step, setStep] = useState(0);
   const [ans, setAns] = useState({
     sCorp: "",
@@ -23,7 +29,7 @@ export function JoinContent() {
   });
   const [elig, setElig] = useState<"fit" | "conditional" | "no" | null>(null);
 
-  const stateFloor = ans.state ? STATE_FLOORS[ans.state] : 43000;
+  const stateFloor = ans.state ? stateFloors[ans.state] ?? 43000 : 43000;
   const incomeVal =
     ans.income === "under43"
       ? 0
@@ -192,7 +198,7 @@ export function JoinContent() {
                       }
                     >
                       <option value="">Select state…</option>
-                      {US_STATES.map((s) => (
+                      {usStates.map((s) => (
                         <option key={s} value={s}>
                           {s}
                         </option>
@@ -213,7 +219,7 @@ export function JoinContent() {
                         Minimum exempt salary in <strong>{ans.state}</strong>:{" "}
                         <strong style={{ color: C.red }}>
                           $
-                          {STATE_FLOORS[ans.state]?.toLocaleString()}
+                          {stateFloors[ans.state]?.toLocaleString()}
                         </strong>
                       </div>
                     )}
@@ -236,7 +242,7 @@ export function JoinContent() {
                       l: `What is your approximate annual contractor income?${
                         ans.state
                           ? ` (${ans.state} minimum: $${
-                              STATE_FLOORS[ans.state]?.toLocaleString() ?? ""
+                              stateFloors[ans.state]?.toLocaleString() ?? ""
                             })`
                           : ""
                       }`,

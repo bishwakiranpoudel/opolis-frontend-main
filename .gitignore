@@ -26,6 +26,7 @@
 
 # Firebase service account (never commit)
 firebase-adminsdk.json
+production.json
 *-firebase-adminsdk*.json
 
 # debug

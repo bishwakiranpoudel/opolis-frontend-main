@@ -300,6 +300,71 @@ a.create-card:hover {
   margin-bottom: 12px;
 }
 
+/* Person cards: one grid so portrait row shares column 1 origin with Name */
+.create-person-edit-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 16px;
+  row-gap: 20px;
+  align-items: start;
+  width: 100%;
+}
+
+@media (max-width: 640px) {
+  .create-person-edit-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.create-person-edit-grid__portrait {
+  grid-column: 1 / -1;
+  min-width: 0;
+}
+
+/* CMS file field: keep labels/controls on the same horizontal keyline as Name/Title */
+.create-cms-upload-field > .slabel,
+.create-cms-upload-field > .create-cms-upload-field__hint,
+.create-cms-upload-field > .create-cms-upload-field__actions,
+.create-cms-upload-field > .create-cms-upload-field__preview,
+.create-cms-upload-field > .create-cms-upload-field__details {
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.create-cms-upload-field__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.create-cms-upload-field__preview {
+  margin-top: 12px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.create-cms-upload-field__details {
+  margin-top: 14px;
+}
+
+.create-cms-upload-field__summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+.create-cms-upload-field__summary::-webkit-details-marker {
+  display: none;
+}
+
+.create-cms-upload-field__paste-input {
+  width: 100%;
+}
+
 .create-muted {
   color: #666;
   font-size: 13px;

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { buildMetadata, breadcrumbJsonLd, contactPageJsonLd } from "@/lib/seo";
-import { C, SITE_URL } from "@/lib/constants";
+import { C, DISCORD_INVITE_URL, SITE_URL } from "@/lib/constants";
 import { Mail, Handshake, Headphones, MessagesSquare } from "lucide-react";
 
 const PRESS_KIT_URL =
@@ -453,7 +453,7 @@ export default function ContactPage() {
                     in. Not a support line — just a good room to be in.
                   </p>
                   <a
-                    href="https://discord.gg/7qWZ9PEB"
+                    href={DISCORD_INVITE_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{

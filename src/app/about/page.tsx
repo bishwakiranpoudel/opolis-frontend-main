@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { buildMetadata, breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
 import { C, COMMUNITY_SIGNUP_URL, SITE_URL } from "@/lib/constants";
+import { getPeopleForPublic } from "@/lib/firebase/site-content-read";
+
+/** Fresh reads from Firestore; CMS uses `revalidatePath("/about")`. */
+export const revalidate = 0;
 
 const TIMELINE_ITEMS = [
   {
@@ -66,27 +70,6 @@ const ETHOS = [
   },
 ] as const;
 
-const BOARD = [
-  { n: "John Paller", t: "Chair & Founder" },
-  { n: "[Vacant]", t: "Executive Board Member" },
-  { n: "Auryn Macmillan", t: "Community Board Member" },
-  { n: "Spencer Graham", t: "Community Board Member" },
-  { n: "Barry Goers", t: "Board Member" },
-  { n: "Felix Machart", t: "Board Member" },
-  { n: "[Vacant]", t: "Board Member" },
-] as const;
-
-const TEAM = [
-  { n: "Will Morgan", t: "Executive Steward" },
-  { n: "Becky Guinan", t: "Accounting Steward" },
-  { n: "Matt Tyus", t: "Payroll & Support Steward" },
-  { n: "Robert Hamilton", t: "Accounting Steward" },
-  { n: "Danielle Jones", t: "Ops & Admin Steward" },
-  { n: "David Jenkins", t: "Membership Steward" },
-  { n: "Carlos Londoño", t: "Dev & IT Steward" },
-  { n: "Micah Baylor", t: "Insurance & Benefits Steward" },
-] as const;
-
 export const metadata: Metadata = buildMetadata({
   title: "About Opolis — Vision, Genesis & Team",
   description:
@@ -110,7 +93,12 @@ const aboutWebPageLd = webPageJsonLd(
   "AboutPage"
 );
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const [board, team] = await Promise.all([
+    getPeopleForPublic("board"),
+    getPeopleForPublic("team"),
+  ]);
+
   return (
     <>
       <script
@@ -141,9 +129,9 @@ export default function AboutPage() {
             <span style={{ color: C.red }}>Owned by workers.</span>
           </h1>
           <p className="page-hero-lead page-hero-lead--wide speakable">
-            <em>Opus</em> — work. <em>Polis</em> — community. A platform where
-            independent professionals choose how, where, and with whom they
-            work, with the full infrastructure of employment behind them.
+            Opus — work. Polis — community. A member-owned employment cooperative
+            providing community, education, group purchasing power, and optional
+            W-2 employment infrastructure for independent professionals.
           </p>
         </div>
       </section>
@@ -403,21 +391,39 @@ export default function AboutPage() {
             oversight of the cooperative&apos;s direction, finances, and values.
           </p>
           <div className="g4" style={{ gap: 14 }}>
-            {BOARD.map((s, i) => (
+            {board.map((s, i) => (
               <div
-                key={`${s.n}-${i}`}
+                key={`${s.name}-${i}`}
                 className="dc"
                 style={{ padding: "20px 20px", textAlign: "center" }}
               >
-                <div
-                  style={{
-                    width: 52,
-                    height: 52,
-                    borderRadius: "50%",
-                    background: C.border,
-                    margin: "0 auto 12px",
-                  }}
-                />
+                {s.avatarUrl ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={s.avatarUrl}
+                    alt=""
+                    width={52}
+                    height={52}
+                    style={{
+                      width: 52,
+                      height: 52,
+                      borderRadius: "50%",
+                      objectFit: "cover",
+                      margin: "0 auto 12px",
+                      display: "block",
+                    }}
+                  />
+                ) : (
+                  <div
+                    style={{
+                      width: 52,
+                      height: 52,
+                      borderRadius: "50%",
+                      background: C.border,
+                      margin: "0 auto 12px",
+                    }}
+                  />
+                )}
                 <div
                   style={{
                     fontWeight: 700,
@@ -426,9 +432,9 @@ export default function AboutPage() {
                     marginBottom: 4,
                   }}
                 >
-                  {s.n}
+                  {s.name}
                 </div>
-                <div style={{ fontSize: 12, color: C.gray }}>{s.t}</div>
+                <div style={{ fontSize: 12, color: C.gray }}>{s.title}</div>
               </div>
             ))}
           </div>
@@ -449,21 +455,39 @@ export default function AboutPage() {
             payroll compliance, HR technology, and cooperative finance.
           </p>
           <div className="g4" style={{ gap: 14 }}>
-            {TEAM.map((s, i) => (
+            {team.map((s, i) => (
               <div
-                key={`${s.n}-${i}`}
+                key={`${s.name}-${i}`}
                 className="dc"
                 style={{ padding: "20px 20px", textAlign: "center" }}
               >
-                <div
-                  style={{
-                    width: 52,
-                    height: 52,
-                    borderRadius: "50%",
-                    background: C.border,
-                    margin: "0 auto 12px",
-                  }}
-                />
+                {s.avatarUrl ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={s.avatarUrl}
+                    alt=""
+                    width={52}
+                    height={52}
+                    style={{
+                      width: 52,
+                      height: 52,
+                      borderRadius: "50%",
+                      objectFit: "cover",
+                      margin: "0 auto 12px",
+                      display: "block",
+                    }}
+                  />
+                ) : (
+                  <div
+                    style={{
+                      width: 52,
+                      height: 52,
+                      borderRadius: "50%",
+                      background: C.border,
+                      margin: "0 auto 12px",
+                    }}
+                  />
+                )}
                 <div
                   style={{
                     fontWeight: 700,
@@ -472,9 +496,9 @@ export default function AboutPage() {
                     marginBottom: 4,
                   }}
                 >
-                  {s.n}
+                  {s.name}
                 </div>
-                <div style={{ fontSize: 12, color: C.gray }}>{s.t}</div>
+                <div style={{ fontSize: 12, color: C.gray }}>{s.title}</div>
               </div>
             ))}
           </div>

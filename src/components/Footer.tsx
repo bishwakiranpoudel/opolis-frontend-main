@@ -67,8 +67,10 @@ export function Footer() {
                 maxWidth: 270,
               }}
             >
-              A member-owned employment cooperative providing W-2 employment
-              infrastructure for independent professionals.
+              A member-owned employment cooperative providing community,
+              education, group purchasing power, and optional
+              Employer-of-Record (W2) infrastructure for independent
+              professionals.
             </p>
           </div>
           {FOOTER_COLS.map((col) => (

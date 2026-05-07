@@ -14,6 +14,7 @@ import {
   GUIDES_DATA,
   isFaqSection,
   isGuidesSection,
+  normalizeFaqSectionsForDisplay,
 } from "@/lib/resourcesData";
 
 const WORDPRESS_URL = process.env.WORDPRESS_URL || "";
@@ -82,7 +83,9 @@ export async function getFaq(): Promise<FaqSection[]> {
   if (getContentSource() === "firestore") {
     try {
       const { getFaqFromFirestore } = await import("@/lib/firestore-content");
-      return await getFaqFromFirestore();
+      const raw = await getFaqFromFirestore();
+      const cleaned = normalizeFaqSectionsForDisplay(raw);
+      return cleaned.length > 0 ? cleaned : FAQ_SECTIONS;
     } catch (err) {
       console.error(
         "[Firestore] getFaq failed; using static FAQ_SECTIONS.",
@@ -118,7 +121,8 @@ export async function getFaq(): Promise<FaqSection[]> {
     const valid = list.filter(isFaqSection);
     if (valid.length === 0) return FAQ_SECTIONS;
 
-    return valid;
+    const cleaned = normalizeFaqSectionsForDisplay(valid as FaqSection[]);
+    return cleaned.length > 0 ? cleaned : FAQ_SECTIONS;
   } catch {
     return FAQ_SECTIONS;
   }

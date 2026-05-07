@@ -158,7 +158,7 @@ export default function HomePage() {
 
       <section className="sec-alt">
         <div className="wrap">
-          <span className="slabel">What Membership Gets You</span>
+          <span className="slabel">What Employee Membership Gets You</span>
           <h2
             className="cond"
             style={{
@@ -211,7 +211,7 @@ export default function HomePage() {
               {
                 Icon: Users,
                 h: "Co-op Ownership",
-                p: "Members own the cooperative and participate in its governance and profits.",
+                p: "Earn $WORK, receive dividends when declared, and nominate candidates to the Board of Stewards.",
               },
             ].map(({ Icon, h, p }) => (
               <div key={h} className="outcome-card">
@@ -253,7 +253,7 @@ export default function HomePage() {
               marginBottom: 16,
             }}
           >
-            Two ways to belong.
+            Two ways to join.
           </h2>
           <p
             style={{
@@ -264,10 +264,8 @@ export default function HomePage() {
               maxWidth: 720,
             }}
           >
-            Start with community membership and access the cooperative
-            immediately. When you&apos;re ready — and your S-Corp is in place —
-            upgrade to Employee Membership for the full employment
-            infrastructure.
+            Join the Co-Op as a Community Member. Upgrade to Employee
+            Membership for payroll, benefits, and compliance.
           </p>
           <div className="g2" style={{ gap: 24 }}>
             <div
@@ -328,9 +326,9 @@ export default function HomePage() {
                   marginBottom: 24,
                 }}
               >
-                No S-Corp required. A one-time purchase that gets you into the
-                community, establishes your cooperative ownership, and starts
-                your path to Employee Membership.
+                No entity required (to join the Co-Op). A one-time purchase
+                that gets you into the community, establishes your cooperative
+                ownership, and starts your path to Employee Membership.
               </p>
               <ul
                 style={{
@@ -345,9 +343,11 @@ export default function HomePage() {
                 {[
                   "Member Social Hub & peer network",
                   "Internal marketplace for work opportunities",
-                  "Educational webinars — S-Corps, taxes & benefits",
+                  "Educational resources — S-Corps, taxes & benefits",
                   "Partner discounts on tools & software",
-                  "Cooperative governance & profit participation",
+                  "Earn $WORK tokens as the cooperative grows",
+                  "Receive dividends when declared",
+                  "Nominate Board of Stewards candidates",
                 ].map((f) => (
                   <li
                     key={f}
@@ -447,7 +447,7 @@ export default function HomePage() {
                 Everything in Community Membership, plus compliant payroll,
                 group benefits, and W-2 status — all automated through the
                 cooperative. Requires an active S-Corp or C-Corp; we help you
-                get set up. Most Members operate as S-Corps.
+                get set up.
               </p>
               <ul
                 style={{
@@ -461,13 +461,28 @@ export default function HomePage() {
               >
                 {[
                   ["Everything in Community Membership", false],
+                  [
+                    "Voting rights — elect the Board of Stewards",
+                    true,
+                  ],
                   ["W-2 employment status", true],
                   ["Semi-monthly payroll — automated & compliant", true],
-                  ["Group health, dental, vision, disability & life", true],
+                  [
+                    "Access to group health, dental, vision & life",
+                    true,
+                  ],
                   ["401(k) with employer contribution options", true],
-                  ["Unemployment insurance & workers' comp included", true],
+                  [
+                    "Access to disability coverage (*required for W-2)",
+                    true,
+                  ],
+                  [
+                    "Access to workers' comp (*required for W-2)",
+                    true,
+                  ],
                   ["Full tax compliance — withholding, filings & W-2", true],
-                  ["S-Corp or C-Corp setup support included", true],
+                  ["HR support", true],
+                  ["Proof of income (W-2, pay stubs)", true],
                 ].map(([f, bold]) => (
                   <li
                     key={String(f)}
@@ -644,8 +659,8 @@ export default function HomePage() {
                   maxWidth: 480,
                 }}
               >
-                Opolis works best for S-Corp operators with stable, recurring
-                income. You&apos;re not a customer —{" "}
+                Opolis works best for S-Corp or C-Corp operators with stable,
+                recurring income. You&apos;re not a customer —{" "}
                 <strong style={{ color: "#fff" }}>you&apos;re an owner.</strong>{" "}
                 Every Member has a stake in the platform, a voice in governance,
                 and access to employment infrastructure that Fortune 500
@@ -677,7 +692,7 @@ export default function HomePage() {
                 },
                 {
                   l: "Cooperative ownership model",
-                  s: "Members own the platform, participate in governance, and share in profits",
+                  s: "Earn $WORK and dividends; nominate Board candidates — Employee Members vote in cooperative elections",
                 },
               ].map((f) => (
                 <div

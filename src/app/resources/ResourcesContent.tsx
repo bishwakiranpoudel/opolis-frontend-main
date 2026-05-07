@@ -8,6 +8,7 @@ import { C, COMMUNITY_SIGNUP_URL } from "@/lib/constants";
 import type { FaqSection, GuidesSection } from "@/lib/resourcesData";
 import {
   FAQ_SECTIONS,
+  normalizeFaqSectionsForDisplay,
   CMP_ROWS,
   CMP_COLS,
   PRICING_TIERS,
@@ -71,7 +72,16 @@ export function ResourcesContent({
 }: ResourcesContentProps) {
   const pathname = usePathname();
   const guides = initialGuides ?? GUIDES_DATA;
-  const faqSections = initialFaq ?? FAQ_SECTIONS;
+  /**
+   * Prefer server FAQs; fall back to bundled copy when the payload is empty,
+   * all sections have no items, or every q/a is blank (Firestore/CMS mistakes).
+   */
+  const faqSections = (() => {
+    const source =
+      initialFaq != null && initialFaq.length > 0 ? initialFaq : FAQ_SECTIONS;
+    const cleaned = normalizeFaqSectionsForDisplay(source);
+    return cleaned.length > 0 ? cleaned : FAQ_SECTIONS;
+  })();
 
   const tab = resourcesTabFromPath(pathname);
   const [blogCat, setBlogCat] = useState("All");

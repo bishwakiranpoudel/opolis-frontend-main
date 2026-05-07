@@ -63,10 +63,10 @@ export function TheCooperativeContent() {
                     className="section-lead section-lead--narrow"
                     style={{ marginBottom: 20 }}
                   >
-                    Join immediately. No S-Corp required. Access the Member
-                    community, educational resources, and partner discounts —
-                    and participate in cooperative governance and profit sharing
-                    as a co-owner.
+                    Join immediately. No entity required (to join the Co-Op).
+                    Access the Member community, educational resources, and
+                    partner discounts — with $WORK, dividends, and the right to
+                    nominate Board of Stewards candidates.
                   </p>
                   <a
                     href={COMMUNITY_SIGNUP_URL}
@@ -84,9 +84,11 @@ export function TheCooperativeContent() {
                   {[
                     "Member Social Hub & peer network",
                     "Internal marketplace for work opportunities",
-                    "Educational webinars on S-Corps, taxes & benefits",
+                    "Educational resources — S-Corps, taxes & benefits",
                     "Partner discounts on tools & software",
-                    "Cooperative governance & profit participation",
+                    "Earn $WORK tokens as the cooperative grows",
+                    "Receive dividends when declared",
+                    "Nominate Board of Stewards candidates",
                   ].map((f) => (
                     <div key={f} className="chkli">
                       <span className="arr">→</span>
@@ -142,13 +144,18 @@ export function TheCooperativeContent() {
                   style={{ display: "flex", flexDirection: "column", gap: 7 }}
                 >
                   {[
+                    "Everything in Community Membership",
                     "W-2 employment status",
                     "Semi-monthly payroll — automated & compliant",
-                    "Group health, dental, vision, disability & life",
+                    "Group health, dental, vision & life",
+                    "Access to disability coverage (required for W-2)",
                     "401(k) with employer contribution options",
-                    "Unemployment insurance & workers' comp included",
+                    "Unemployment insurance",
+                    "Access to workers' comp (required for W-2)",
                     "Full tax compliance — withholding, filings & W-2",
-                    "Everything in Community Membership",
+                    "HR support",
+                    "Proof of income (W-2, pay stubs)",
+                    "Voting rights — elect the Board of Stewards",
                   ].map((f) => (
                     <div key={f} className="chkli">
                       <span className="arr">→</span>

@@ -21,7 +21,11 @@
     "wp:apply-url-map": "tsx scripts/wp-import/apply-url-map-to-firestore.ts",
     "wp:sync-media-map": "tsx scripts/wp-import/sync-media-map-to-storage.ts",
     "wp:export-url-map-pending": "tsx scripts/wp-import/export-url-map-pending.ts",
-    "wp:patch-sole-proprietor-guide": "tsx scripts/wp-import/patch-guides-sole-proprietor-url.ts"
+    "wp:patch-sole-proprietor-guide": "tsx scripts/wp-import/patch-guides-sole-proprietor-url.ts",
+    "cms:seed-site-content": "tsx scripts/seed-site-content.ts",
+    "migrate:firebase": "tsx scripts/firebase-project-migrate.ts",
+    "firestore:rewrite-storage-urls": "tsx scripts/firestore-rewrite-storage-buckets.ts",
+    "firestore:audit-storage-urls": "tsx scripts/audit-firestore-storage-urls.ts"
   },
   "dependencies": {
     "@tiptap/extension-image": "^3.22.4",

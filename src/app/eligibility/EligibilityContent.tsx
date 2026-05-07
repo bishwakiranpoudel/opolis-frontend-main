@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { C, COMMUNITY_SIGNUP_URL, STATE_FLOORS, US_STATES } from "@/lib/constants";
+import { C, COMMUNITY_SIGNUP_URL } from "@/lib/constants";
 import {
   Users,
   BookOpen,
@@ -17,9 +17,17 @@ import {
   X,
 } from "lucide-react";
 
-export function EligibilityContent() {
+export function EligibilityContent({
+  stateFloors,
+  usStates,
+}: {
+  stateFloors: Record<string, number>;
+  usStates: string[];
+}) {
   const [selectedState, setSelectedState] = useState("");
-  const floor = selectedState ? STATE_FLOORS[selectedState] : null;
+  const floor = selectedState
+    ? stateFloors[selectedState] ?? null
+    : null;
   const fmt = (n: number) => "$" + n.toLocaleString();
 
   return (
@@ -74,9 +82,9 @@ export function EligibilityContent() {
                 className="section-lead section-lead--narrow"
                 style={{ marginBottom: 22 }}
               >
-                No S-Corp required. Join the cooperative, access the community,
-                and start the path to Employee Membership when you&apos;re
-                ready.
+                No entity required (to join the Co-Op). Join the cooperative,
+                access the community, and start the path to Employee
+                Membership when you&apos;re ready.
               </p>
               <a
                 href={COMMUNITY_SIGNUP_URL}
@@ -99,7 +107,7 @@ export function EligibilityContent() {
               {[
                 { Icon: Users, h: "Member Social Hub", p: "Peer network, knowledge sharing, collaborators." },
                 { Icon: BookOpen, h: "Education & Resources", p: "Webinars on S-Corps, taxes, and benefits." },
-                { Icon: Vote, h: "Governance & Profits", p: "Members participate in cooperative governance and profit distributions." },
+                { Icon: Vote, h: "Governance & Profits", p: "Earn $WORK, receive dividends when declared, and nominate Board of Stewards candidates. Employee Members vote in cooperative elections." },
                 { Icon: ShoppingBag, h: "Partner Discounts", p: "Tools and services negotiated for Members." },
                 { Icon: Briefcase, h: "Internal Marketplace", p: "Members-only work opportunities." },
                 { Icon: Coins, h: "Member Rewards", p: "Members earn rewards as the cooperative grows, deepening their ownership stake." },
@@ -149,7 +157,7 @@ export function EligibilityContent() {
               Employee Membership
             </span>
             <h2 className="cond h2-section h2-section--large">
-              Who qualifies.
+              Employee Membership Eligibility
             </h2>
             <p className="section-lead">
               Employee Membership is the full employment stack — payroll,
@@ -157,6 +165,78 @@ export function EligibilityContent() {
               and a salary that meets your state&apos;s exempt minimum.
               Community Members upgrade when they&apos;re ready.
             </p>
+          </div>
+
+          <div
+            className="g2"
+            style={{
+              gap: 16,
+              marginBottom: 48,
+              maxWidth: 920,
+            }}
+          >
+            <div
+              className="dc"
+              style={{
+                padding: "22px 24px",
+                border: `1px solid ${C.border}`,
+                borderRadius: 12,
+              }}
+            >
+              <div
+                style={{
+                  fontSize: 10,
+                  fontWeight: 700,
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  color: "#4ade80",
+                  marginBottom: 10,
+                }}
+              >
+                Community Membership
+              </div>
+              <p
+                style={{
+                  color: C.lgray,
+                  fontSize: 14,
+                  lineHeight: 1.65,
+                  margin: 0,
+                }}
+              >
+                Open to anyone, anywhere. No entity required.
+              </p>
+            </div>
+            <div
+              className="dc"
+              style={{
+                padding: "22px 24px",
+                border: `1px solid ${C.border}`,
+                borderRadius: 12,
+              }}
+            >
+              <div
+                style={{
+                  fontSize: 10,
+                  fontWeight: 700,
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  color: C.red,
+                  marginBottom: 10,
+                }}
+              >
+                Employee Membership
+              </div>
+              <p
+                style={{
+                  color: C.lgray,
+                  fontSize: 14,
+                  lineHeight: 1.65,
+                  margin: 0,
+                }}
+              >
+                Available in the U.S. for S-Corps or C-Corps.
+              </p>
+            </div>
           </div>
 
           {/* Ideal profiles — compact */}
@@ -363,7 +443,7 @@ export function EligibilityContent() {
                   }}
                 >
                   <option value="">Select state…</option>
-                  {US_STATES.map((s) => (
+                  {usStates.map((s) => (
                     <option key={s} value={s}>
                       {s}
                     </option>

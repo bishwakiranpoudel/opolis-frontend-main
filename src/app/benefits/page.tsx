@@ -81,9 +81,12 @@ const BENEFITS = [
     h: "Community & Perks",
     d: "Independent doesn't mean isolated. The Opolis cooperative connects professionals across all 50 states with a growing suite of partner benefits.",
     pts: [
-      "Member Social Hub — peer connection, knowledge sharing",
-      "Educational webinars on S-Corps, tax strategy, and benefits",
+      "Member Social Hub — peer connection, knowledge sharing, internal marketplace",
+      "Educational resources on S-Corps, tax strategy, and benefits",
       "Partner discounts on tools, software, and professional services",
+      "Earn $WORK tokens as the cooperative grows",
+      "Receive dividends when declared",
+      "Nominate Board of Stewards candidates",
       "Community events — virtual and in-person",
     ],
   },
@@ -138,6 +141,145 @@ export default function BenefitsPage() {
             becomes possible at the scale of a cooperative membership negotiating
             as one employer — with over $210M in payroll processed to date.
           </p>
+
+          <div
+            className="g2"
+            style={{
+              marginTop: 36,
+              gap: 16,
+              maxWidth: 920,
+            }}
+          >
+            <div
+              className="dc"
+              style={{
+                padding: "22px 24px",
+                border: `1px solid ${C.border}`,
+                borderRadius: 12,
+              }}
+            >
+              <div
+                style={{
+                  fontSize: 10,
+                  fontWeight: 700,
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  color: "#4ade80",
+                  marginBottom: 14,
+                }}
+              >
+                For All Co-Op Members
+              </div>
+              <ul
+                style={{
+                  listStyle: "none",
+                  padding: 0,
+                  margin: 0,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 10,
+                }}
+              >
+                {[
+                  "Earn $WORK tokens as the cooperative grows",
+                  "Dividends when declared by the Board",
+                  "Member Social Hub & community access",
+                  "Partner perks & discounts",
+                ].map((line) => (
+                  <li
+                    key={line}
+                    style={{
+                      display: "flex",
+                      gap: 10,
+                      alignItems: "flex-start",
+                      fontSize: 14,
+                      color: C.lgray,
+                      lineHeight: 1.55,
+                    }}
+                  >
+                    <span
+                      style={{
+                        color: "#4ade80",
+                        flexShrink: 0,
+                        marginTop: 2,
+                      }}
+                      aria-hidden
+                    >
+                      <Check size={16} strokeWidth={2.5} />
+                    </span>
+                    {line}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div
+              className="dc"
+              style={{
+                padding: "22px 24px",
+                background: "rgba(232,67,45,.05)",
+                border: `1px solid rgba(232,67,45,.25)`,
+                borderRadius: 12,
+                position: "relative",
+                overflow: "hidden",
+              }}
+            >
+              <div
+                style={{
+                  fontSize: 10,
+                  fontWeight: 700,
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  color: C.red,
+                  marginBottom: 14,
+                }}
+              >
+                For Employee Members
+              </div>
+              <ul
+                style={{
+                  listStyle: "none",
+                  padding: 0,
+                  margin: 0,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 10,
+                }}
+              >
+                {[
+                  "W-2 employment (payroll, compliance, filings)",
+                  "Access to group health, dental, vision & life",
+                  "401(k) with employer contribution options",
+                  "Access to disability & workers' comp coverage",
+                  "HR support & proof of income (W-2, pay stubs)",
+                  "Voting rights — elect the Board of Stewards",
+                ].map((line) => (
+                  <li
+                    key={line}
+                    style={{
+                      display: "flex",
+                      gap: 10,
+                      alignItems: "flex-start",
+                      fontSize: 14,
+                      color: C.lgray,
+                      lineHeight: 1.55,
+                    }}
+                  >
+                    <span
+                      style={{
+                        color: C.red,
+                        flexShrink: 0,
+                        marginTop: 2,
+                      }}
+                      aria-hidden
+                    >
+                      <Check size={16} strokeWidth={2.5} />
+                    </span>
+                    {line}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -302,27 +444,6 @@ export default function BenefitsPage() {
         </div>
       </section>
 
-      <section className="sec-dark" id="benefits-cta">
-        <div className="wrap">
-          <div className="section-cta-stack section-cta-stack--measure-sm">
-            <h2 className="cond h2-section h2-section--page" id="ready-for-full-stack">
-              Ready for the full stack?
-            </h2>
-            <p className="section-lead section-lead--center">
-              Join as a Community Member first, or apply for Employee Membership
-              if you already run an S-Corp.
-            </p>
-            <a
-              href={COMMUNITY_SIGNUP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-red lg"
-            >
-              Join the Co-op →
-            </a>
-          </div>
-        </div>
-      </section>
     </>
   );
 }

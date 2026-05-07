@@ -67,7 +67,7 @@ export function organizationJsonLd() {
     url: SITE_URL,
     logo: { "@type": "ImageObject", url: LOGO_URL },
     description:
-      "A member-owned employment cooperative providing W-2 employment infrastructure for independent professionals.",
+      "A member-owned employment cooperative providing community, education, group purchasing power, and optional Employer-of-Record (W2) infrastructure for independent professionals.",
     foundingDate: "2019",
     ...(SAME_AS_URLS.length > 0 ? { sameAs: SAME_AS_URLS } : {}),
   };

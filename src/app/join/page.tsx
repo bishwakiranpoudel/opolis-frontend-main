@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
 import { buildMetadata, breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
+import {
+  getResolvedStateFloors,
+  getUsStatesSorted,
+} from "@/lib/firebase/site-content-read";
 import { JoinContent } from "./JoinContent";
+
+export const revalidate = 0;
 
 export const metadata: Metadata = buildMetadata({
   title: "Join Opolis — Get Started with the Employment Cooperative",
@@ -23,7 +29,9 @@ const joinWebPageLd = webPageJsonLd({
   speakableCssSelectors: [".speakable"],
 });
 
-export default function JoinPage() {
+export default async function JoinPage() {
+  const stateFloors = await getResolvedStateFloors();
+  const usStates = getUsStatesSorted(stateFloors);
   return (
     <>
       <script
@@ -38,7 +46,7 @@ export default function JoinPage() {
           __html: JSON.stringify(joinWebPageLd),
         }}
       />
-      <JoinContent />
+      <JoinContent stateFloors={stateFloors} usStates={usStates} />
     </>
   );
 }

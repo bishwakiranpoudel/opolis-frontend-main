@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
 import { buildMetadata, breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
+import {
+  getResolvedStateFloors,
+  getUsStatesSorted,
+} from "@/lib/firebase/site-content-read";
 import { EligibilityContent } from "./EligibilityContent";
+
+export const revalidate = 0;
 
 export const metadata: Metadata = buildMetadata({
   title: "Eligibility — Is Opolis Right for You? | State Salary Minimums",
@@ -22,7 +28,9 @@ const eligibilityWebPageLd = webPageJsonLd({
   speakableCssSelectors: [".speakable"],
 });
 
-export default function EligibilityPage() {
+export default async function EligibilityPage() {
+  const stateFloors = await getResolvedStateFloors();
+  const usStates = getUsStatesSorted(stateFloors);
   return (
     <>
       <script
@@ -37,7 +45,7 @@ export default function EligibilityPage() {
           __html: JSON.stringify(eligibilityWebPageLd),
         }}
       />
-      <EligibilityContent />
+      <EligibilityContent stateFloors={stateFloors} usStates={usStates} />
     </>
   );
 }

@@ -1,5 +1,14 @@
 import Link from "next/link";
-import { BookOpen, FileText, FolderTree, HelpCircle, Mic } from "lucide-react";
+import {
+  BookOpen,
+  FileText,
+  FolderTree,
+  HelpCircle,
+  Map,
+  Mic,
+  UserCircle2,
+  Users,
+} from "lucide-react";
 import { C } from "@/lib/constants";
 
 const cards = [
@@ -32,6 +41,24 @@ const cards = [
     title: "Podcasts",
     desc: "Episodes, series, and show notes.",
     Icon: Mic,
+  },
+  {
+    href: "/create/board",
+    title: "Board of Stewards",
+    desc: "About page — governance cards, portraits optional.",
+    Icon: Users,
+  },
+  {
+    href: "/create/team",
+    title: "Team",
+    desc: "About page — staff names and titles.",
+    Icon: UserCircle2,
+  },
+  {
+    href: "/create/state-floors",
+    title: "State salary floors",
+    desc: "Eligibility & Join — annual exempt minimums by state.",
+    Icon: Map,
   },
 ] as const;
 

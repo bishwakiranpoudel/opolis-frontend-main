@@ -1,5 +1,6 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { FirebaseAnalyticsInit } from "@/components/FirebaseAnalyticsInit";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { buildMetadata, organizationJsonLd, websiteJsonLd } from "@/lib/seo";
@@ -13,6 +14,13 @@ const defaultSeo = {
 };
 
 const baseMetadata = buildMetadata(defaultSeo);
+
+/** Enables `env(safe-area-inset-*)` on iOS / Safari for notch + home indicator. */
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
 
 export const metadata: Metadata = {
   ...baseMetadata,
@@ -70,6 +78,7 @@ export default function RootLayout({
           background: "#0D0D0D",
         }}
       >
+        <FirebaseAnalyticsInit />
         <Nav />
         <main style={{ flex: 1 }}>{children}</main>
         <Footer />

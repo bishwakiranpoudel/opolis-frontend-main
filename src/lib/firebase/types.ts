@@ -129,3 +129,26 @@ export interface UrlMapPendingDoc {
   suggestedNewPath: string | null;
   discoveredAt: string;
 }
+
+export type PeopleSection = "board" | "team";
+
+/** `people_entries/{id}` */
+export interface PeopleEntryDoc {
+  section: PeopleSection;
+  name: string;
+  title: string;
+  /** Public HTTPS URL (e.g. from /api/create/upload) */
+  avatarUrl?: string;
+  sortOrder: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+/** `site_eligibility/state_floors` */
+export interface StateFloorsDoc {
+  floors: Record<string, number>;
+  /** e.g. "2026" — display only in CMS / optional footnote */
+  effectiveYear?: string;
+  updatedAt: string;
+  source: "cms" | "static_seed";
+}

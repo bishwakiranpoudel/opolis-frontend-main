@@ -14,6 +14,9 @@ const NAV = [
   { href: "/create/faq", label: "FAQ" },
   { href: "/create/guides", label: "Guides" },
   { href: "/create/podcasts", label: "Podcasts" },
+  { href: "/create/board", label: "Board" },
+  { href: "/create/team", label: "Team" },
+  { href: "/create/state-floors", label: "State floors" },
 ] as const;
 
 export function CreateCmsLayout({ children }: { children: ReactNode }) {

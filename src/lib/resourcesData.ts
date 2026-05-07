@@ -6,6 +6,42 @@
 
 export type FaqItem = { q: string; a: string };
 export type FaqSection = { id: string; label: string; items: FaqItem[] };
+
+/** Coerce Firestore/WordPress/WP-style items to `{ q, a }` for rendering. */
+export function normalizeFaqItemPair(raw: unknown): FaqItem | null {
+  if (!raw || typeof raw !== "object") return null;
+  const o = raw as Record<string, unknown>;
+  const q =
+    typeof o.q === "string"
+      ? o.q
+      : typeof o.question === "string"
+        ? o.question
+        : "";
+  const a =
+    typeof o.a === "string"
+      ? o.a
+      : typeof o.answer === "string"
+        ? o.answer
+        : "";
+  const qt = q.trim();
+  const at = a.trim();
+  return qt && at ? { q: qt, a: at } : null;
+}
+
+/** Drop blank Q&As and coerce aliases so FAQ tabs / JSON-LD never render empty. */
+export function normalizeFaqSectionsForDisplay(
+  sections: FaqSection[]
+): FaqSection[] {
+  return sections
+    .map((s) => ({
+      ...s,
+      items: s.items
+        .map((i) => normalizeFaqItemPair(i))
+        .filter((x): x is FaqItem => x != null),
+    }))
+    .filter((s) => s.items.length > 0);
+}
+
 export type GuidesSection = { cat: string; cc: string; items: { type: string; label: string; url: string }[] };
 
 export const FAQ_SECTIONS: FaqSection[] = [
@@ -137,34 +173,42 @@ export const CMP_COLS = [
 
 export const PRICING_TIERS = [
   {
-    tier: "Co-op Membership",
+    tier: "Community Membership",
     price: "$97",
     freq: "one-time",
     badge: null as string | null,
-    desc: "Join the cooperative and gain immediate access to the Opolis community.",
+    desc:
+      "Your Class B cooperative share purchase — immediate access to the Opolis community, dividend rights, and the path to Employee Membership.",
+    sub: "Class B (non-voting) shares include dividend rights. No entity required. Fully refundable within 30 days.",
     features: [
       "Member Social Hub & peer network",
       "Internal marketplace for work opportunities",
-      "Educational webinars on S-Corps, taxes & benefits",
+      "Educational resources on S-Corps, taxes & benefits",
       "Partner discounts on tools and software",
-      "Cooperative governance & profit participation",
+      "Earn $WORK tokens as the cooperative grows",
+      "Receive dividends when declared",
+      "Nominate Board of Stewards candidates",
     ],
     dark: false,
   },
   {
     tier: "Employee Membership",
-    price: "~$500–$1K",
-    freq: "per year for most Members",
+    price: "$20 + ~1%",
+    freq: "upgrade fee + cooperative fee",
     badge: "Full Product",
-    desc: "The full employment infrastructure — payroll, benefits, compliance, and cooperative ownership.",
-    sub: "Pricing is 1% of your semi-monthly invoice total (Gross Wages + Employer Taxes + Benefit Premiums × 1%). A one-month premium deposit is required at activation. Example: if your total annual payroll, taxes, and benefits equal $90K, your cooperative fee is $900/year.",
+    desc: "The full employment infrastructure — payroll, benefits, compliance, and Class A voting rights in the cooperative.",
+    sub: "$20 purchases Class A (voting) shares, enabling you to vote on the Board of Stewards. Add a 1% cooperative fee on top of your semi-monthly invoice total (Gross Wages + Employer Taxes + Benefit Premiums). Most Members pay $500–$1,000/year in cooperative fees.",
     features: [
-      "Everything in Co-op Membership",
+      "Everything in Community Membership",
+      "$20 Class A voting shares — vote on the Board of Stewards",
       "W-2 employment status",
       "Semi-monthly payroll & full tax compliance",
-      "Group health, dental, vision, disability & life",
+      "Access to group health, dental, vision & life",
       "401(k) with employer contribution options",
-      "Unemployment insurance & workers' comp included",
+      "Access to disability coverage* (*required for W-2)",
+      "Access to workers' comp* (*required for W-2)",
+      "HR support",
+      "Proof of income (W-2, pay stubs)",
     ],
     dark: true,
   },
@@ -251,10 +295,22 @@ export function isFaqSection(x: unknown): x is FaqSection {
   if (!x || typeof x !== "object") return false;
   const o = x as Record<string, unknown>;
   if (typeof o.id !== "string" || typeof o.label !== "string") return false;
-  if (!Array.isArray(o.items)) return false;
+  if (!Array.isArray(o.items) || o.items.length === 0) return false;
   return o.items.every((item: unknown) => {
     if (!item || typeof item !== "object") return false;
     const i = item as Record<string, unknown>;
-    return typeof i.q === "string" && typeof i.a === "string";
+    const q =
+      typeof i.q === "string"
+        ? i.q
+        : typeof i.question === "string"
+          ? i.question
+          : "";
+    const a =
+      typeof i.a === "string"
+        ? i.a
+        : typeof i.answer === "string"
+          ? i.answer
+          : "";
+    return q.trim().length > 0 && a.trim().length > 0;
   });
 }

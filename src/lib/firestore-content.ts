@@ -27,6 +27,7 @@ import {
   rewriteFirebaseGatewayUrlToGcsPublic,
   rewriteFirebaseGatewayUrlsInHtml,
 } from "@/lib/firebase/storage-public-url";
+import { rewriteLegacyBucketsUsingEnv } from "@/lib/firebase/storage-bucket-remap";
 import { SITE_URL, unemployableSeasonTwoStartIso } from "@/lib/constants";
 import { playlistYoutubeIdForPodcastSlug } from "@/lib/podcastYoutubeSlugMap";
 import type { FaqSection, GuidesSection } from "@/lib/resourcesData";
@@ -59,7 +60,13 @@ function normalizeGuideItems(items: unknown): GuidesSection["items"] {
       typeof i.label === "string" &&
       typeof i.url === "string"
     ) {
-      out.push({ type: i.type, label: i.label, url: i.url });
+      out.push({
+        type: i.type,
+        label: i.label,
+        url: rewriteFirebaseGatewayUrlToGcsPublic(
+          rewriteLegacyBucketsUsingEnv(i.url)
+        ),
+      });
     }
   }
   return out;
@@ -99,14 +106,37 @@ function parseGuidesFromDocData(
   return null;
 }
 
+function faqPairFromItem(it: Record<string, unknown>): { q: string; a: string } | null {
+  const qRaw =
+    typeof it.q === "string"
+      ? it.q
+      : typeof it.question === "string"
+        ? it.question
+        : "";
+  const aRaw =
+    typeof it.a === "string"
+      ? it.a
+      : typeof it.answer === "string"
+        ? it.answer
+        : "";
+  const q0 = qRaw.trim();
+  const a0 = aRaw.trim();
+  if (!q0 || !a0) return null;
+  const q = rewriteFirebaseGatewayUrlsInHtml(
+    rewriteLegacyBucketsUsingEnv(q0)
+  );
+  const a = rewriteFirebaseGatewayUrlsInHtml(
+    rewriteLegacyBucketsUsingEnv(a0)
+  );
+  return { q, a };
+}
+
 function normalizeFaqItems(items: unknown): FaqSection["items"] {
   const out: FaqSection["items"] = [];
   for (const it of coerceFirestoreArray(items)) {
     if (!it || typeof it !== "object") continue;
-    const i = it as Record<string, unknown>;
-    if (typeof i.q === "string" && typeof i.a === "string") {
-      out.push({ q: i.q, a: i.a });
-    }
+    const pair = faqPairFromItem(it as Record<string, unknown>);
+    if (pair) out.push(pair);
   }
   return out;
 }
@@ -156,8 +186,12 @@ function normalizeStoredSiteAbsoluteUrl(s: string | undefined): string {
 
 function normalizeOptionalStoredUrl(s: string | undefined): string | undefined {
   if (s == null || !String(s).trim()) return undefined;
+  const stepped = rewriteStoredDevOrigin(
+    rewriteLegacyOpolisLinks(s.trim(), SITE_URL),
+    SITE_URL
+  );
   const out = rewriteFirebaseGatewayUrlToGcsPublic(
-    rewriteStoredDevOrigin(rewriteLegacyOpolisLinks(s.trim(), SITE_URL), SITE_URL)
+    rewriteLegacyBucketsUsingEnv(stepped)
   );
   return out || undefined;
 }
@@ -244,6 +278,7 @@ function normalizeBlogBodyHtml(html: string): string {
   let out = applyUrlRewriteMap(html);
   out = rewriteStoredDevOrigin(out, SITE_URL);
   out = rewriteLegacyOpolisLinks(out, SITE_URL);
+  out = rewriteLegacyBucketsUsingEnv(out);
   out = rewriteFirebaseGatewayUrlsInHtml(out);
   return out;
 }

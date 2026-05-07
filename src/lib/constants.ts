@@ -122,6 +122,9 @@ export function unemployableSeasonWpCategoryIds(): {
 export const COMMUNITY_SIGNUP_URL =
   "https://commons.opolis.co/community/signup";
 
+/** Official Discord invite (sitewide). */
+export const DISCORD_INVITE_URL = "https://discord.com/invite/opolis";
+
 /** Official Privacy Policy PDF (linked from footer and mirrored legal pages). */
 export const LEGAL_PRIVACY_POLICY_PDF_URL =
   "https://opolis.co/wp-content/uploads/2026/01/25.12.18_Opolis-Privacy-Policy.docx.pdf";

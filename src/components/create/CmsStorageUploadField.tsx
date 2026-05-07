@@ -44,12 +44,15 @@ export function CmsStorageUploadField({
   );
 
   return (
-    <div className="create-form-row">
+    <div className="create-form-row create-cms-upload-field">
       <span className="slabel">{label}</span>
-      <p className="create-muted" style={{ margin: "0 0 10px", fontSize: 13 }}>
+      <p
+        className="create-muted create-cms-upload-field__hint"
+        style={{ margin: "0 0 10px", fontSize: 13 }}
+      >
         Upload a file — it is stored and the returned link is saved automatically.
       </p>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "flex-start" }}>
+      <div className="create-cms-upload-field__actions">
         <label
           className="btn btn-outline"
           style={{
@@ -85,7 +88,7 @@ export function CmsStorageUploadField({
         ) : null}
       </div>
       {value ? (
-        <div style={{ marginTop: 12, display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
+        <div className="create-cms-upload-field__preview">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={value}
@@ -114,12 +117,12 @@ export function CmsStorageUploadField({
         </div>
       ) : null}
       {optionalUrlFallback ? (
-        <details style={{ marginTop: 14 }}>
-          <summary className="create-muted" style={{ cursor: "pointer", fontSize: 13 }}>
+        <details className="create-cms-upload-field__details">
+          <summary className="create-muted create-cms-upload-field__summary">
             Paste URL instead
           </summary>
           <input
-            className="create-input"
+            className="create-input create-cms-upload-field__paste-input"
             style={{ marginTop: 10 }}
             value={value}
             onChange={(e) => onChange(e.target.value)}

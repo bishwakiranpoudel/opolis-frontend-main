@@ -3,7 +3,12 @@
  * Server-rendered pages use Firebase Admin via `@/lib/firestore-content` instead.
  */
 
-import { type FirebaseApp, getApps, initializeApp } from "firebase/app";
+import {
+  type FirebaseApp,
+  type FirebaseOptions,
+  getApps,
+  initializeApp,
+} from "firebase/app";
 import { type Auth, getAuth } from "firebase/auth";
 import { type Firestore, getFirestore } from "firebase/firestore";
 import { getFirebaseWebConfig, isFirebaseWebConfigComplete } from "@/lib/firebase/web-config";
@@ -12,11 +17,24 @@ let app: FirebaseApp | undefined;
 let firestore: Firestore | undefined;
 let auth: Auth | undefined;
 
+function toFirebaseOptions(c: ReturnType<typeof getFirebaseWebConfig>): FirebaseOptions {
+  const base: FirebaseOptions = {
+    apiKey: c.apiKey,
+    authDomain: c.authDomain,
+    projectId: c.projectId,
+    storageBucket: c.storageBucket,
+    messagingSenderId: c.messagingSenderId,
+    appId: c.appId,
+  };
+  if (c.measurementId) base.measurementId = c.measurementId;
+  return base;
+}
+
 export function getFirebaseClientApp(): FirebaseApp | null {
   if (!isFirebaseWebConfigComplete()) return null;
-  const config = getFirebaseWebConfig();
+  const options = toFirebaseOptions(getFirebaseWebConfig());
   if (!getApps().length) {
-    app = initializeApp(config);
+    app = initializeApp(options);
   } else {
     app = getApps()[0]!;
   }
