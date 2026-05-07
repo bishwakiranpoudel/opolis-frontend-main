@@ -397,6 +397,7 @@ export default async function AboutPage() {
                 className="dc"
                 style={{ padding: "20px 20px", textAlign: "center" }}
               >
+                {/* Headshots temporarily hidden — restore when ready
                 {s.avatarUrl ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
@@ -424,6 +425,7 @@ export default async function AboutPage() {
                     }}
                   />
                 )}
+                */}
                 <div
                   style={{
                     fontWeight: 700,
