@@ -65,8 +65,8 @@ export function TheCooperativeContent() {
                   >
                     Join immediately. No entity required (to join the Co-Op).
                     Access the Member community, educational resources, and
-                    partner discounts — with $WORK, dividends, and the right to
-                    nominate Board of Stewards candidates.
+                    partner discounts — earn $WORK, receive dividends, and
+                    nominate the Board of Stewards.
                   </p>
                   <a
                     href={COMMUNITY_SIGNUP_URL}
@@ -144,18 +144,17 @@ export function TheCooperativeContent() {
                   style={{ display: "flex", flexDirection: "column", gap: 7 }}
                 >
                   {[
-                    "Everything in Community Membership",
                     "W-2 employment status",
                     "Semi-monthly payroll — automated & compliant",
-                    "Group health, dental, vision & life",
-                    "Access to disability coverage (required for W-2)",
+                    "Access to group health, dental, vision & life",
                     "401(k) with employer contribution options",
-                    "Unemployment insurance",
-                    "Access to workers' comp (required for W-2)",
+                    "Access to disability coverage* (*required for W-2)",
+                    "Access to workers' comp* (*required for W-2)",
                     "Full tax compliance — withholding, filings & W-2",
                     "HR support",
                     "Proof of income (W-2, pay stubs)",
                     "Voting rights — elect the Board of Stewards",
+                    "Everything in Community Membership",
                   ].map((f) => (
                     <div key={f} className="chkli">
                       <span className="arr">→</span>
