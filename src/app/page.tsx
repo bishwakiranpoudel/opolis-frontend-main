@@ -260,12 +260,26 @@ export default function HomePage() {
               color: C.gray,
               fontSize: 15,
               lineHeight: 1.7,
-              marginBottom: 52,
+              marginBottom: 16,
               maxWidth: 720,
             }}
           >
             Join the Co-Op as a Community Member. Upgrade to Employee
             Membership for payroll, benefits, and compliance.
+          </p>
+          <p
+            style={{
+              color: C.gray,
+              fontSize: 15,
+              lineHeight: 1.7,
+              marginBottom: 52,
+              maxWidth: 720,
+            }}
+          >
+            Start with community membership and access the cooperative
+            immediately. When you&apos;re ready — and your S-Corp is in place —
+            upgrade to Employee Membership for the full employment
+            infrastructure.
           </p>
           <div className="g2" style={{ gap: 24 }}>
             <div
@@ -692,7 +706,7 @@ export default function HomePage() {
                 },
                 {
                   l: "Cooperative ownership model",
-                  s: "Earn $WORK and dividends; nominate Board candidates — Employee Members vote in cooperative elections",
+                  s: "Members earn $WORK, receive dividends, and nominate the Board. Employee Members vote.",
                 },
               ].map((f) => (
                 <div
