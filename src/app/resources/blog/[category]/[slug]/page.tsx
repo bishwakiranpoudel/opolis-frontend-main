@@ -24,6 +24,13 @@ function truncate(str: string, max: number): string {
   return s.slice(0, max).trim().replace(/\s+\S*$/, "") + "…";
 }
 
+/** Absolute https URL only — safe for og:image / JSON-LD image. */
+function httpsFeaturedImageUrl(url: string | undefined): string | undefined {
+  const u = url?.trim();
+  if (!u || !/^https:\/\//i.test(u)) return undefined;
+  return u;
+}
+
 type PageProps = {
   params: Promise<{ category: string; slug: string }>;
 };
@@ -45,11 +52,15 @@ export async function generateMetadata({
     return { title: post.h };
   }
   const description = truncate(stripHtml(post.excerpt), 155);
+  const ogImage = httpsFeaturedImageUrl(post.featuredImageUrl);
   return buildMetadata({
     title: `${post.h} | Opolis Blog`,
     description: description || "Read more on the Opolis blog.",
     path: blogPostPath(post),
-    openGraph: { type: "article" },
+    openGraph: {
+      type: "article",
+      ...(ogImage ? { image: ogImage } : {}),
+    },
   });
 }
 
@@ -84,6 +95,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     date: post.dateIso ?? post.date,
     modified: post.modifiedIso,
     path: canonicalPath,
+    image: httpsFeaturedImageUrl(post.featuredImageUrl),
   });
 
   const breadcrumbLd = breadcrumbJsonLd([

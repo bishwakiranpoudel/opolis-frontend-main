@@ -107,6 +107,7 @@ function mapPost(
       playlistYoutubeIdForPodcastSlug(post.slug) ??
       extractYoutubeVideoId(ytMerged),
     legacyPermalink: post.link,
+    ...(post.modified ? { modifiedIso: post.modified } : {}),
   };
 }
 

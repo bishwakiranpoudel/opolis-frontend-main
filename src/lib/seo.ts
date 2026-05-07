@@ -268,3 +268,27 @@ export function articleJsonLd(post: ArticleJsonLdPost) {
     },
   };
 }
+
+export interface PodcastEpisodeVideoJsonLdInput {
+  name: string;
+  description: string;
+  uploadDate: string;
+  embedUrl: string;
+  pageUrl: string;
+  thumbnailUrl?: string;
+}
+
+/** YouTube-backed podcast episode — complements Article JSON-LD on the same page. */
+export function podcastEpisodeVideoJsonLd(input: PodcastEpisodeVideoJsonLdInput) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: input.name,
+    description: input.description,
+    uploadDate: input.uploadDate,
+    embedUrl: input.embedUrl,
+    url: input.pageUrl,
+    ...(input.thumbnailUrl ? { thumbnailUrl: input.thumbnailUrl } : {}),
+    publisher: { "@id": `${SITE_URL}/#organization` },
+  };
+}

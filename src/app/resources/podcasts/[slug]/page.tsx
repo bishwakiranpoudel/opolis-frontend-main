@@ -2,8 +2,13 @@ import type { Metadata } from "next";
 import type { CSSProperties } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { buildMetadata, articleJsonLd, breadcrumbJsonLd } from "@/lib/seo";
-import { C } from "@/lib/constants";
+import {
+  buildMetadata,
+  articleJsonLd,
+  breadcrumbJsonLd,
+  podcastEpisodeVideoJsonLd,
+} from "@/lib/seo";
+import { C, SITE_URL } from "@/lib/constants";
 import {
   getPodcastEpisodeBySlug,
   getPodcastEpisodes,
@@ -129,6 +134,18 @@ export default async function PodcastEpisodePage({ params }: PageProps) {
     { name: displayTitle, path },
   ]);
 
+  const pageUrl = `${SITE_URL.replace(/\/$/, "")}${path}`;
+  const videoLd =
+    ytId &&
+    podcastEpisodeVideoJsonLd({
+      name: displayTitle,
+      description: truncate(stripHtml(episode.excerptHtml), 160),
+      uploadDate: episode.dateIso,
+      embedUrl: `https://www.youtube.com/embed/${ytId}`,
+      pageUrl,
+      thumbnailUrl: episode.thumbnailUrl,
+    });
+
   const linkStyle: CSSProperties = {
     textDecoration: "none",
     color: "inherit",
@@ -149,6 +166,14 @@ export default async function PodcastEpisodePage({ params }: PageProps) {
           __html: JSON.stringify(articleLd),
         }}
       />
+      {videoLd ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(videoLd),
+          }}
+        />
+      ) : null}
       <section className="sec-alt">
         <div className="wrap">
           <div className="blog-post-layout">

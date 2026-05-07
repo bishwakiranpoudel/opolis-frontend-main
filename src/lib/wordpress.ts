@@ -14,7 +14,7 @@ import {
 const WORDPRESS_URL = process.env.WORDPRESS_URL || "";
 const REVALIDATE_SECONDS = 60; // ISR: revalidate at most every 60 seconds
 
-const FIELDS = "id,title,link,date,categories,slug";
+const FIELDS = "id,title,link,date,modified,categories,slug";
 
 /** WordPress REST API post shape (only fields we request) */
 interface WPPost {
@@ -22,6 +22,7 @@ interface WPPost {
   title: { rendered: string };
   link: string;
   date: string;
+  modified?: string;
   categories: number[];
   slug?: string;
 }
@@ -37,6 +38,11 @@ interface WPPostFull {
   modified?: string;
   link: string;
   categories: number[];
+  featured_media?: number;
+  jetpack_featured_media_url?: string;
+  _embedded?: {
+    "wp:featuredmedia"?: Array<{ source_url?: string }>;
+  };
 }
 
 interface WPCategory {
@@ -100,6 +106,7 @@ function mapWpPostToBlogPost(
     ...(post.slug && { slug: post.slug }),
     categorySlug: resolveWpCategorySlug(post, categoriesMap),
     dateIso: post.date,
+    ...(post.modified ? { modifiedIso: post.modified } : {}),
   };
 }
 
@@ -129,7 +136,7 @@ async function fetchCategories(
 
 /**
  * Fetches all blog posts from WordPress REST API.
- * Uses _fields to request only id, title, link, date, categories so responses stay under 2MB and are cacheable.
+ * Uses _fields to request only id, title, link, date, modified, categories so responses stay under 2MB and are cacheable.
  * Returns empty array if WORDPRESS_URL is not set or request fails.
  */
 export async function getBlogPosts(): Promise<BlogPost[]> {
@@ -200,7 +207,15 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
 }
 
 const FULL_POST_FIELDS =
-  "id,slug,title,content,excerpt,date,modified,link,categories";
+  "id,slug,title,content,excerpt,date,modified,link,categories,featured_media";
+
+function wpFeaturedImageUrl(raw: WPPostFull): string | undefined {
+  const jet = raw.jetpack_featured_media_url?.trim();
+  if (jet && /^https?:\/\//i.test(jet)) return jet;
+  const u = raw._embedded?.["wp:featuredmedia"]?.[0]?.source_url?.trim();
+  if (u && /^https?:\/\//i.test(u)) return u;
+  return undefined;
+}
 
 /**
  * Fetches a single blog post by slug for the /blog/[slug] page.
@@ -227,7 +242,7 @@ export async function getBlogPostBySlug(
 
   try {
     const categoriesMap = await fetchCategories(baseUrl);
-    const url = `${baseUrl}/wp-json/wp/v2/posts?slug=${encodeURIComponent(slug)}&_fields=${FULL_POST_FIELDS}`;
+    const url = `${baseUrl}/wp-json/wp/v2/posts?slug=${encodeURIComponent(slug)}&_fields=${FULL_POST_FIELDS}&_embed=1`;
     const res = await fetch(url, {
       next: { revalidate: REVALIDATE_SECONDS },
       headers: {
@@ -249,6 +264,8 @@ export async function getBlogPostBySlug(
         ? getCategoryFromId(firstCategoryId, categoriesMap)
         : DEFAULT_CATEGORY;
 
+    const featuredImageUrl = wpFeaturedImageUrl(raw);
+
     const full: FullBlogPost = {
       slug: raw.slug,
       h: stripHtml(raw.title?.rendered || ""),
@@ -262,6 +279,7 @@ export async function getBlogPostBySlug(
       modified: raw.modified ? formatDate(raw.modified) : undefined,
       dateIso: raw.date,
       modifiedIso: raw.modified,
+      ...(featuredImageUrl ? { featuredImageUrl } : {}),
     };
     return full;
   } catch (err) {

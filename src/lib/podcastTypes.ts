@@ -72,6 +72,8 @@ export interface PodcastEpisode {
   thumbnailUrl?: string;
   youtubeVideoId?: string;
   legacyPermalink?: string;
+  /** ISO modified time when available (sitemap prefers this over dateIso) */
+  modifiedIso?: string;
 }
 
 export interface FullPodcastEpisode extends PodcastEpisode {

@@ -16,6 +16,8 @@ export interface BlogPost {
   categorySlug: string;
   /** ISO date from API for sitemap lastModified */
   dateIso?: string;
+  /** ISO modified time when available (sitemap prefers this over dateIso) */
+  modifiedIso?: string;
 }
 
 /** Full post for the single blog page (content, excerpt, etc.) */

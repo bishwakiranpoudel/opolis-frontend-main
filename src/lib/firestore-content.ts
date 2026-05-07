@@ -221,6 +221,7 @@ function docToBlogPost(
     slug: d.slug,
     categorySlug: resolveCategorySlug(d, categoriesMap),
     dateIso: d.dateIso,
+    ...(d.modifiedIso ? { modifiedIso: d.modifiedIso } : {}),
   };
 }
 
@@ -451,6 +452,7 @@ function docToPodcastEpisode(d: PodcastEpisodeDoc): PodcastEpisode {
     legacyPermalink: legacyRaw
       ? normalizeStoredSiteAbsoluteUrl(legacyRaw)
       : undefined,
+    ...(d.modifiedIso ? { modifiedIso: d.modifiedIso } : {}),
   };
 }
 

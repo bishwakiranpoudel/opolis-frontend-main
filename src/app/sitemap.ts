@@ -14,10 +14,15 @@ import { getGuides } from "@/lib/wordpressResources";
  */
 export const dynamic = "force-dynamic";
 
+function lastModFromIso(iso: string | undefined): Date | undefined {
+  if (!iso?.trim()) return undefined;
+  const d = new Date(iso);
+  return Number.isNaN(d.getTime()) ? undefined : d;
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticEntries: MetadataRoute.Sitemap = STATIC_SITEMAP_PATHS.map((path) => ({
     url: `${SITE_URL}${path}`,
-    lastModified: new Date(),
     changeFrequency: path === "" ? "weekly" : ("monthly" as const),
     priority: path === "" ? 1 : 0.8,
   }));
@@ -31,14 +36,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     .filter((p) => p.slug)
     .map((p) => ({
       url: `${SITE_URL}${blogPostPath(p)}`,
-      lastModified: p.dateIso ? new Date(p.dateIso) : new Date(),
+      lastModified:
+        lastModFromIso(p.modifiedIso) ?? lastModFromIso(p.dateIso),
       changeFrequency: "monthly" as const,
       priority: 0.7,
     }));
 
   const podcastEntries: MetadataRoute.Sitemap = podcastEpisodes.map((ep) => ({
     url: `${SITE_URL}${podcastEpisodePath(ep.slug)}`,
-    lastModified: ep.dateIso ? new Date(ep.dateIso) : new Date(),
+    lastModified:
+      lastModFromIso(ep.modifiedIso) ?? lastModFromIso(ep.dateIso),
     changeFrequency: "monthly" as const,
     priority: 0.65,
   }));
@@ -46,7 +53,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const guideViewerPaths = listGuideViewerPaths(guides);
   const guideEntries: MetadataRoute.Sitemap = guideViewerPaths.map((path) => ({
     url: `${SITE_URL}${path}`,
-    lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.62,
   }));
