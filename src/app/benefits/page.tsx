@@ -23,7 +23,7 @@ const BENEFITS = [
     Icon: Heart,
     h: "Health Insurance",
     badge: "Most Popular",
-    d: "Group medical, dental, and vision plans from national carriers. Multiple tiers — from high-deductible HSA-compatible plans to comprehensive PPOs.",
+    d: "Group medical, dental, and vision plans from national carriers. Multiple tiers — from high-deductible HSA-compatible plans to comprehensive PPOs. The rates reflect the purchasing power of the entire Opolis membership negotiating as a single employer. That's the cooperative advantage.",
     pts: [
       "Medical, dental, and vision from national carriers",
       "Multiple plan tiers to match your needs and budget",
@@ -34,24 +34,25 @@ const BENEFITS = [
   {
     Icon: TrendingUp,
     h: "Retirement",
-    d: "S-Corp owner-employee retirement plans with the ability to contribute as both employee and employer — significantly increasing annual contribution limits.",
+    d: "S-Corp owner-employee retirement plans with the ability to contribute as both employee and employer — significantly increasing annual contribution limits compared to solo IRA options.",
     pts: [
       "401(k) with flexible contribution levels",
       "Employer contribution capability through your S-Corp",
       "Roth and traditional options depending on plan",
       "Contributions automated through payroll",
+      "Members may elect to include crypto assets in their 401(k) allocation",
     ],
   },
   {
     Icon: Shield,
     h: "Disability & Income Protection",
     badge: "Often Overlooked",
-    d: "As a W-2 employee of the cooperative, you gain access to protections most independent professionals have never had.",
+    d: "As a W-2 employee of the cooperative, you gain access to protections most independent professionals have never had — automatically included, no separate enrollment required.",
     pts: [
-      "Short-term disability — 60% of base salary replacement",
-      "Long-term disability — extended or permanent coverage",
-      "Unemployment insurance — temporary income replacement",
-      "Workers' compensation — on-the-job injury coverage",
+      "Short-term disability — 60% of base salary replacement during temporary inability to work",
+      "Long-term disability — coverage for extended or permanent disability",
+      "Unemployment insurance — temporary income replacement if work ceases",
+      "Workers' compensation — medical and lost-wage coverage for on-the-job injury",
     ],
   },
   {
@@ -79,7 +80,7 @@ const BENEFITS = [
   {
     Icon: Globe,
     h: "Community & Perks",
-    d: "Independent doesn't mean isolated. The Opolis cooperative connects professionals across all 50 states with a growing suite of partner benefits.",
+    d: "Independent doesn't mean isolated. The Opolis cooperative connects professionals across all 50 states who share the same working model — with a growing suite of partner benefits.",
     pts: [
       "Member Social Hub — peer connection, knowledge sharing, internal marketplace",
       "Educational resources on S-Corps, tax strategy, and benefits",
